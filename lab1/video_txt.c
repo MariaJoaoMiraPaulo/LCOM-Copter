@@ -15,16 +15,26 @@ static char *video_mem;		/* Address to which VRAM is mapped */
 static unsigned scr_width;	/* Width of screen in columns */
 static unsigned scr_lines;	/* Height of screen in lines */
 
-void vt_fill(char ch, char attr) {
+
+void vt_fill(char ch, char attr)
+{
+  char *vptr;
   
-  /* To complete */
+  vptr=video_mem;  //vptr is pointing to the first pixel of the screen
   
+  int i;
+ for (i=0; i<(scr_width*scr_lines);i++)   // scr_width*scr_lines represents all the pixels
+ {
+	  *vptr=ch;    //modify the first byte of the pixel
+	  vptr++;
+	  *vptr=attr;   //modify the second byte of the pixel
+	  vptr++;
+ }
 }
 
-void vt_blank() {
-
-  /* To complete ... */
-
+void vt_blank()
+{
+	vt_fill(0x00, 0x00);
 }
 
 int vt_print_char(char ch, char attr, int r, int c) {
