@@ -1,0 +1,16 @@
+service lab1
+{
+	system
+		READBIOS
+		PRIVCTL
+		;
+	ipc
+		SYSTEM	# to retrieve system information
+        	rs  	# for service initialization
+	    	vm	# to map video RAM
+	    	pm  	# for malloc, if needed
+		;
+	uid 
+		0
+		;
+};
