@@ -41,6 +41,11 @@ int vt_print_char(char ch, char attr, int r, int c)
 {
 	 char *vptr;
 
+	 if (r>24 || c>79)
+	 {
+		 return 1;
+	 }
+
 	 vptr=video_mem;     //vptr is pointing to the first pixel of the screen
 
 	 vptr= 2*c+vptr;           //goes to the right column
@@ -51,7 +56,7 @@ int vt_print_char(char ch, char attr, int r, int c)
 	 *vptr=attr;    //and the color of the char and the color of the background
 	 vptr++;
 
-	  return 1;
+	  return 0;
 }
 
 int vt_print_string(char *str, char attr, int r, int c) {
