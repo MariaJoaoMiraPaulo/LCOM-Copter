@@ -34,13 +34,24 @@ void vt_fill(char ch, char attr)
 
 void vt_blank()
 {
-	vt_fill(0x00, 0x00);
+	vt_fill(0x00, 0x00);     //Fills the screen with blank
 }
 
-int vt_print_char(char ch, char attr, int r, int c) {
-  
-  /* To complete ... */
+int vt_print_char(char ch, char attr, int r, int c)
+{
+	 char *vptr;
 
+	 vptr=video_mem;     //vptr is pointing to the first pixel of the screen
+
+	 vptr= 2*c+vptr;           //goes to the right column
+	 vptr= 2*r*scr_width+vptr;   //goes to the right line, now is in the right position
+
+	 *vptr=ch;      //lets change the char
+	 vptr++;
+	 *vptr=attr;    //and the color of the char and the color of the background
+	 vptr++;
+
+	  return 1;
 }
 
 int vt_print_string(char *str, char attr, int r, int c) {
