@@ -65,7 +65,7 @@ int timer_get_conf(unsigned long timer, unsigned char *st) {
 }
 
 int timer_display_conf(unsigned char conf) {
-	
+
 	printf("BCD : %d", 0x01 & conf);  //test bit 0
 
 	printf("Programmed Mode : %d%d%d", (0x08 & conf)>> 3, (0x04 & conf)>> 2, (0x02 & conf)>> 1 );  //test bit 1 2 3
@@ -92,5 +92,18 @@ int timer_test_int(unsigned long time) {
 
 int timer_test_config(unsigned long timer) {
 
-	return 1;
+	unsigned char st;
+	int ret;
+
+	ret = timer_get_conf(timer, &st);
+
+	if (ret != 0)
+		return 1;
+
+	ret = timer_display_conf(st);
+
+	if ( ret != 0)
+		return 1;
+
+	return 0;
 }
