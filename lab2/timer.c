@@ -1,5 +1,6 @@
 #include <minix/syslib.h>
 #include <minix/drivers.h>
+#include "i8254.h"
 
 int timer_set_square(unsigned long timer, unsigned long freq) {
 
@@ -47,12 +48,12 @@ int timer_get_conf(unsigned long timer, unsigned char *st) {
 	switch (timer)
 	{
 	case 0:
-		ret= sys_inb(TIMER_0,res);  //put config on first timer
+		ret= sys_inb(TIMER_0,&res);  //put config on first timer
 		break;
 	case 1:
-		ret= sys_inb(TIMER_1,res); //put config on second timer
+		ret= sys_inb(TIMER_1,&res); //put config on second timer
 	case 1:
-		ret= sys_inb(TIMER_2,res); //put config on  third timer
+		ret= sys_inb(TIMER_2,&res); //put config on  third timer
 	}
 
 

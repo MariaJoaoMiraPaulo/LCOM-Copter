@@ -24,9 +24,9 @@ int main(int argc, char **argv) {
 }
 
 static void print_usage(char *argv[]) {
-  printf("Usage: one of the following:\n"
-	 "\t service run %s -args \"config <timer>\" \n"
-	 argv([0]);
+  printf("Usage: one of the following:\n",
+	 "\t service run %s -args \"config <timer>\" \n",
+	 argv[0]);
 }
 
 static int proc_args(int argc, char *argv[]) {
