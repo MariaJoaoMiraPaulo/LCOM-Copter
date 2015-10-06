@@ -35,7 +35,7 @@ int timer_get_conf(unsigned long timer, unsigned char *st) {
 		break;
 	case 1:
 		command=command |TIMER_RB_SEL(1); //if is the first timer put 1 at bit 2
-	case 1:
+	case 2:
 		command=command |TIMER_RB_SEL(2); //if is the first timer put 1 at bit 3
 	}
 
@@ -52,7 +52,7 @@ int timer_get_conf(unsigned long timer, unsigned char *st) {
 		break;
 	case 1:
 		ret= sys_inb(TIMER_1,&res); //put config on second timer
-	case 1:
+	case 2:
 		ret= sys_inb(TIMER_2,&res); //put config on  third timer
 	}
 
@@ -83,7 +83,31 @@ int timer_display_conf(unsigned char conf) {
 
 int timer_test_square(unsigned long freq) {
 
-	return 1;
+	char command=0x36;
+	int ret;
+
+	ret=sys_outb(TIMER_CTRL,command);
+
+	if(ret!=0)
+		return -1;
+
+	int n;
+
+	n=(TIMER_FREQ /freq);
+
+	char lsb = (char) n;
+	char msb = (char) n>>8;
+
+	ret= sys_outb(TIMER_0,lsb);
+
+	if (ret!=0)
+		return -1;
+	ret= sys_outb(TIMER_0,msb);
+
+	if (ret!=0)
+		return -1;
+
+	return 0;
 }
 
 int timer_test_int(unsigned long time) {
