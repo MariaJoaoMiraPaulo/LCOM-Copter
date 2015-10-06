@@ -59,23 +59,101 @@ int vt_print_char(char ch, char attr, int r, int c)
 	  return 0;
 }
 
-int vt_print_string(char *str, char attr, int r, int c) {
+int vt_print_string(char *str, char attr, int r, int c)
+{
+	int lenOfString = strlen(str);  //initialize string length
+	int enoughSpace;
 
-  /* To complete ... */
+	enoughSpace = (scr_width*scr_lines-(r*scr_width+c))  - lenOfString;  //calculate if the string have enough room in the image
 
+	if (enoughSpace < 0 || r< 0 || c<0)   //if the string have no space our is put in a invalid position
+		return 1;                         //the program does not do anything
+
+	int i;
+	for (i=0; i<lenOfString ;i++)      //cycle that writes on the screen
+	{
+		vt_print_char(str[i] , attr , r , c);  //prints char by char
+
+		if ( c == scr_width )             //here the function see if the columns are running out
+		{
+			c=0;                   //if the are we change line
+			r++;
+		}
+		else
+			c++;                   //our we change column
+	}
+
+	return 0;
 }
 
-int vt_print_int(int num, char attr, int r, int c) {
+int vt_print_int(int num, char attr, int r, int c)
+{
+	int numLength=0, copyNum=num;
 
-  /* To complete ... */
+	while(copyNum > 1)         //lets see length of the integer
+	{
+		copyNum=copyNum/10;
+		numLength++;
+	}
 
+	char str[numLength];      //create the string that will receive the converted int
+
+	sprintf(str, "%d", num);    //str receives int like an array of chars
+
+	if (vt_print_string(str, attr,r ,c)==0) //print the integer and see if the print was successful
+		return 0;
+	else
+		return 1;
 }
 
 
-int vt_draw_frame(int width, int height, char attr, int r, int c) {
+int vt_draw_frame(int width, int height, char attr, int r, int c)
+{
+	int lastLine=r-1+height, lastColumn=c-1+width;
 
-  /* To complete ... */
+	if (lastColumn> scr_width )
+		return 1;
 
+	if (lastLine>scr_lines)
+		return 1;
+
+	if  (width <=0 || height <= 0)
+		return 1;
+
+	if (width>1 && height>1)
+	{
+		vt_print_char(0xc9, attr, r, c);
+		vt_print_char(0xbb, attr, r, lastColumn);
+		vt_print_char(0xc8, attr, lastLine, c);
+		vt_print_char(0xbc, attr, lastLine, lastColumn);
+	}
+	else if (height==1)
+			vt_print_char(0xcd, attr, r, c);
+	else if (width==1)
+			vt_print_char(0xba, attr, r, c);
+
+	if (width>1)
+	{
+		int i;
+		for (i=1;i<=width-2;i++)
+			{
+				vt_print_char(0xcd, attr, r , c+i);
+				vt_print_char(0xcd, attr, lastLine , c+i);
+			}
+	}
+
+	if(height>1)
+	{
+		int i;
+		for (i=1; i<=height-2;i++)
+		{
+			vt_print_char(0xba, attr, r+i , c);
+			vt_print_char(0xba, attr, r+i , lastColumn);
+		}
+
+	}
+
+	return 0;
 }
 
 /*
