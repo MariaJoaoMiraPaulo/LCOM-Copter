@@ -22,6 +22,11 @@ int timer_subscribe_int(void ) {
 
 int timer_unsubscribe_int() {
 
+	int hook_id=TIMER0_IRQ;
+
+	if (sys_irqrmpolicy(&hook_id)==0)  //unsubscribe the interrupt
+		return 0;
+
 	return 1;
 }
 
