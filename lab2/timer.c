@@ -66,7 +66,7 @@ void timer_int_handler() {
 
 	counter++;
 	if(counter%60==0)
-		printf("One second passed");
+		printf("One second passed\n");
 }
 
 int timer_get_conf(unsigned long timer, unsigned char *st) {
@@ -83,8 +83,10 @@ int timer_get_conf(unsigned long timer, unsigned char *st) {
 		break;
 	case 1:
 		command=command |TIMER_RB_SEL(1); //if is the first timer put 1 at bit 2
-	case 1:
+		break;
+	case 2:
 		command=command |TIMER_RB_SEL(2); //if is the first timer put 1 at bit 3
+		break;
 	}
 
 	ret=  sys_outb(TIMER_CTRL,command);   //put command on control (0x43)
@@ -100,8 +102,10 @@ int timer_get_conf(unsigned long timer, unsigned char *st) {
 		break;
 	case 1:
 		ret= sys_inb(TIMER_1,&res); //put config on second timer
-	case 1:
+		break;
+	case 2:
 		ret= sys_inb(TIMER_2,&res); //put config on  third timer
+		break;
 	}
 
 
@@ -136,8 +140,10 @@ int timer_test_square(unsigned long freq) {
 
 int timer_test_int(unsigned long time) {
 
+	int ipc_status;
 	int irq_set=timer_subscribe_int();
 	message msg;
+	int r;
 
 	while( counter/60 <time ) { /* You may want to use a different condition */
 		/* Get a request message. */
