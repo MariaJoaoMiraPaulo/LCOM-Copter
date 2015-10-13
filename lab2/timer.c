@@ -9,41 +9,41 @@ int timer_set_square(unsigned long timer, unsigned long freq) {
 
 	char command=0x36;
 
-		int ret;
+	int ret;
 
-		ret=sys_outb(TIMER_CTRL,command);
+	ret=sys_outb(TIMER_CTRL,command);
 
-		if(ret!=0)
+	if(ret!=0)
 
-			return -1;
+		return -1;
 
-		int n;
+	int n;
 
-		n=(TIMER_FREQ /freq);
+	n=(TIMER_FREQ /freq);
 
-		char lsb = (char) n;
+	char lsb = (char) n;
 
-		char msb = (char) n>>8;
+	char msb = (char) n>>8;
 
-		ret= sys_outb(TIMER_0,lsb);
+	ret= sys_outb(TIMER_0,lsb);
 
-		if (ret!=0)
+	if (ret!=0)
 
-			return -1;
+		return -1;
 
-		ret= sys_outb(TIMER_0,msb);
+	ret= sys_outb(TIMER_0,msb);
 
-		if (ret!=0)
+	if (ret!=0)
 
-			return -1;
+		return -1;
 
-		return 0;
+	return 0;
 }
 
 int timer_subscribe_int(void ) {
 
 	int hook_id=5;
-	int tmp=hook_id;
+	int tmp=BIT(hook_id);
 
 	if (sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE,&hook_id)!= 0)  //Subscribes the interruption
 		return 1;
@@ -130,11 +130,36 @@ int timer_display_conf(unsigned char conf) {
 }
 
 int timer_test_square(unsigned long freq) {
-
+	timer_set_square(0, freq);
 	return 1;
 }
 
 int timer_test_int(unsigned long time) {
+
+	int irq_set=timer_subscribe_int();
+	message msg;
+
+	while( counter/60 <time ) { /* You may want to use a different condition */
+		/* Get a request message. */
+		if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ){
+			printf("driver_receive failed with: %d", r);
+			continue;
+		}
+		if (is_ipc_notify(ipc_status)) {
+			/* received notification */
+			switch (_ENDPOINT_P(msg.m_source)) {
+			case HARDWARE: /* hardware interrupt notification */
+				if (msg.NOTIFY_ARG & irq_set) { /* subscribed interrupt */
+					timer_int_handler();
+				}
+				break;
+			default:
+				break; /* no other notifications expected: do nothing */
+			}
+		} else { /* received a standard message, not a notification */
+			/* no standard messages expected: do nothing */
+		}
+	}
 
 	return 1;
 }
