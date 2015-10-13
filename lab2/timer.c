@@ -2,14 +2,48 @@
 #include <minix/drivers.h>
 #include "i8254.h"
 
+int hook_id;
+int counter=0;
+
 int timer_set_square(unsigned long timer, unsigned long freq) {
 
-	return 1;
+	char command=0x36;
+
+		int ret;
+
+		ret=sys_outb(TIMER_CTRL,command);
+
+		if(ret!=0)
+
+			return -1;
+
+		int n;
+
+		n=(TIMER_FREQ /freq);
+
+		char lsb = (char) n;
+
+		char msb = (char) n>>8;
+
+		ret= sys_outb(TIMER_0,lsb);
+
+		if (ret!=0)
+
+			return -1;
+
+		ret= sys_outb(TIMER_0,msb);
+
+		if (ret!=0)
+
+			return -1;
+
+		return 0;
 }
 
 int timer_subscribe_int(void ) {
 
-	int hook_id=TIMER0_IRQ;
+	int hook_id=5;
+	int tmp=hook_id;
 
 	if (sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE,&hook_id)!= 0)  //Subscribes the interruption
 		return 1;
@@ -17,12 +51,10 @@ int timer_subscribe_int(void ) {
 	if(sys_irqenable(&hook_id)!=0) //enables the interruption
 		return 1;
 
-	return TIMER0_IRQ; //returns bit order in interrupt mask if interrupt didn't failed
+	return tmp; //returns bit order in interrupt mask if interrupt didn't failed
 }
 
 int timer_unsubscribe_int() {
-
-	int hook_id=TIMER0_IRQ;
 
 	if (sys_irqrmpolicy(&hook_id)==0)  //unsubscribe the interrupt
 		return 0;
@@ -32,6 +64,9 @@ int timer_unsubscribe_int() {
 
 void timer_int_handler() {
 
+	counter++;
+	if(counter%60==0)
+		printf("One second passed");
 }
 
 int timer_get_conf(unsigned long timer, unsigned char *st) {
@@ -96,38 +131,7 @@ int timer_display_conf(unsigned char conf) {
 
 int timer_test_square(unsigned long freq) {
 
-	char command=0x36;
-
-	int ret;
-
-	ret=sys_outb(TIMER_CTRL,command);
-
-	if(ret!=0)
-
-		return -1;
-
-	int n;
-
-	n=(TIMER_FREQ /freq);
-
-	char lsb = (char) n;
-
-	char msb = (char) n>>8;
-
-	ret= sys_outb(TIMER_0,lsb);
-
-	if (ret!=0)
-
-		return -1;
-
-	ret= sys_outb(TIMER_0,msb);
-
-	if (ret!=0)
-
-		return -1;
-
-	return 0;
-
+	return 1;
 }
 
 int timer_test_int(unsigned long time) {
