@@ -96,7 +96,38 @@ int timer_display_conf(unsigned char conf) {
 
 int timer_test_square(unsigned long freq) {
 
-	return 1;
+	char command=0x36;
+
+	int ret;
+
+	ret=sys_outb(TIMER_CTRL,command);
+
+	if(ret!=0)
+
+		return -1;
+
+	int n;
+
+	n=(TIMER_FREQ /freq);
+
+	char lsb = (char) n;
+
+	char msb = (char) n>>8;
+
+	ret= sys_outb(TIMER_0,lsb);
+
+	if (ret!=0)
+
+		return -1;
+
+	ret= sys_outb(TIMER_0,msb);
+
+	if (ret!=0)
+
+		return -1;
+
+	return 0;
+
 }
 
 int timer_test_int(unsigned long time) {
