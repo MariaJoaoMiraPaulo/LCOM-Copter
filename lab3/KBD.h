@@ -21,8 +21,10 @@
 
 #define STAT_REG 0x64 //Keyboard controller status register
 
-#define WAIT 0xE0  //scan code with 2 bytes
+#define TWOBYTE 0xE0  //scan code with 2 bytes
 
 #define MSB 0x80 //MSB at 1
+
+#define BREAK_ESC 0x81 //break code of key esc
 
 #endif /* _LCOM_KEYBOARD_H */

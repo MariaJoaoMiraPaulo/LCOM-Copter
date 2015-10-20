@@ -36,7 +36,7 @@ int keyboard_handler_scan()
 	unsigned long res;
 	int ret;
 	char status, output_buffer;
-	_Bool wait=false;
+	_Bool is2byte=false;
 
 	while(tickdelay(micros_to_ticks(DELAY_US)))
 	{
@@ -52,14 +52,14 @@ int keyboard_handler_scan()
 			if(ret != 0)
 				return 1;
 			output_buffer=(char)res;
-			if(output_buffer != WAIT)
+			if(output_buffer != TWOBYTE)
 			{
-				if(!wait)
+				if(!is2byte)
 					return (int)output_buffer;
 				else
-					return ((WAIT << 8)| output_buffer);
+					return ((TWOBYTE << 8)| output_buffer);
 			}
-				wait=true;
+				is2byte=true;
 			}
 		}
 	}
