@@ -22,47 +22,67 @@ int keyboard_subscribe_int(void )
 	return tmp; //returns bit order in interrupt mask if interrupt didn't failed
 }
 
+int keyboard_unsubscribe_int()
+{
+	int ret = sys_irqrmpolicy(&hook_id);
+
+	if (ret < 0)
+		return -1;
+
+	return ret;
+}
+
 void keyboard_print(int scancode)
 {
 	if ((char)scancode & MSB)
-		printf("BREAKCODE : %X",scancode);
+		printf("BREAKCODE : %02X\n",scancode);
 	else
-		printf("MAKECODE : %X",scancode)
+		printf("MAKECODE : %02X\n",scancode);
 }
 
 
-int keyboard_handler_scan()
+int keyboard_int_handler()
 {
 	unsigned long res;
-	int ret;
-	char status, output_buffer;
+	int ret,output_buffer;
+	char status;
 	_Bool is2byte=false;
 
-	while(tickdelay(micros_to_ticks(DELAY_US)))
+	while(1)
 	{
-		ret=sys_inb(STAT_REG, &res);
-		if(ret != 0)
+		if(sys_inb(STAT_REG, &res) != OK ) //read keyboard controller
 			return 1;
 
 		status =(char)res;
-		command=0x01;
-		if((status & command) && !(status & (TIMEOUT | PARITY)) )
+
+		if((status & STATUS_READY_OUT) && !(status & (TIMEOUT | PARITY)) )  //see if its all ok
 		{
-			ret=sys_inb(KBD_OUT_BUF, &res);
-			if(ret != 0)
+			if(sys_inb(KBD_OUT_BUF, &res) != OK)     //see if occurred some type of error
 				return 1;
-			output_buffer=(char)res;
-			if(output_buffer != TWOBYTE)
+
+			output_buffer=res;
+			if(output_buffer != TWO_BYTE)       //see if the scancode is two byte length
 			{
-				if(!is2byte)
-					return (int)output_buffer;
+				if(!is2byte)                 //see what type of print is the most suitable
+				{
+					keyboard_print(output_buffer);
+					return output_buffer;
+				}
 				else
-					return ((TWOBYTE << 8)| output_buffer);
+				{
+					keyboard_print(((TWO_BYTE << 8)| output_buffer));  //shift 0xE0 for the left byte
+					return ((TWO_BYTE << 8)| output_buffer);
+				}
 			}
-				is2byte=true;
+			else
+			{
+				is2byte=true;   //the scancode is two byte length
 			}
 		}
+		tickdelay(micros_to_ticks(DELAY_US));
 	}
+
+}
 
 
 

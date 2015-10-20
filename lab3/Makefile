@@ -10,7 +10,7 @@ SRCS=	lab3.c keyboard.c test3.c
 CCFLAGS= -Wall
 
 DPADD+=	${LIBDRIVER} ${LIBSYS}
-LDADD+=	-lvt -ldriver -lsys
+LDADD+=	 -ldriver -lsys
 
 LDFLAGS+= -L .
 

@@ -1,5 +1,5 @@
-#ifndef _LCOM_KEYBOARD_H_
-#define _LCOM_KEYBOARD_H_
+#ifndef _LCOM_KBD_H_
+#define _LCOM_KBD_H_
 
 /*
  * @{
@@ -21,10 +21,14 @@
 
 #define STAT_REG 0x64 //Keyboard controller status register
 
-#define TWOBYTE 0xE0  //scan code with 2 bytes
+#define TWO_BYTE 0xE0  //scan code with 2 bytes
 
 #define MSB 0x80 //MSB at 1
 
 #define BREAK_ESC 0x81 //break code of key esc
 
-#endif /* _LCOM_KEYBOARD_H */
+#define STATUS_READY_OUT 0x01 //status controller that indicates that we have something to read
+
+#define OK 0 //to make the code easier to ready
+
+#endif /* _LCOM_KBD_H */
