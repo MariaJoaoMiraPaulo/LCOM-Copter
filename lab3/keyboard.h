@@ -1,16 +1,15 @@
-#ifndef __KEYBOARD_H
-#define __KEYBOARD_H
+#ifndef _LCOM_KEYBOARD_H_
+#define _LCOM_KEYBOARD_H_
 
-/** @defgroup keyboard
- * @{
+/**keyboard
+ *
  *
  * Functions for use the kbd
  */
 
-/**
- *
- */
-char keyboard_subscribe_char(void );
+int keyboard_subscribe_int();
+
+int keyboard_unsubscribe_int();
 
 void keyboard_print(int scancode);
 
@@ -19,5 +18,4 @@ int keyboard_int_handler();
 void keyboard_scan();
 
 
-
-#endif /* __KEYBOARD_H */
+#endif /* _LCOM_KEYBOARD_H */

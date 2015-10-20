@@ -1,6 +1,7 @@
 #include <minix/syslib.h>
 #include <minix/drivers.h>
 #include "keyboard.h"
+#include "KBD.h"
 
 int kbd_test_scan(unsigned short ass) {
 	int ipc_status;
@@ -19,9 +20,8 @@ int kbd_test_scan(unsigned short ass) {
 			switch (_ENDPOINT_P(msg.m_source)) {
 			case HARDWARE: /* hardware interrupt notification */
 				if (msg.NOTIFY_ARG & irq_set) { /* subscribed interrupt */
-					scancode=timer_int_handler();
-					keyboard_print(scancode);
-				}
+					scancode= keyboard_int_handler();
+					}
 				break;
 			default:
 				break; /* no other notifications expected: do nothing */
@@ -30,8 +30,10 @@ int kbd_test_scan(unsigned short ass) {
 			/* no standard messages expected: do nothing */
 		}
 	}
+	if(keyboard_unsubscribe_int() != 0)
+			return 1;
 
-	return 1;
+	return 0;
 }
 int kbd_test_leds(unsigned short n, unsigned short *leds) {
 	/* To be completed */

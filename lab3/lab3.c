@@ -46,10 +46,10 @@ static int proc_args(int argc, char *argv[]) {
 			printf("scan: wrong no of arguments for test of kbd_test_scan() \n");
 			return 1;
 		}
-		unsigned short asm;
-		asm = parse_ulong(argv[2], 10);
-		printf("scan:: kbd_test_scan(%d)\n", asm);
-		kbd_test_scan(asm);
+		unsigned short assembly;
+		assembly = parse_ulong(argv[2], 10);
+		printf("scan:: kbd_test_scan(%d)\n", assembly);
+		kbd_test_scan(assembly);
 		return 0;
 	} else if(strncmp(argv[1], "leds", strlen("leds")) == 0) {
 		if(argc != 3){
@@ -59,7 +59,7 @@ static int proc_args(int argc, char *argv[]) {
 		unsigned short n;
 		unsigned short *toggle;
 		n = parse_ulong(argv[2], 10);
-		toggle = parse_ulong(argv[3], 10);
+		//toggle = parse_ulong(argv[3], 10);
 		printf("leds:: kbd_test_leds(%d ,%d )\n", n, toggle );
 		kbd_test_leds(n, toggle);
 		return 0;
