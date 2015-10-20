@@ -1,11 +1,11 @@
-# Makefile for the lab1 driver (based on that of hello).
+# Makefile for the lab3 driver (based on that of hello).
 
 COMPILER_TYPE= gnu
 
 CC=gcc
 
-PROG=	lab1
-SRCS=	lab1.c video_txt.c 
+PROG=	lab3
+SRCS=	lab3.c keyboard.c test3.c
 
 CCFLAGS= -Wall
 

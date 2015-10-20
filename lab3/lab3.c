@@ -1,6 +1,8 @@
 #include <minix/drivers.h>
 
-#include "teste3.h"
+#include "test3.h"
+#include "keyboard.h"
+#include "KBD.h"
 
 static int proc_args(int argc, char *argv[]);
 static unsigned long parse_ulong(char *str, int base);
