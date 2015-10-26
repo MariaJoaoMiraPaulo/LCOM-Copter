@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
 static void print_usage(char *argv[]) {
 	printf("Usage: one of the following:\n"
 			"\t service run %s -args \"scan <asm>\" \n"
-			"\t service run %s -args \"leds <n> <toggle>\" \n",
+			"\t service run %s -args \"leds <n> <0-2 sequence>\" \n",
 			argv[0],argv[0]);
 }
 
@@ -52,16 +52,39 @@ static int proc_args(int argc, char *argv[]) {
 		kbd_test_scan(assembly);
 		return 0;
 	} else if(strncmp(argv[1], "leds", strlen("leds")) == 0) {
-		if(argc != 3){
-			printf("leds: wrong no of arguments for test of kbd_test_leds() \n");
+		if( argc < 3 ) {
+			printf("keyboard: wrong no of arguments for test of kbd_test_leds() \n");
 			return 1;
 		}
-		unsigned short n;
-		unsigned short *toggle;
-		n = parse_ulong(argv[2], 10);
-		//toggle = parse_ulong(argv[3], 10);
-		printf("leds:: kbd_test_leds(%d ,%d )\n", n, toggle );
-		kbd_test_leds(n, toggle);
+
+		unsigned short n=parse_ulong(argv[2], 10);
+
+		unsigned short *leds = malloc(sizeof(unsigned short)*(n));
+
+		unsigned int i = 0;
+		for(; i < n; i++)
+		{
+			unsigned short val = parse_ulong(argv[i+3], 10);
+			if(val < 0 || val > 2)
+			{
+				printf("keyboard: invalid value for led - must be in range 0 - 2\n");
+				return 1;
+			}
+			leds[i] = val;
+		}
+
+		printf("keyboard :: kbd_test_leds(%u, [", n);
+
+		for(i = 0; i < n; i++)
+		{
+			printf(" %u ", leds[i]);
+			if(i < argc-3)
+				printf(",");
+		}
+		printf("])\n\n");
+
+		kbd_test_leds(n, leds);
+
 		return 0;
 	}
 	else {
