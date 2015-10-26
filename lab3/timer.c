@@ -141,7 +141,7 @@ int timer_test_square(unsigned long freq) {
 int timer_test_int(unsigned long time) {
 
 	int ipc_status;
-	int irq_set= timer_subscribe_int();
+	int irq_set=timer_subscribe_int();
 	message msg;
 	int r;
 

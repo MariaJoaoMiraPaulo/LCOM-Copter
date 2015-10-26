@@ -49,5 +49,7 @@ test3.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/syslimits.h
 test3.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include-fixed/unistd.h
 test3.o:	/usr/pkg/gcc44/lib/gcc/i686-pc-minix/4.4.3/include/stdarg.h
 test3.o:	KBD.h
+test3.o:	i8254.h
 test3.o:	keyboard.h
 test3.o:	test3.c
+test3.o:	timer.h
