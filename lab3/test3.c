@@ -6,16 +6,12 @@
 #include "timer.h"
 
 int kbd_test_scan(unsigned short ass) {
-	if(ass!=0)
-		kbd_test_c_scan();
-}
-
-int kbd_test_c_scan()
-{
 	int ipc_status;
 	int irq_set=keyboard_subscribe_int();
 	message msg;
 	int r,scancode=0;
+
+	printf("ass: %d\n",ass);
 
 	while( scancode != BREAK_ESC ) { /* You may want to use a different condition */
 		/* Get a request message. */
@@ -28,7 +24,10 @@ int kbd_test_c_scan()
 			switch (_ENDPOINT_P(msg.m_source)) {
 			case HARDWARE: /* hardware interrupt notification */
 				if (msg.NOTIFY_ARG & irq_set) { /* subscribed interrupt */
-					scancode= keyboard_int_handler();
+					//if(ass==0)
+						scancode=keyboard_c_handler();
+					//else scancode= keyboard_ass_handler();
+
 				}
 				break;
 			default:
@@ -43,6 +42,7 @@ int kbd_test_c_scan()
 
 	return 0;
 }
+
 
 int kbd_test_leds(unsigned short n, unsigned short *leds) {
 	int ipc_status;
@@ -136,7 +136,7 @@ int kbd_test_timed_scan(unsigned short n) {
 			case HARDWARE: /* hardware interrupt notification */
 				if (msg.NOTIFY_ARG & irq_set_kbd) { /* subscribed interrupt */
 					counter=n*60;
-					scancode=keyboard_int_handler();
+					scancode=keyboard_c_handler();
 					if(scancode==BREAK_ESC)
 						over=0;
 				}
