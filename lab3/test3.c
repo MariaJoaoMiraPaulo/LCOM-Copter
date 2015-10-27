@@ -24,9 +24,12 @@ int kbd_test_scan(unsigned short ass) {
 			switch (_ENDPOINT_P(msg.m_source)) {
 			case HARDWARE: /* hardware interrupt notification */
 				if (msg.NOTIFY_ARG & irq_set) { /* subscribed interrupt */
-					//if(ass==0)
+					if(ass==0) {
 						scancode=keyboard_c_handler();
-					//else scancode= keyboard_ass_handler();
+					}
+					else {
+						scancode= keyboard_ass_handler();
+					}
 
 				}
 				break;
