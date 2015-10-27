@@ -43,11 +43,11 @@ int kbd_test_leds(unsigned short n, unsigned short *leds) {
 	int irq_set=timer_subscribe_int();
 	message msg;
 	int r;
-	int counterLed=0;
+	int counterLed=0;   //to counter interruptions
 	int i=0;
 	unsigned long cmd;
 
-	while( counterLed/60 <n ) { /* You may want to use a different condition */
+	while( counterLed/60 <n ) { //to do n times
 		/* Get a request message. */
 		if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ){
 			printf("driver_receive failed with: %d", r);

@@ -30,8 +30,9 @@ int main(int argc, char **argv) {
 static void print_usage(char *argv[]) {
 	printf("Usage: one of the following:\n"
 			"\t service run %s -args \"scan <asm>\" \n"
-			"\t service run %s -args \"leds <n> <0-2 sequence>\" \n",
-			argv[0],argv[0]);
+			"\t service run %s -args \"leds <n> <0-2 sequence>\" \n"
+			"\t service run %s -args \"timed_scan <n>\" \n",
+			argv[0],argv[0],argv[0]);
 }
 
 static int proc_args(int argc, char *argv[]) {
@@ -58,35 +59,54 @@ static int proc_args(int argc, char *argv[]) {
 		}
 
 		unsigned short n=parse_ulong(argv[2], 10);
-
-		unsigned short *leds = malloc(sizeof(unsigned short)*(n));
-
-		unsigned int i = 0;
-		for(; i < n; i++)
+		if (n == argc-3)
 		{
-			unsigned short val = parse_ulong(argv[i+3], 10);
-			if(val < 0 || val > 2)
+			unsigned short *leds = malloc(sizeof(unsigned short)*(n));
+
+			unsigned int i = 0;
+			for(; i < n; i++)
 			{
-				printf("keyboard: invalid value for led - must be in range 0 - 2\n");
-				return 1;
+				unsigned short val = parse_ulong(argv[i+3], 10);
+				if(val < 0 || val > 2)
+				{
+					printf("keyboard: invalid value for led - must be in range 0 - 2\n");
+					return 1;
+				}
+				leds[i] = val;
 			}
-			leds[i] = val;
+
+			printf("keyboard :: kbd_test_leds(%u, [", n);
+
+			for(i = 0; i < n; i++)
+			{
+				printf(" %u ", leds[i]);
+				if(i < argc-3)
+					printf(",");
+			}
+			printf("])\n\n");
+
+			kbd_test_leds(n, leds);
+
+			return 0;
 		}
-
-		printf("keyboard :: kbd_test_leds(%u, [", n);
-
-		for(i = 0; i < n; i++)
-		{
-			printf(" %u ", leds[i]);
-			if(i < argc-3)
-				printf(",");
+		else {
+			printf("  n isnt equal to length of the sequence\n");
+			return 1;
 		}
-		printf("])\n\n");
-
-		kbd_test_leds(n, leds);
-
+	}
+	else if(strncmp(argv[1], "timed_scan", strlen("timed_scan")) == 0) {
+		if( argc != 3 ) {
+			printf("timed_scan: wrong no of arguments for test of kbd_test_timed_scan() \n");
+			return 1;
+		}
+		unsigned short n;
+		n = parse_ulong(argv[2], 10);
+		printf("scan:: kbd_test_timed_scan(%d)\n", n);
+		kbd_test_timed_scan(n);
 		return 0;
 	}
+
+
 	else {
 		printf("video_txt: non valid function \"%s\" to test\n", argv[1]);
 		return 1;

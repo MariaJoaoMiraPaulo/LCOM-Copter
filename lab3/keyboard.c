@@ -7,7 +7,7 @@
 
 int hook_id;
 char command;
-int OnOrOff;
+int OnOrOff;  //this variable is used in function print leds, is too know if led was turn on or off
 unsigned int Caps=0,Scroll=0,Num=0;
 
 int keyboard_subscribe_int(void )
@@ -90,7 +90,7 @@ unsigned long keyboard_create_command(int ledToChange)
 {
 	unsigned long cmd;
 
-	switch(ledToChange)
+	switch(ledToChange)   //0=scrool, 1=num , 2=caps
 	{
 	case 0:
 		if (Scroll==0)
@@ -143,12 +143,12 @@ int keyboard_notify_controller()
 
 	do{
 
-		if (sys_outb( KBD_IN_BUF, SET_LED) != OK)
+		if (sys_outb( KBD_IN_BUF, SET_LED) != OK)  //sends command 0xED
 			return -1;
 
-		tickdelay(micros_to_ticks(DELAY_US));
+		tickdelay(micros_to_ticks(DELAY_US));  //waits for keyboard controller
 
-		if (sys_inb( KBD_OUT_BUF, &msg)!=OK)
+		if (sys_inb( KBD_OUT_BUF, &msg)!=OK)   //checks if  all went well
 			return -1;
 
 	}
@@ -163,16 +163,16 @@ int keyboard_change_led(unsigned long cmd)
 	unsigned long msg;
 
 	do {
-		if (sys_outb( KBD_IN_BUF, cmd)!=OK)
+		if (sys_outb( KBD_IN_BUF, cmd)!=OK)  //sends command to modify led
 			return -1;
 
-		tickdelay(micros_to_ticks(DELAY_US));
+		tickdelay(micros_to_ticks(DELAY_US));    //waits for keyboard controller
 
-		if (sys_inb( KBD_OUT_BUF,&msg)==REPEAT)
+		if (sys_inb( KBD_OUT_BUF,&msg)==REPEAT)  //checks if  all went well
 			return -1;
 
 	}
-	while (msg==RESEND);
+	while (msg==RESEND);    //trys to deal with possible errors
 
 	if (msg==ERROR)
 		return 1;
@@ -186,21 +186,21 @@ void keyboard_print_ledInfo(int ledToPrint)
 	switch (ledToPrint)
 	{
 	case 0:
-		if(OnOrOff==0)
+		if(OnOrOff==0)    //checks if leds was turn on or off
 		{
 			printf("Scroll Lock Off \n");
 		}
 		else printf("Scroll lock On \n");
 		break;
 	case 1:
-		if(OnOrOff==0)
+		if(OnOrOff==0)     //checks if leds was turn on or off
 		{
 			printf("Num Lock Off \n");
 		}
 		else printf("Num lock On \n");
 		break;
 	case 2:
-		if(OnOrOff==0)
+		if(OnOrOff==0)     //checks if leds was turn on or off
 		{
 			printf("Caps Lock Off \n");
 		}
