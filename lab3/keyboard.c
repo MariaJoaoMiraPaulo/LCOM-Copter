@@ -209,3 +209,15 @@ void keyboard_print_ledInfo(int ledToPrint)
 
 	}
 }
+
+/*int start_at_zero()
+{
+	if (keyboard_notify_controller() != OK)
+		return 1;
+
+	tickdelay(micros_to_ticks(DELAY_US));
+
+	if (keyboard_change_led(0) != OK)
+		return 1;
+}
+*/

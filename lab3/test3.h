@@ -44,4 +44,6 @@ int kbd_test_leds(unsigned short n, unsigned short *leds);
  */
 int kbd_test_timed_scan(unsigned short n);
 
+int kbd_test_c_scan();
+
 #endif /* __TEST3_H */
