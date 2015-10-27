@@ -17,12 +17,12 @@ int keyboard_int_handler();
 
 void keyboard_scan();
 
-unsigned long keyboard_create_command(int ledToChange);
+unsigned long keyboard_create_command(int ledToChange); //creates command to send to in_buffer of keyboard
 
-int keyboard_notify_controller();
+int keyboard_notify_controller();  //sends the command 0xED before sends command to change leds
 
-int keyboard_change_led(unsigned long cmd);
+int keyboard_change_led(unsigned long cmd);  //sends command to output buffer
 
-void keyboard_print_ledInfo(int ledToPrint);
+void keyboard_print_ledInfo(int ledToPrint);  //prints info about leds, if they are turn on or off
 
 #endif /* _LCOM_KEYBOARD_H */

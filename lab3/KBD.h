@@ -43,10 +43,10 @@
 
 #define ERROR 0xFC //Error, must do the function all over again
 
-#define SCROLL_ON 1
+#define SCROLL_ON 1  //use to ativate scroll  1= 2⁰
 
-#define NUM_ON 2
+#define NUM_ON 2   //use to ativate num 2=2¹
 
-#define CAPS_ON 4
+#define CAPS_ON 4  //use to ativate caps 4=2²
 
 #endif /* _LCOM_KBD_H */
