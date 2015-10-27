@@ -25,4 +25,6 @@ int keyboard_change_led(unsigned long cmd);  //sends command to output buffer
 
 void keyboard_print_ledInfo(int ledToPrint);  //prints info about leds, if they are turn on or off
 
+//int start_at_zero();
+
 #endif /* _LCOM_KEYBOARD_H */
