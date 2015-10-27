@@ -43,7 +43,7 @@ void keyboard_print(int scancode)
 }
 
 
-int keyboard_int_handler()
+int keyboard_c_handler()
 {
 	unsigned long res;
 	int ret,output_buffer;
@@ -65,7 +65,7 @@ int keyboard_int_handler()
 			output_buffer=res;
 			if(output_buffer != TWO_BYTE)       //see if the scancode is two byte length
 			{
-				if(!is2byte)                 //see what type of print is the most suitable
+				if(!is2byte)                 //test if is a 2 byte or 1 byte scancode
 				{
 					keyboard_print(output_buffer);
 					return output_buffer;
@@ -220,4 +220,40 @@ void keyboard_print_ledInfo(int ledToPrint)
 	if (keyboard_change_led(0) != OK)
 		return 1;
 }
-*/
+ */
+
+int keyboard_ass_handler()
+{
+	unsigned long res;
+	int ret,output_buffer;
+	char status;
+	_Bool is2byte=false;
+
+	while(1)
+	{
+		sys_enable_iop(SELF);
+		res=assemblyHandler();     //res is the eax returned by asm_handler
+
+		output_buffer=res;
+		if(output_buffer != TWO_BYTE)       //see if the scancode is two byte length
+		{
+			if(!is2byte)                 //test if is a 2 byte or 1 byte scancode
+			{
+				keyboard_print(output_buffer);
+				return output_buffer;
+			}
+			else
+			{
+				keyboard_print(((TWO_BYTE << 8)| output_buffer));  //shift 0xE0 for the left byte
+				return ((TWO_BYTE << 8)| output_buffer);
+			}
+		}
+		else
+		{
+			is2byte=true;   //the scancode is two byte length
+		}
+	}
+
+
+
+}
