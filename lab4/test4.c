@@ -117,6 +117,7 @@ int test_config(void) {
 	int irq_set=mouse_subscribe_int();
 	int r;
 	int over=1;
+	unsigned long status;
 	message msg;
 
 	//configure_environment();
@@ -125,14 +126,12 @@ int test_config(void) {
 	if(sys_outb(KBD_IN_BUF, 0xF4)!=OK) printf("\nERRO na terceira escrita\n");
 
 
-	sys_outb(IN_BUF,0XE9);
-	sys_inb(OUT_BUF,status);
 
-	while(status!=ACK)
-	{
-		sys_outb(IN_BUF,0XE9);
-		sys_inb(OUT_BUF,status);
-	}
+	do{
+		sys_outb(STAT_REG,MOUSE_COMMAND);
+		sys_outb(KBD_IN_BUF,0xE9);
+		sys_inb(KBD_OUT_BUF,&status);
+	}while(status!=ACK);
 
 
 	while(over) {
@@ -147,6 +146,7 @@ int test_config(void) {
 				if (msg.NOTIFY_ARG & irq_set) { /* subscribed interrupt */
 					if(mouse_config_handler() == 1)
 						over=0;
+
 				}
 				break;
 			default:
@@ -156,7 +156,6 @@ int test_config(void) {
 			printf("No interruptions");
 		}
 	}
-
 	/*if(sys_outb(STAT_REG, MOUSE_COMMAND)!=OK)
 			return 1;
 		printf("Passei2\n");

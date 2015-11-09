@@ -150,7 +150,7 @@ int mouse_config_handler(){
 
 	int someAttemps=0;
 	static int counter=0;
-	unigned long status, byte;
+	unsigned long status, byte;
 
 	while (someAttemps < 10) {
 		sys_inb(STAT_REG, &status);
@@ -164,19 +164,20 @@ int mouse_config_handler(){
 		someAttemps++;
 	}
 
-	if (counter==0)
+	if (counter==0){
 		if(byte & CONFIG_FIRST_BYTE){
-			array[0]=byte;
+			packet[0]=byte;
 			counter++;
 			return 0;
 		}
+	}
 	else if (counter==1){
-		array[1]=byte;
+		packet[1]=byte;
 		counter++;
 		return 0;
 	}
 	else if (counter==2){
-		array[2]=byte;
+		packet[2]=byte;
 		mouse_print_config();
 		return 1;
 
@@ -190,7 +191,57 @@ int mouse_config_handler(){
 }
 
 void mouse_print_config(){
+	if(BIT(6) & packet[0])
+		printf("Remote (polled) mode\n");
+	else
+		printf("Stream mode\n");
 
+	if(BIT(5) & packet[0])
+		printf("Data reporting enabled\n");
+	else
+		printf("Data reporting disabled\n");
+
+	if(BIT(4) & packet[0])
+		printf("Scaling is 2:1\n");
+	else
+		printf("scaling is 1:1\n");
+
+	if(BIT(2) & packet[0])
+		printf("Left button is currently pressed\n");
+	else
+		printf("Left button was released\n");
+
+	if(BIT(1) & packet[0])
+		printf("Middle button is currently pressed\n");
+	else
+		printf("Middle button was released\n");
+
+	if(BIT(0) & packet[0])
+		printf("Right button is currently pressed\n");
+	else
+		printf("Right button was release\n");
+
+	printf("Resolution is set to: %d\n",packet[1]);
+
+	switch(packet[1]){
+	case 0:
+		printf("Resolution is set to: 0\n");
+		break;
+	case 1:
+		printf("Resolution is set to: 1\n");
+		break;
+	case 2:
+		printf("Resolution is set to: 2\n");
+		break;
+	case 3:
+		printf("Resolution is set to: 3\n");
+		break;
+	default:
+		printf("Error in resolution\n");
+		break;
+	}
+
+	printf("Sample Rate is set to : %d\n", packet[2]);
 
 }
 
