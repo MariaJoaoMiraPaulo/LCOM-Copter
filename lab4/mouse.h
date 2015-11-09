@@ -46,5 +46,18 @@ void mouse_print_packet();
  *
  */
 void configure_environment();
+/**
+ *
+ * @brief Enables mouse
+ *
+ */
+int mouse_config_handler();
+/**
+ *
+ * @brief Prints mouse configuration
+ *
+ */
+void mouse_print_config();
+
 
 #endif /* _LCOM_MOUSE_H */

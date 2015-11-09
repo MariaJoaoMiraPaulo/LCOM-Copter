@@ -145,3 +145,52 @@ void configure_environment(){
 
 	tickdelay(micros_to_ticks(DELAY_US));
 }
+
+int mouse_config_handler(){
+
+	int someAttemps=0;
+	static int counter=0;
+	unigned long status, byte;
+
+	while (someAttemps < 10) {
+		sys_inb(STAT_REG, &status);
+		if (status & OBF) {
+			if (sys_inb(KBD_OUT_BUF, &byte) != OK) {
+				return 1;
+			}
+			break;
+		}
+		tickdelay(micros_to_ticks(DELAY_US));
+		someAttemps++;
+	}
+
+	if (counter==0)
+		if(byte & CONFIG_FIRST_BYTE){
+			array[0]=byte;
+			counter++;
+			return 0;
+		}
+	else if (counter==1){
+		array[1]=byte;
+		counter++;
+		return 0;
+	}
+	else if (counter==2){
+		array[2]=byte;
+		mouse_print_config();
+		return 1;
+
+	}
+
+	return -1;
+
+
+
+
+}
+
+void mouse_print_config(){
+
+
+}
+
