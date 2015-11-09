@@ -4,11 +4,10 @@
 #include "mouse.h"
 #include "KBD.h"
 
-int hook_id;
+int hook_id=MOUSE_IRQ;
 unsigned long packet[3];
 
 int mouse_subscribe_int() {
-	hook_id = MOUSE_IRQ;
 	int tmp = BIT(hook_id);
 
 	if (sys_irqsetpolicy(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE,
@@ -22,10 +21,11 @@ int mouse_subscribe_int() {
 }
 
 int mouse_unsubscribe_int() {
-	if (sys_irqrmpolicy(&hook_id) != OK)
-		return 1;
 
 	if (sys_irqdisable(&hook_id) != OK)
+		return 1;
+
+	if (sys_irqrmpolicy(&hook_id) != OK)
 		return 1;
 
 	return 0;
@@ -69,52 +69,56 @@ int mouse_handler() {
 }
 
 void mouse_print_packet() {
-	printf("B1 = %02x", packet[0]);
-	printf("B2 = %02x", packet[1]);
-	printf("B3 = %02x", packet[2]);
+	printf("One Packet!\n");
+
+	printf("B1 = 0x%02x", packet[0]);
+	printf(" B2 = 0x%02x", packet[1]);
+	printf(" B3 = 0x%02x", packet[2]);
 
 	if (BIT(0) & packet[0])
-		printf("LB = %d", 1);
+		printf(" LB = %d", 1);
 	else
-		printf("LB = %d", 0);
+		printf(" LB = %d", 0);
 
 	if (BIT(2) & packet[0])
-		printf("MB = %d", 1);
+		printf(" MB = %d", 1);
 	else
-		printf("MB = %d", 0);
+		printf(" MB = %d", 0);
 
 	if (BIT(1) & packet[0])
-		printf("RB = %d", 1);
+		printf(" RB = %d", 1);
 	else
-		printf("RB = %d", 0);
+		printf(" RB = %d", 0);
 
 	if (BIT(6) & packet[0])
-		printf("XOV = %d", 1);
+		printf(" XOV = %d", 1);
 	else
-		printf("XOV = %d", 0);
+		printf(" XOV = %d", 0);
 
 	if (BIT(7) & packet[0])
-		printf("YOV = %d", 1);
+		printf(" YOV = %d", 1);
 	else
-		printf("YOV = %d", 0);
+		printf(" YOV = %d", 0);
 
 	if (BIT(4) & packet[0]) {
 		unsigned long x_Sign = packet[1];
 		x_Sign = ~x_Sign;
 		x_Sign += 1;
 		x_Sign = -x_Sign;
-		printf("X = %d", x_Sign);
+		printf(" X = %d", x_Sign);
 	} else
-		printf("X = %d", packet[1]);
+		printf(" X = %d", packet[1]);
 
 	if (BIT(5) & packet[0]) {
 		unsigned long y_Sign = packet[2];
 		y_Sign = ~y_Sign;
 		y_Sign += 1;
 		y_Sign = -y_Sign;
-		printf("X = %d", y_Sign);
+		printf(" Y = %d\n", y_Sign);
 	} else
-		printf("X = %d", packet[1]);
+		printf(" Y = %d\n", packet[1]);
+
+
 
 }
 
