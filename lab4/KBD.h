@@ -49,4 +49,22 @@
 
 #define CAPS_ON 4  //use to ativate caps 4=2²
 
+///////////////////////////		 MOUSE		\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+#define MOUSE_IRQ 12
+
+#define IBF BIT(1)			//use to test if input buffer is full
+
+#define OBF BIT(0)			//use to test if output buffer is full
+
+#define FIRST_BYTE BIT(3)     //use to test if is the first byte of the packet
+
+#define ENABLE_MOUSE 0xA8
+
+#define MOUSE_COMMAND 0xD4
+
+#define ENABLE_DATA_PACKETS 0xF4
+
+#define DISABLE_STREAM_MODE 0xF5
+
 #endif /* _LCOM_KBD_H */

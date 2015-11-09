@@ -2,6 +2,7 @@
 
 #include "test4.h"
 #include "mouse.h"
+#include "KBD.h"
 
 static int proc_args(int argc, char *argv[]);
 static unsigned long parse_ulong(char *str, int base);
@@ -44,48 +45,48 @@ static int proc_args(int argc, char *argv[]) {
 	/* check the function to test: if the first characters match, accept it */
 	if (strncmp(argv[1], "packet", strlen("packet")) == 0) {
 		if( argc != 3 ) {
-			printf("packet: wrong no of arguments for test of kbd_test_packet() \n");
+			printf("packet: wrong no of arguments for test of test_packet() \n");
 			return 1;
 		}
 		unsigned short cnt=parse_ulong(argv[2],10);
 
-		printf("packet:: kbd_test_packet(%d)\n",cnt);
-		kbd_test_packet(cnt);
+		printf("packet:: test_packet(%d)\n",cnt);
+		test_packet(cnt);
 
 		return 0;
 
 	} else if(strncmp(argv[1], "async", strlen("async")) == 0) {
 		if( argc != 3 ) {
-			printf("async: wrong no of arguments for test of kbd_test_async() \n");
+			printf("async: wrong no of arguments for test of test_async() \n");
 			return 1;
 		}
 		unsigned short idle_time=parse_ulong(argv[2],10);
 
-		printf("async :: kbd_test_async(%d)\n",idle_time);
-		kbd_test_async(idle_time);
+		printf("async :: test_async(%d)\n",idle_time);
+		test_async(idle_time);
 
 		return 0;
 
 	}	else if(strncmp(argv[1], "config", strlen("config")) == 0) {
 		if( argc != 2 ) {
-			printf("config: wrong no of arguments for test of kbd_test_config() \n");
+			printf("config: wrong no of arguments for test of test_config() \n");
 			return 1;
 		}
-		printf("config:: kbd_test_config()\n");
-		kbd_test_config();
+		printf("config:: test_config()\n");
+		test_config();
 
 		return 0;
 	}
 	else if(strncmp(argv[1], "gesture", strlen("gesture")) == 0) {
 		if( argc != 4 ) {
-			printf("gesture: wrong no of arguments for test of kbd_test_gesture() \n");
+			printf("gesture: wrong no of arguments for test of test_gesture() \n");
 			return 1;
 		}
 		short length=parse_ulong(argv[2],10);
 		unsigned short tolerance=parse_ulong(argv[3],10);
 
 		printf("gesture:: kbd_test_gesture(%d,%d)\n",length, tolerance);
-		kbd_test_config(length,tolerance);
+		test_gesture(length,tolerance);
 
 		return 0;
 	}
