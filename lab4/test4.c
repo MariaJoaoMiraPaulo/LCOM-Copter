@@ -112,7 +112,63 @@ int test_async(unsigned short idle_time) {
 }
 
 int test_config(void) {
-	/* To be completed ... */
+
+	int ipc_status;
+	int irq_set=mouse_subscribe_int();
+	int r;
+	int over=1;
+	message msg;
+
+	//configure_environment();
+	if(sys_outb(STAT_REG, 0xA8)!=OK) printf("\nERRO na primeira escrita\n");
+	if(sys_outb(STAT_REG, 0xD4)!=OK) printf("\nERRO na segunda escrita\n");
+	if(sys_outb(KBD_IN_BUF, 0xF4)!=OK) printf("\nERRO na terceira escrita\n");
+
+
+	sys_outb(IN_BUF,0XE9);
+	sys_inb(OUT_BUF,status);
+
+	while(status!=ACK)
+	{
+		sys_outb(IN_BUF,0XE9);
+		sys_inb(OUT_BUF,status);
+	}
+
+
+	while(over) {
+		if ( driver_receive(ANY, &msg, &ipc_status) != 0 ) {
+			printf("Driver_receive failed\n");
+			continue;
+		}
+		if (is_ipc_notify(ipc_status)) {
+			/* received notification */
+			switch (_ENDPOINT_P(msg.m_source)) {
+			case HARDWARE: /* hardware interrupt notification */
+				if (msg.NOTIFY_ARG & irq_set) { /* subscribed interrupt */
+					if(mouse_config_handler() == 1)
+						over=0;
+				}
+				break;
+			default:
+				break; /* no other notifications expected: do nothing */
+			}
+		} else {
+			printf("No interruptions");
+		}
+	}
+
+	/*if(sys_outb(STAT_REG, MOUSE_COMMAND)!=OK)
+			return 1;
+		printf("Passei2\n");
+		if(sys_outb(KBD_IN_BUF,DISABLE_STREAM_MODE)!=OK)
+			return 1;
+		printf("Passei3\n");*/
+	if(mouse_unsubscribe_int() != 0)
+		return 1;
+
+	return 0;
+
+
 }	
 
 int test_gesture(short length, unsigned short tolerance) {

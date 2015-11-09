@@ -67,4 +67,6 @@
 
 #define DISABLE_STREAM_MODE 0xF5
 
+#define CONFIG_FIRST_BYTE BIT(3)|BIT(7)
+
 #endif /* _LCOM_KBD_H */
