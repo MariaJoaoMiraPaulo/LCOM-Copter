@@ -48,7 +48,9 @@ void mouse_print_packet();
 void configure_environment();
 /**
  *
- * @brief Enables mouse
+ * @brief receive byte a byte of config of the mouse
+ *
+ * @return return 1 when config of the mouse is printed
  *
  */
 int mouse_config_handler();
@@ -58,6 +60,16 @@ int mouse_config_handler();
  *
  */
 void mouse_print_config();
+
+void while_out_buf_full();
+
+/**
+ *
+ * @brief Prints mouse configuration
+ *
+ * @return Return 1 when the info is printed to change over variable value
+ */
+int mouse_gesture();
 
 
 #endif /* _LCOM_MOUSE_H */
