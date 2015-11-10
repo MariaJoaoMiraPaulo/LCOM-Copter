@@ -5,7 +5,7 @@
 #include "KBD.h"
 #include <stdlib.h>
 
-int hook_id=MOUSE_IRQ;
+int hook_id = MOUSE_IRQ;
 unsigned long packet[3];
 unsigned long config[3];
 
@@ -108,9 +108,9 @@ void mouse_print_packet() {
 		//x_Sign = ~x_Sign;
 		x_Sign += 1;
 		x_Sign = -x_Sign;
-		printf(" X = %d", x_Sign);
+		printf("\n X = %d", x_Sign);
 	} else
-		printf(" X = %d", packet[1]);
+		printf("\n X = %d", packet[1]);
 
 	if (BIT(5) & packet[0]) {
 		unsigned long y_Sign = packet[2];
@@ -122,11 +122,9 @@ void mouse_print_packet() {
 	} else
 		printf(" Y = %d\n", packet[1]);
 
-
-
 }
 
-void configure_environment(){
+void configure_environment() {
 	sys_outb(STAT_REG, MOUSE_COMMAND);
 	sys_outb(KBD_IN_BUF, STREAM_MOD);
 
@@ -138,80 +136,78 @@ void configure_environment(){
 	tickdelay(micros_to_ticks(DELAY_US));
 }
 
-
-
-int mouse_config_handler(){
+int mouse_config_handler() {
 	static int counter = 0;
 	unsigned long status, byte;
 
-	do{
-		sys_inb(STAT_REG,&status);
+	do {
+		sys_inb(STAT_REG, &status);
 		tickdelay(micros_to_ticks(DELAY_US));
 
-	}while(!(OBF & status));
+	} while (!(OBF & status));
 
 	sys_inb(KBD_OUT_BUF, &byte);
-	config[0]=byte;
+	config[0] = byte;
 
 	tickdelay(micros_to_ticks(DELAY_US));
 
-	do{
-		sys_inb(STAT_REG,&status);
+	do {
+		sys_inb(STAT_REG, &status);
 		tickdelay(micros_to_ticks(DELAY_US));
 
-	}while(!(OBF & status));
+	} while (!(OBF & status));
 
 	sys_inb(KBD_OUT_BUF, &byte);
-	config[1]=byte;
+	config[1] = byte;
 
 	tickdelay(micros_to_ticks(DELAY_US));
 
-	do{
-		sys_inb(STAT_REG,&status);
+	do {
+		sys_inb(STAT_REG, &status);
 		tickdelay(micros_to_ticks(DELAY_US));
 
-	}while(!(OBF & status));
+	} while (!(OBF & status));
 
 	sys_inb(KBD_OUT_BUF, &byte);
-	config[2]=byte;
+	config[2] = byte;
 
 	mouse_print_config();
 
 	return 0;
 }
 
-void mouse_print_config(){
-	if(BIT(6) & config[0])
+void mouse_print_config() {
+	if (BIT(6) & config[0])
 		printf("Remote (polled) mode\n");
 	else
 		printf("Stream mode\n");
 
-	if(BIT(5) & config[0])
+	if (BIT(5) & config[0])
 		printf("Data reporting enabled\n");
 	else
 		printf("Data reporting disabled\n");
 
-	if(BIT(4) & config[0])
+	if (BIT(4) & config[0])
 		printf("Scaling is 2:1\n");
 	else
 		printf("scaling is 1:1\n");
 
-	if(BIT(2) & config[0])
+	if (BIT(2) & config[0])
 		printf("Left button is being pressed\n");
 	else
 		printf("Left button is not being pressed\n");
 
-	if(BIT(1) & config[0])
+	if (BIT(1) & config[0])
 		printf("Middle button is being pressed\n");
 	else
 		printf("Middle button is not being pressed\n");
 
-	if(BIT(0) & config[0])
+	if (BIT(0) & config[0])
 		printf("Right button is being pressed\n");
 	else
 		printf("Right button is not being pressed\n");
 
-	switch(config[1] & SET_RESOLUTION){
+	switch (config[1] & SET_RESOLUTION) {
 	case 0:
 		printf("Resolution is set to: 0\n");
 		break;
@@ -233,14 +229,14 @@ void mouse_print_config(){
 
 }
 
-void while_out_buf_full(){
-	unsigned long status,temp;
-	do{
-		sys_inb(STAT_REG,&status);
+void while_out_buf_full() {
+	unsigned long status, temp;
+	do {
+		sys_inb(STAT_REG, &status);
 
-		sys_inb(KBD_OUT_BUF,&temp);
+		sys_inb(KBD_OUT_BUF, &temp);
 
-	}while(status & OBF);
+	} while (status & OBF);
 }
 
 int mouse_is_over(unsigned short tolerance,short length){
