@@ -255,7 +255,7 @@ int mouse_is_over(unsigned short tolerance, short length) {
 	}
 
 	if (delta_y >= length || abs(delta_y) >= length) {
-		if (delta_x >= tolerance || abs(delta_x) >= tolerance)
+		if (delta_x <= tolerance || abs(delta_x) <= tolerance)
 			return 1;
 	}
 

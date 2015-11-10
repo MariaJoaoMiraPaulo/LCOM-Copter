@@ -61,16 +61,19 @@ int mouse_config_handler();
  */
 void mouse_print_config();
 
+/**
+ *
+ * @brief Execute while out buffer is full
+ *
+ */
 void while_out_buf_full();
 
 /**
  *
  * @brief Prints mouse configuration
  *
- * @return Return 1 when the info is printed to change over variable value
+ * @return Return 1 when the delta_y is bigger than length and delta_x lower than tolerance
  */
-
-int mouse_is_over(unsigned short tolerance,short legth);
-
+int mouse_is_over(unsigned short tolerance,short length);
 
 #endif /* _LCOM_MOUSE_H */
