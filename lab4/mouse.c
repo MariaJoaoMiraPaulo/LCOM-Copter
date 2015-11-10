@@ -6,6 +6,7 @@
 
 int hook_id=MOUSE_IRQ;
 unsigned long packet[3];
+unsigned long config[3];
 
 int mouse_subscribe_int() {
 	int tmp = BIT(hook_id);
@@ -102,19 +103,21 @@ void mouse_print_packet() {
 
 	if (BIT(4) & packet[0]) {
 		unsigned long x_Sign = packet[1];
-		x_Sign = ~x_Sign;
+		x_Sign = (0xFF & ~(0xFF & packet[1]));
+		//x_Sign = ~x_Sign;
 		x_Sign += 1;
 		x_Sign = -x_Sign;
-		printf(" X = %d", x_Sign);
+		printf("neg X = %d", x_Sign);
 	} else
 		printf(" X = %d", packet[1]);
 
 	if (BIT(5) & packet[0]) {
 		unsigned long y_Sign = packet[2];
-		y_Sign = ~y_Sign;
+		y_Sign = (0xFF & ~(0xFF & packet[1]));
+		//y_Sign = ~y_Sign;
 		y_Sign += 1;
 		y_Sign = -y_Sign;
-		printf(" Y = %d\n", y_Sign);
+		printf("neg Y = %d\n", y_Sign);
 	} else
 		printf(" Y = %d\n", packet[1]);
 
@@ -123,71 +126,50 @@ void mouse_print_packet() {
 }
 
 void configure_environment(){
-	unsigned long status;
-
-	sys_inb(STAT_REG, &status);
-
-	if((status & IBF)){ 	//testing if input buffer is full
-		sys_outb(STAT_REG,ENABLE_MOUSE);
-	}
+	sys_outb(STAT_REG, MOUSE_COMMAND);
+	sys_outb(KBD_IN_BUF, STREAM_MOD);
 
 	tickdelay(micros_to_ticks(DELAY_US));
 
 	sys_outb(STAT_REG, MOUSE_COMMAND);
-
-	tickdelay(micros_to_ticks(DELAY_US));
-
-	sys_inb(STAT_REG, &status);
-
-	if((status & IBF)){ 	//testing if input buffer is full
-		sys_outb(KBD_IN_BUF,ENABLE_DATA_PACKETS);
-	}
+	sys_outb(KBD_IN_BUF, ENABLE_DATA_PACKETS);
 
 	tickdelay(micros_to_ticks(DELAY_US));
 }
 
+
+
 int mouse_config_handler(){
+	unsigned long byte;
+	unsigned long status;
 
-	int someAttemps=0;
-	static int counter=0;
-	unsigned long status, byte;
+	do{
+		sys_outb(STAT_REG,MOUSE_COMMAND);
+		sys_outb(KBD_IN_BUF,STATUS_REQUEST);
+		sys_inb(KBD_OUT_BUF,&status);
+	}while(status!=ACK);
 
-	while (someAttemps < 10) {
-		sys_inb(STAT_REG, &status);
-		if (status & OBF) {
-			if (sys_inb(KBD_OUT_BUF, &byte) != OK) {
-				return 1;
-			}
-			break;
-		}
-		tickdelay(micros_to_ticks(DELAY_US));
-		someAttemps++;
-	}
+	sys_inb(KBD_OUT_BUF,&status);
 
-	if (counter==0){
-		if(byte & CONFIG_FIRST_BYTE){
-			packet[0]=byte;
-			counter++;
-			return 0;
-		}
-	}
-	else if (counter==1){
-		packet[1]=byte;
-		counter++;
-		return 0;
-	}
-	else if (counter==2){
-		packet[2]=byte;
-		mouse_print_config();
+	if(status != ACK)
 		return 1;
 
-	}
+	sys_inb(KBD_OUT_BUF, &byte);
+	config[0]=byte;
 
-	return -1;
+	tickdelay(micros_to_ticks(DELAY_US));
 
+	sys_inb(KBD_OUT_BUF, &byte);
+	config[1]=byte;
 
+	tickdelay(micros_to_ticks(DELAY_US));
 
+	sys_inb(KBD_OUT_BUF, &byte);
+	config[2]=byte;
 
+	mouse_print_config();
+
+	return 0;
 }
 
 void mouse_print_config(){
@@ -219,11 +201,9 @@ void mouse_print_config(){
 	if(BIT(0) & packet[0])
 		printf("Right button is currently pressed\n");
 	else
-		printf("Right button was release\n");
+		printf("Right button was released\n");
 
-	printf("Resolution is set to: %d\n",packet[1]);
-
-	switch(packet[1]){
+	switch(packet[1] & SET_RESOLUTION){
 	case 0:
 		printf("Resolution is set to: 0\n");
 		break;
