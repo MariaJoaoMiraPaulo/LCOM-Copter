@@ -143,18 +143,6 @@ int mouse_config_handler(){
 	static int counter = 0;
 	unsigned long status, byte;
 
-/*	do{
-		sys_outb(STAT_REG,MOUSE_COMMAND);
-		sys_outb(KBD_IN_BUF,STATUS_REQUEST);
-		do{
-			sys_inb(STAT_REG,&status);
-			tickdelay(micros_to_ticks(DELAY_US));
-
-		}while(!(OBF & status));
-		sys_inb(KBD_OUT_BUF,&status);
-	}while(status!=ACK);*/
-
-
 	do{
 		sys_inb(STAT_REG,&status);
 		tickdelay(micros_to_ticks(DELAY_US));
