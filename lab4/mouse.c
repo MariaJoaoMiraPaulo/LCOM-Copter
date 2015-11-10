@@ -239,23 +239,23 @@ void while_out_buf_full() {
 	} while (status & OBF);
 }
 
-int mouse_is_over(unsigned short tolerance,short length){
+int mouse_is_over(unsigned short tolerance, short length) {
 
-	int delta_x=0,delta_y=0;
+	int delta_x = 0,delta_y = 0;
 
-	if (packet[0] & RIGHT_BUTTON)
+	if ( packet[0] & RIGHT_BUTTON )
 	{
-		delta_x+=packet[1];
-		delta_y+=packet[2];
-	}
-	else {
-		delta_x=0;
-		delta_y=0;
+		delta_x += packet[1];
+		printf(" \n \ndelta X: %d \n", delta_x);
+		delta_y += packet[2];
+		printf("delta Y: %d \n \n", delta_y);
+	} else {
+		delta_x = 0;
+		delta_y = 0;
 	}
 
-
-	if (delta_y>=length || abs(delta_y)>=length){
-		if (delta_x>=tolerance || abs(delta_x)>=tolerance)
+	if (delta_y >= length || abs(delta_y) >= length) {
+		if (delta_x >= tolerance || abs(delta_x) >= tolerance)
 			return 1;
 	}
 
