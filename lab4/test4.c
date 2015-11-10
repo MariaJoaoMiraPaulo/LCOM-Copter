@@ -1,4 +1,3 @@
-
 #include <minix/sysutil.h>
 #include <minix/syslib.h>
 #include <minix/drivers.h>
@@ -13,7 +12,6 @@ int test_packet(unsigned short cnt){
 	message msg;
 
 	configure_environment();
-
 
 	while( cnt>0 ) {
 		if ( driver_receive(ANY, &msg, &ipc_status) != 0 ) {
@@ -49,8 +47,6 @@ int test_packet(unsigned short cnt){
 
 	return 0;
 }
-
-
 
 int test_async(unsigned short idle_time) {
 	int ipc_status;
@@ -101,7 +97,6 @@ int test_async(unsigned short idle_time) {
 	if(mouse_unsubscribe_int() != 0)
 		return 1;
 
-
 	if (timer_unsubscribe_int() != OK)
 		return 1;
 
@@ -116,7 +111,6 @@ int test_config(void) {
 	int r,over=1;
 	unsigned long status;
 	message msg;
-
 
 	do{
 		sys_outb(STAT_REG,MOUSE_COMMAND);
@@ -148,17 +142,22 @@ int test_config(void) {
 
 	return 0;
 
-
 }	
 
 int test_gesture(short length, unsigned short tolerance) {
 	int ipc_status;
 	int irq_set=mouse_subscribe_int();
 	int r,over=1;
+	unsigned long status;
 	message msg;
 
 	configure_environment();
 
+	do{
+		sys_outb(STAT_REG,MOUSE_COMMAND);
+		sys_outb(KBD_IN_BUF, ENABLE_MOUSE);
+		sys_inb(KBD_OUT_BUF,&status);
+	}while(status!=ACK);
 
 	while( over ) {
 		if ( driver_receive(ANY, &msg, &ipc_status) != 0 ) {
