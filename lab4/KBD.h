@@ -67,11 +67,13 @@
 
 #define DISABLE_STREAM_MODE 0xF5
 
-#define CONFIG_FIRST_BYTE BIT(3)|BIT(7)
+#define CONFIG_FIRST_BYTE (BIT(3)|BIT(7))
+
+#define CONFIG_SECOND_BYTE (BIT(2) | BIT(3) | BIT(4) | BIT(5) | BIT(6)| BIT(7))
 
 #define STATUS_REQUEST 0xE9
 
-#define SET_RESOLUTION BIT(0) | BIT(1)
+#define SET_RESOLUTION (BIT(0) | BIT(1))
 
 #define STREAM_MOD 0xEA
 
