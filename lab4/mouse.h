@@ -69,7 +69,8 @@ void while_out_buf_full();
  *
  * @return Return 1 when the info is printed to change over variable value
  */
-int mouse_gesture();
+
+int mouse_is_over(unsigned short tolerance,short legth);
 
 
 #endif /* _LCOM_MOUSE_H */

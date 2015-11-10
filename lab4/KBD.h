@@ -77,4 +77,6 @@
 
 #define STREAM_MOD 0xEA
 
+#define RIGHT_BUTTON BIT(1)
+
 #endif /* _LCOM_KBD_H */

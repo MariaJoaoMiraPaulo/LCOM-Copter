@@ -119,15 +119,15 @@ int test_config(void) {
 
 
 	do{
-			sys_outb(STAT_REG,MOUSE_COMMAND);
-			sys_outb(KBD_IN_BUF, DISABLE_STREAM_MODE);
-			do{
-				sys_inb(STAT_REG,&status);
-				tickdelay(micros_to_ticks(DELAY_US));
+		sys_outb(STAT_REG,MOUSE_COMMAND);
+		sys_outb(KBD_IN_BUF, DISABLE_STREAM_MODE);
+		do{
+			sys_inb(STAT_REG,&status);
+			tickdelay(micros_to_ticks(DELAY_US));
 
-			}while(!(OBF & status));
-			sys_inb(KBD_OUT_BUF,&status);
-		}while(status!=ACK);
+		}while(!(OBF & status));
+		sys_inb(KBD_OUT_BUF,&status);
+	}while(status!=ACK);
 
 	do{
 		sys_outb(STAT_REG,MOUSE_COMMAND);
@@ -170,8 +170,12 @@ int test_gesture(short length, unsigned short tolerance) {
 			switch (_ENDPOINT_P(msg.m_source)) {
 			case HARDWARE: /* hardware interrupt notification */
 				if (msg.NOTIFY_ARG & irq_set) { /* subscribed interrupt */
-					if(mouse_gesture() == 1)
-						over=0;
+					if(mouse_handler()==1){
+
+						if (mouse_is_over(tolerance,length)==1){
+							over=0;
+						}
+					}
 				}
 				break;
 			default:
@@ -189,6 +193,8 @@ int test_gesture(short length, unsigned short tolerance) {
 			return 1;*/
 	if(mouse_unsubscribe_int() != 0)
 		return 1;
+
+	while_out_buf_full();
 
 	return 0;
 }
