@@ -69,4 +69,10 @@
 
 #define CONFIG_FIRST_BYTE BIT(3)|BIT(7)
 
+#define STATUS_REQUEST 0xE9
+
+#define SET_RESOLUTION BIT(0) | BIT(1)
+
+#define STREAM_MOD 0xEA
+
 #endif /* _LCOM_KBD_H */
