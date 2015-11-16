@@ -1,8 +1,10 @@
 #include <minix/drivers.h>
 
-#include "test4.h"
-#include "mouse.h"
-#include "KBD.h"
+#include "test5.h"
+#include "video_gr.h"
+#include "vbe.h"
+#include "timer.h"
+
 
 static int proc_args(int argc, char *argv[]);
 static unsigned long parse_ulong(char *str, int base);
@@ -54,7 +56,7 @@ static int proc_args(int argc, char *argv[]) {
 		unsigned short delay=parse_ulong(argv[3],10);
 
 		printf("init:: test_init(%d,%d)\n",mode,delay);
-		test_packet(mode,delay);
+		test_init(mode,delay);
 
 		return 0;
 
@@ -96,10 +98,10 @@ static int proc_args(int argc, char *argv[]) {
 		}
 		unsigned short xi=parse_ulong(argv[2],10);
 		unsigned short yi=parse_ulong(argv[3],10);
-		char *xpm[];//??
+	//	char *xpm[];//??
 
-		printf("xpm:: kbd_test_xpm(%d,%d,%d)\n",xi, yi,xpm);
-		test_gesture(xi, yi,xpm);
+		printf("xpm:: kbd_test_xpm(%d,%d)\n",xi, yi);//xpm);
+		//test_xpm(xi, yi);//,xpm);
 
 		return 0;
 	}
@@ -110,14 +112,14 @@ static int proc_args(int argc, char *argv[]) {
 		}
 		unsigned short xi=parse_ulong(argv[2],10);
 		unsigned short yi=parse_ulong(argv[3],10);
-		char *xpm[]=parse_ulong(argv[4],10);//??
+	//	char *xpm[]=parse_ulong(argv[4],10);//??
 		unsigned short hor=parse_ulong(argv[5],10);
 		short delta=parse_ulong(argv[5],10);
 		unsigned short time=parse_ulong(argv[6],10);
 
 
-		printf("move:: kbd_test_xpm(%d,%d,%d,%d,%d,%d)\n",xi, yi,xpm,hor,delta,time);
-		test_gesture(xi, yi,xpm,hor,delta,time);
+		//printf("move:: kbd_test_xpm(%d,%d,%d,%d,%d,%d)\n",xi, yi,xpm,hor,delta,time);
+		//test_move(xi, yi,xpm,hor,delta,time);
 
 		return 0;
 	}
@@ -182,7 +184,7 @@ static long parse_long(char *str, int base) {
 	return val;
 }
 
-static unsigned long parse_ushort(char *str, int base) {
+static unsigned short parse_ushort(char *str, int base) {
 	char *endptr;
 	unsigned long val;
 
@@ -203,7 +205,7 @@ static unsigned long parse_ushort(char *str, int base) {
 	return val;
 }
 
-static long parse_short(char *str, int base) {
+static short parse_short(char *str, int base) {
 	char *endptr;
 	unsigned long val;
 

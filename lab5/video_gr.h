@@ -9,7 +9,7 @@
 
 /**
  * @brief Initializes the video module in graphics mode
- * 
+ *
  * Uses the VBE INT 0x10 interface to set the desired
  *  graphics mode, maps VRAM to the process' address space and
  *  initializes static global variables with the resolution of the screen, 
