@@ -1,10 +1,8 @@
 #include <minix/drivers.h>
 
-#include "test5.h"
-#include "video_gr.h"
-#include "vbe.h"
-#include "timer.h"
-
+#include "test4.h"
+#include "mouse.h"
+#include "KBD.h"
 
 static int proc_args(int argc, char *argv[]);
 static unsigned long parse_ulong(char *str, int base);
@@ -33,7 +31,7 @@ static void print_usage(char *argv[]) {
 	printf("Usage: one of the following:\n"
 			"\t service run %s -args \"init <unsigned short mode, unsigned short delay>\" \n"
 			"\t service run %s -args \"square <unsigned short x,unsigned short y,unsigned short size,unsigned long color>\" \n"
-			"\t service run %s -args \"line <unsigned short xi, unsigned short yi,unsigned short xf,unsigned short yf,unsigned long color>\" \n"
+			"\t service run %s -args cc              \"line <unsigned short xi, unsigned short yi,unsigned short xf,unsigned short yf,unsigned long color>\" \n"
 			"\t service run %s -args \"xpm <unsigned short xi, unsigned short yi,char *xpm[]>\" \n"
 			"\t service run %s -args \"move <unsigned short xi, unsigned short yi,char *xpm[],unsigned short hor,short delta,unsigned short time>\" \n"
 			"\t service run %s -args \"controller \n",
@@ -56,7 +54,7 @@ static int proc_args(int argc, char *argv[]) {
 		unsigned short delay=parse_ulong(argv[3],10);
 
 		printf("init:: test_init(%d,%d)\n",mode,delay);
-		test_init(mode,delay);
+		test_packet(mode,delay);
 
 		return 0;
 
@@ -98,10 +96,10 @@ static int proc_args(int argc, char *argv[]) {
 		}
 		unsigned short xi=parse_ulong(argv[2],10);
 		unsigned short yi=parse_ulong(argv[3],10);
-	//	char *xpm[];//??
+		char *xpm[];//??
 
-		printf("xpm:: kbd_test_xpm(%d,%d)\n",xi, yi);//xpm);
-		//test_xpm(xi, yi);//,xpm);
+		printf("xpm:: kbd_test_xpm(%d,%d,%d)\n",xi, yi,xpm);
+		test_gesture(xi, yi,xpm);
 
 		return 0;
 	}
@@ -112,14 +110,14 @@ static int proc_args(int argc, char *argv[]) {
 		}
 		unsigned short xi=parse_ulong(argv[2],10);
 		unsigned short yi=parse_ulong(argv[3],10);
-	//	char *xpm[]=parse_ulong(argv[4],10);//??
+		char *xpm[]=parse_ulong(argv[4],10);//??
 		unsigned short hor=parse_ulong(argv[5],10);
 		short delta=parse_ulong(argv[5],10);
 		unsigned short time=parse_ulong(argv[6],10);
 
 
-		//printf("move:: kbd_test_xpm(%d,%d,%d,%d,%d,%d)\n",xi, yi,xpm,hor,delta,time);
-		//test_move(xi, yi,xpm,hor,delta,time);
+		printf("move:: kbd_test_xpm(%d,%d,%d,%d,%d,%d)\n",xi, yi,xpm,hor,delta,time);
+		test_gesture(xi, yi,xpm,hor,delta,time);
 
 		return 0;
 	}
@@ -184,7 +182,7 @@ static long parse_long(char *str, int base) {
 	return val;
 }
 
-static unsigned short parse_ushort(char *str, int base) {
+static unsigned long parse_ushort(char *str, int base) {
 	char *endptr;
 	unsigned long val;
 
@@ -205,7 +203,7 @@ static unsigned short parse_ushort(char *str, int base) {
 	return val;
 }
 
-static short parse_short(char *str, int base) {
+static long parse_short(char *str, int base) {
 	char *endptr;
 	unsigned long val;
 
