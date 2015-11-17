@@ -26,7 +26,7 @@ int keyboard_subscribe_int(void )
 
 int keyboard_unsubscribe_int()
 {
-	if(sys_irqdisable(&hook_id)!=0) //enables the interruption
+	if(sys_irqdisable(&hook_id)!=0) //disables the interruption
 			return 1;
 
 	int ret = sys_irqrmpolicy(&hook_id);
@@ -70,12 +70,12 @@ int keyboard_c_handler()
 			{
 				if(!is2byte)                 //test if is a 2 byte or 1 byte scancode
 				{
-					keyboard_print(output_buffer);
+					//keyboard_print(output_buffer);
 					return output_buffer;
 				}
 				else
 				{
-					keyboard_print(((TWO_BYTE << 8)| output_buffer));  //shift 0xE0 for the left byte
+					//keyboard_print(((TWO_BYTE << 8)| output_buffer));  //shift 0xE0 for the left byte
 					return ((TWO_BYTE << 8)| output_buffer);
 				}
 			}

@@ -15,10 +15,10 @@ int vbe_get_mode_info(unsigned short mode, vbe_mode_info_t *vmi_p) {
 	struct reg86u r;
 	mmap_t map_info;
 
-	if(lm_init()==NULL)
+	/*if(lm_init()==NULL)
 	{
 		return 1;
-	}
+	}*/
 
 	if (lm_alloc(sizeof(vbe_mode_info_t),&map_info)==NULL)
 	{

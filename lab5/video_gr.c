@@ -3,6 +3,8 @@
 #include <machine/int86.h>
 #include <sys/mman.h>
 #include <sys/types.h>
+#include <stdio.h>
+#include <math.h>
 
 #include "vbe.h"
 
@@ -90,17 +92,14 @@ int vg_exit() {
 		return 0;
 }
 
-int vg_draw(unsigned short x, unsigned short y, unsigned short size, unsigned long color){
+int vg_draw_square(unsigned short x, unsigned short y, unsigned short size, unsigned long color){
 
 	int i,j;
 	video_mem=vg_init(0x105);
 
-
 	if (x<0 || x+size>h_res || y<0 || y+size>v_res){
 		return 1;
 	}
-
-
 
 	for (i=x;i<size+x;i++)
 	{
@@ -118,4 +117,95 @@ int vg_draw(unsigned short x, unsigned short y, unsigned short size, unsigned lo
 	return 0;
 }
 
+int vg_draw_line(unsigned short xi, unsigned short yi,
+		unsigned short xf, unsigned short yf, unsigned long color){
+	double m,b;
+	unsigned short i,j;
 
+	video_mem=vg_init(0x105);
+
+	if(yi==yf){
+		i=xi;
+		while(i<=xf){
+			*(video_mem+((i+yi*h_res)*bits_per_pixel/8))=color;
+			i++;
+		}
+	}
+	else if(xi==xf){
+		i=yi;
+		while(i<=xf){
+			*(video_mem+((xi+i*h_res)*bits_per_pixel/8))=color;
+			i++;
+		}
+	}
+	else if(yf>yi){
+		m=((double)(yf-yi))/(xf-xi);
+		b=((double)yi-((double)m*xi));
+		if(m>1){
+			i=xi;
+			j=yi;
+			while(j<=yf){
+				*(video_mem+((i+j*h_res)*bits_per_pixel/8))=color;
+				j++;
+				i=trunc(((double)(j-b))/m);
+			}
+		}
+		else if(m<1){
+			i=xi;
+			j=yi;
+			while(i<=xf){
+				*(video_mem+((i+j*h_res)*bits_per_pixel/8))=color;
+				i++;
+				j=trunc(((double)(m*i))+b);
+			}
+		}
+		else if(m==1){
+			i=xi;
+			j=yi;
+			while(i<=xf){
+				*(video_mem+((i+j*h_res)*bits_per_pixel/8))=color;
+				i++;
+				j++;
+			}
+		}
+	}
+	else if(yi>yf){
+		m=((double)(yi-yf))/(xi-xf);
+		b=((double)yi-((double)m*xi));
+		if(m<-1){
+			i=xf;
+			j=yf;
+			while(j<=yi){
+				*(video_mem+((i+j*h_res)*bits_per_pixel/8))=color;
+				j++;
+				i=trunc(((double)(j-b))/m);
+			}
+		}
+		else if (m>-1){
+			i=xf;
+			j=yf;
+			while(i<=xi){
+				*(video_mem+((i+j*h_res)*bits_per_pixel/8))=color;
+				i++;
+				j=trunc(((double)(m*i))+b);
+			}
+		}
+	}
+
+
+	/*	if(yf>yi){
+		m=((double)(yf-yi))/(xf-xi);
+		if(m==1){
+			i=xi;
+			j=yi;
+			while(i<=xf){
+	 *(video_mem+((i+j*h_res)*bits_per_pixel/8))=color;
+				i++;
+				j++;
+			}
+		}
+	}*/
+
+
+	return 0;
+}
