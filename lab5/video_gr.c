@@ -101,12 +101,18 @@ int vg_draw(unsigned short x, unsigned short y, unsigned short size, unsigned lo
 	}
 
 
+
 	for (i=x;i<size+x;i++)
 	{
-		for(j=y;j<size+y;j++)
-		{
-			*(video_mem+((i+j*h_res)*bits_per_pixel/8))=color;
-		}
+		*(video_mem+((i+y*h_res)*bits_per_pixel/8))=color;
+		*(video_mem+((i+(y+size)*h_res)*bits_per_pixel/8))=color;
+	}
+
+
+	for (i=y;i<size+y;i++)
+	{
+		*(video_mem+((x+i*h_res)*bits_per_pixel/8))=color;
+		*(video_mem+(((x+size)+i*h_res)*bits_per_pixel/8))=color;
 	}
 
 	return 0;

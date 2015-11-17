@@ -73,7 +73,9 @@ int test_square(unsigned short x, unsigned short y, unsigned short size, unsigne
 				if (msg.NOTIFY_ARG & irq_set_kbd) { /* subscribed interrupt */
 					scancode=keyboard_c_handler();
 					if(scancode==BREAK_ESC)
+					{
 						over=0;
+					}
 				}
 				break;
 
@@ -84,6 +86,7 @@ int test_square(unsigned short x, unsigned short y, unsigned short size, unsigne
 			/* no standard messages expected: do nothing */
 		}
 	}
+
 
 	if(keyboard_unsubscribe_int() != OK)
 		return 1;

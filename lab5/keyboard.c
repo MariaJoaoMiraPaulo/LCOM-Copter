@@ -26,6 +26,9 @@ int keyboard_subscribe_int(void )
 
 int keyboard_unsubscribe_int()
 {
+	if(sys_irqdisable(&hook_id)!=0) //enables the interruption
+			return 1;
+
 	int ret = sys_irqrmpolicy(&hook_id);
 
 	if (ret < 0)
