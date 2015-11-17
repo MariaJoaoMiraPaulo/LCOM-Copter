@@ -37,7 +37,7 @@ void *vg_init(unsigned short mode){
 
 	if( sys_int86(&reg86) != OK ) {
 		printf("vg_exit(): sys_int86() failed \n");
-		return 1;
+		return NULL;
 	}
 
 	vbe_mode_info_t mode_info;
@@ -92,15 +92,18 @@ int vg_exit() {
 
 int vg_draw(unsigned short x, unsigned short y, unsigned short size, unsigned long color){
 
+	vg_init(0x105);
+
 	if (x<0 || x+size>h_res || y<0 || y+size>v_res){
 		return 1;
 	}
-
-	for (int i=x;i<size+x;i++)
+	int i;
+	for (i=x;i<size+x;i++)
 	{
-		for(int j=y;j<size+y;j++)
+		int j;
+		for(j=y;j<size+y;j++)
 		{
-			video_mem+((x+y*h_ves)*BitsPerPixel/8)=color;
+			//video_mem+((x+y*h_res)*bits_per_pixel/8)=color;
 		}
 	}
 

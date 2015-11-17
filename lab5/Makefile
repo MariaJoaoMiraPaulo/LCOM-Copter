@@ -1,5 +1,5 @@
 # Makefile for the lab5 driver (based on that of hello).
-
+  
 COMPILER_TYPE= gnu
 
 CC=gcc

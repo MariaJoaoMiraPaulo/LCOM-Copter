@@ -22,7 +22,8 @@ void *test_init(unsigned short mode, unsigned short delay) {
 		return NULL;
 	}
 
-	int ipc_status;
+	sleep(delay);
+	/*int ipc_status;
 	int irq_set=timer_subscribe_int();
 	int r;
 	unsigned int cnt=delay*60;
@@ -35,22 +36,22 @@ void *test_init(unsigned short mode, unsigned short delay) {
 		}
 		if (is_ipc_notify(ipc_status)) {
 			/* received notification */
-			switch (_ENDPOINT_P(msg.m_source)) {
+	/*		switch (_ENDPOINT_P(msg.m_source)) {
 			case HARDWARE: /* hardware interrupt notification */
-				if (msg.NOTIFY_ARG & irq_set) { /* subscribed interrupt */
-					cnt--;
+	/*			if (msg.NOTIFY_ARG & irq_set) { /* subscribed interrupt */
+	/*				cnt--;
 				}
 				break;
 			default:
 				break; /* no other notifications expected: do nothing */
-			}
+/*			}
 		} else {
 			printf("No interruptions");
 		}
 	}
 
 	if(timer_unsubscribe_int() != OK)
-		return NULL;
+		return NULL;*/
 
 	if(vg_exit()!=OK){
 		printf("\ttest_init(): vg_exit() failed\n");
