@@ -34,7 +34,7 @@ void *lm_init(void);
  * Allocates a memory block in the region up to the 1 MByte physical address with the input size.
  *  Initializes the input mmap_t struct with the maping information, which can be read but must
  *  not be modified.
- * 
+ *
  * @param size size of the memory block to allocate
  * @param map pointer to mmap_t data structure, which represents the memory map
  * @return the virtual address of the memory block on success, NULL otherwise

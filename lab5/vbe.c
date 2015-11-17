@@ -20,7 +20,7 @@ int vbe_get_mode_info(unsigned short mode, vbe_mode_info_t *vmi_p) {
 		return 1;
 	}
 
-	if (lm_alloc(malloc(sizeof(vbe_mode_info_t)),&map_info)==NULL)
+	if (lm_alloc(sizeof(vbe_mode_info_t),&map_info)==NULL)
 	{
 		return 1;
 	}

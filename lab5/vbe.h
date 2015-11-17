@@ -15,10 +15,12 @@
  * Packed VBE Mode Info Block 
  */ 
 
+#define BIT(n) (0x01<<(n))
+
 #define OK 0
 #define SET_VBE_MODE 0x4F02
 #define GET_VBE_MODE_INFORMATION 0x4F01
-#define LINEAR_FRAME_BUFFER 0x0E //BIT(14)
+#define LINEAR_FRAME_BUFFER BIT(14)
 #define BIOS_VIDEO_CARD 0x10
 
 typedef struct {
