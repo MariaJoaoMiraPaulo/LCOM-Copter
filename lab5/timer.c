@@ -145,7 +145,7 @@ int timer_test_int(unsigned long time) {
 	message msg;
 	int r;
 
-	while( counter/60 <time ) { /* You may want to use a different condition */
+	while( (counter/60) <time ) { /* You may want to use a different condition */
 		/* Get a request message. */
 		if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ){
 			printf("driver_receive failed with: %d", r);
