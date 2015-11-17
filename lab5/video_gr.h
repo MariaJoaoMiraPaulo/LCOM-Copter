@@ -28,11 +28,24 @@ void *vg_init(unsigned short mode);
 int vg_exit(void);
 
 /**
-* @brief Draws the shape on the screen
+* @brief Draws a square on the screen
 *
 * @return 0 upon success, non-zero upon failure
 */
+int vg_draw_square(unsigned short x, unsigned short y, unsigned short size, unsigned long color);
 
-int vg_draw(unsigned short x, unsigned short y, unsigned short size, unsigned long color);
+/**
+ * @brief  Draws a line on the screen, starts on (xi,yi) and ends on (xf,yf)
+ *
+ * @param xi initial horizontal length
+ * @param yi initial vertical length
+ * @param xf final horizontal length
+ * @param yf final vertical length
+ * @param color color of line
+ *
+ * @return 0 upon success, non-zero upon failure
+ */
+int vg_draw_line(unsigned short xi, unsigned short yi,
+		unsigned short xf, unsigned short yf, unsigned long color);
  
 #endif /* __VIDEO_GR_H */
