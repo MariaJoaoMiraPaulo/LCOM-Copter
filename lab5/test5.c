@@ -9,6 +9,8 @@
 #include "vbe.h"
 #include "timer.h"
 #include "i8254.h"
+#include "KBD.h"
+#include "keyboard.h"
 
 
 void *test_init(unsigned short mode, unsigned short delay) {
@@ -45,6 +47,11 @@ void *test_init(unsigned short mode, unsigned short delay) {
 
 int test_square(unsigned short x, unsigned short y, unsigned short size, unsigned long color) {
 
+	int ipc_status;
+	unsigned long irq_set_kbd =  keyboard_subscribe_int();
+	message msg;
+	int r,scancode=0,over=1;
+
 
 	if(vg_draw(x, y, size, color) != 0)
 	{
@@ -53,7 +60,34 @@ int test_square(unsigned short x, unsigned short y, unsigned short size, unsigne
 		return 1;
 	}
 
-	//esc (interrupção)!!!!!
+	while( over ) { /* You may want to use a different condition */
+		/* Get a request message. */
+		if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ){
+			printf("driver_receive failed with: %d", r);
+			continue;
+		}
+		if (is_ipc_notify(ipc_status)) {
+			/* received notification */
+			switch (_ENDPOINT_P(msg.m_source)) {
+			case HARDWARE: /* hardware interrupt notification */
+				if (msg.NOTIFY_ARG & irq_set_kbd) { /* subscribed interrupt */
+					scancode=keyboard_c_handler();
+					if(scancode==BREAK_ESC)
+						over=0;
+				}
+				break;
+
+			default:
+				break; /* no other notifications expected: do nothing */
+			}
+		} else { /* received a standard message, not a notification */
+			/* no standard messages expected: do nothing */
+		}
+	}
+
+	if(keyboard_unsubscribe_int() != OK)
+		return 1;
+
 	vg_exit();
 	return 0;
 }

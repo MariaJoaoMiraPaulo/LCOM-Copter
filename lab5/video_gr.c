@@ -61,7 +61,7 @@ void *vg_init(unsigned short mode){
 
 	/* Map memory */
 
-	video_mem = vm_map_phys(SELF, (void *)mr.mr_base, mode_info.XResolution * mode_info.YResolution * mode_info.BitsPerPixel);
+	video_mem = vm_map_phys(SELF, (void *)mr.mr_base, mode_info.XResolution * mode_info.YResolution * mode_info.BitsPerPixel/8);
 
 	if(video_mem == MAP_FAILED)
 		panic("video_txt couldn't map video memory");
@@ -92,18 +92,20 @@ int vg_exit() {
 
 int vg_draw(unsigned short x, unsigned short y, unsigned short size, unsigned long color){
 
-	vg_init(0x105);
+	int i,j;
+	video_mem=vg_init(0x105);
+
 
 	if (x<0 || x+size>h_res || y<0 || y+size>v_res){
 		return 1;
 	}
-	int i;
+
+
 	for (i=x;i<size+x;i++)
 	{
-		int j;
 		for(j=y;j<size+y;j++)
 		{
-			//video_mem+((x+y*h_res)*bits_per_pixel/8)=color;
+			*(video_mem+((i+j*h_res)*bits_per_pixel/8))=color;
 		}
 	}
 
