@@ -27,6 +27,12 @@ void *vg_init(unsigned short mode);
  */
 int vg_exit(void);
 
- /** @} end of video_gr */
+/**
+* @brief Draws the shape on the screen
+*
+* @return 0 upon success, non-zero upon failure
+*/
+
+int vg_draw(unsigned short x, unsigned short y, unsigned short size, unsigned long color);
  
 #endif /* __VIDEO_GR_H */

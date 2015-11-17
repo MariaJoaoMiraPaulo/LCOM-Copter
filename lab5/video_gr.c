@@ -90,3 +90,21 @@ int vg_exit() {
 		return 0;
 }
 
+int vg_draw(unsigned short x, unsigned short y, unsigned short size, unsigned long color){
+
+	if (x<0 || x+size>h_res || y<0 || y+size>v_res){
+		return 1;
+	}
+
+	for (int i=x;i<size+x;i++)
+	{
+		for(int j=y;j<size+y;j++)
+		{
+			video_mem+((x+y*h_ves)*BitsPerPixel/8)=color;
+		}
+	}
+
+	return 0;
+}
+
+
