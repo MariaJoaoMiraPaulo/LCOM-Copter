@@ -31,8 +31,9 @@ static void print_usage(char *argv[]) {
 	printf("Usage: one of the following:\n"
 			"\t service run %s -args \"scan <asm>\" \n"
 			"\t service run %s -args \"leds <n> <0-2 sequence>\" \n"
-			"\t service run %s -args \"timed_scan <n>\" \n",
-			argv[0],argv[0],argv[0]);
+			"\t service run %s -args \"timed_scan <n>\" \n"
+			"\t service run %s -args \"proj \" \n",
+			argv[0],argv[0],argv[0],argv[0]);
 }
 
 static int proc_args(int argc, char *argv[]) {
@@ -103,6 +104,15 @@ static int proc_args(int argc, char *argv[]) {
 		n = parse_ulong(argv[2], 10);
 		printf("scan:: kbd_test_timed_scan(%d)\n", n);
 		kbd_test_timed_scan(n);
+		return 0;
+	}
+	else if(strncmp(argv[1], "proj", strlen("proj")) == 0) {
+		if( argc != 2 ) {
+			printf("proj: wrong no of arguments for test of kbd_test_proj() \n");
+			return 1;
+		}
+		printf("proj:: kbd_test_proj()\n");
+		kbd_test_proj();
 		return 0;
 	}
 

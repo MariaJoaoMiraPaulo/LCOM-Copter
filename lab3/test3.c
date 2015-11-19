@@ -169,3 +169,52 @@ int kbd_test_timed_scan(unsigned short n) {
 	return 0;
 
 }
+
+int kbd_test_proj () {
+	int ipc_status;
+	unsigned long irq_set_kbd =  keyboard_subscribe_int();
+	unsigned long irq_set_timer = timer_subscribe_int();
+	int counter=0;
+	message msg;
+	int r,scancode=0,over=1;
+
+	while( over ) { /* You may want to use a different condition */
+		/* Get a request message. */
+		if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ){
+			printf("driver_receive failed with: %d", r);
+			continue;
+		}
+		if (is_ipc_notify(ipc_status)) {
+			/* received notification */
+			switch (_ENDPOINT_P(msg.m_source)) {
+			case HARDWARE: /* hardware interrupt notification */
+				if (msg.NOTIFY_ARG & irq_set_kbd) { /* subscribed interrupt */
+					scancode=keyboard_space_proj();
+					if(scancode==MAKE_SPACE && counter==0){
+						printf("\tPressionou na tecla espaco\n");
+						counter++;
+					}
+					else if (scancode==BREAK_SPACE){
+						printf("\tLargou na tecla espaco\n");
+						over=0;
+					}
+
+				}
+				break;
+
+			default:
+				break; /* no other notifications expected: do nothing */
+			}
+		} else { /* received a standard message, not a notification */
+			/* no standard messages expected: do nothing */
+		}
+	}
+	if(keyboard_unsubscribe_int() != OK)
+		return 1;
+
+	if (timer_unsubscribe_int() != OK)
+		return 1;
+
+	return 0;
+
+}
