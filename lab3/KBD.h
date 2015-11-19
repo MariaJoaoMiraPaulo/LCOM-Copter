@@ -49,4 +49,8 @@
 
 #define CAPS_ON 4  //use to ativate caps 4=2²
 
+#define MAKE_SPACE 0x39
+
+#define BREAK_SPACE 0xB9
+
 #endif /* _LCOM_KBD_H */
