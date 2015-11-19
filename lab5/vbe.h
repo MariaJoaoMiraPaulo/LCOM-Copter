@@ -22,6 +22,7 @@
 #define GET_VBE_MODE_INFORMATION 0x4F01
 #define LINEAR_FRAME_BUFFER BIT(14)
 #define BIOS_VIDEO_CARD 0x10
+#define MODE_105 0x105
 
 typedef struct {
   /*  Mandatory information for all VBE revisions */

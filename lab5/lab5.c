@@ -128,7 +128,7 @@ static int proc_args(int argc, char *argv[]) {
 		}
 
 		printf("controller:: kbd_test_controller()\n");
-		test_controller();
+	//	test_controller();
 
 		return 0;
 	}

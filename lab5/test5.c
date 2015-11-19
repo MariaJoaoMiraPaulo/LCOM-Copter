@@ -50,10 +50,9 @@ void *test_init(unsigned short mode, unsigned short delay) {
 int test_square(unsigned short x, unsigned short y, unsigned short size, unsigned long color) {
 
 	int ipc_status;
-	int irq_set_kbd =  keyboard_subscribe_int();
+	unsigned long irq_set_kbd =  keyboard_subscribe_int();
 	message msg;
 	int r,scancode=0,over=1;
-
 
 	if(vg_draw_square(x, y, size, color) != 0)
 	{
@@ -61,7 +60,7 @@ int test_square(unsigned short x, unsigned short y, unsigned short size, unsigne
 		if(keyboard_unsubscribe_int() != OK){
 			return 1;
 		}
-		printf("\tERROR : vg_draw() failed\n\tInvalid combination of coordinates and size for this screen type\n");
+		printf("\tERROR : vg_draw_square() failed\n\tInvalid combination of coordinates and size for this screen type\n");
 		return 1;
 	}
 
@@ -93,40 +92,68 @@ int test_square(unsigned short x, unsigned short y, unsigned short size, unsigne
 		}
 	}
 
-
-	keyboard_unsubscribe_int();
+	if(keyboard_unsubscribe_int() != OK){
+		return 1;
 	}
 
+	vg_exit(); //the function will go to text mode and to thw wrong terminal, then change to terminal ( alt + f1 )
 
-	vg_exit();
 	return 0;
 }
 
-int test_line(unsigned short xi, unsigned short yi, 
+int test_line(unsigned short xi, unsigned short yi,
 		unsigned short xf, unsigned short yf, unsigned long color) {
 
-	/*float declive;
+	int ipc_status;
+	unsigned long irq_set_kbd =  keyboard_subscribe_int();
+	message msg;
+	int r,scancode=0,over=1;
 
-	declive = (yf-yi)/(xf-x1)
-*/
+
+	if(vg_draw_line(xi,yi,xf,yf, color) != 0)
+	{
+		vg_exit();
+		if(keyboard_unsubscribe_int() != OK){
+			return 1;
+		}
+		printf("\tERROR : vg_draw_line() failed\n\tInvalid combination of coordinates and size for this screen type\n");
+		return 1;
+	}
+
+
+	while( over ) { /* You may want to use a different condition */
+		/* Get a request message. */
+		if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ){
+			printf("driver_receive failed with: %d", r);
+			continue;
+		}
+		if (is_ipc_notify(ipc_status)) {
+			/* received notification */
+			switch (_ENDPOINT_P(msg.m_source)) {
+			case HARDWARE: /* hardware interrupt notification */
+				if (msg.NOTIFY_ARG & irq_set_kbd) { /* subscribed interrupt */
+					scancode=keyboard_c_handler();
+					if(scancode==BREAK_ESC){
+						over=0;
+
+					}
+				}
+				break;
+
+			default:
+				break; /* no other notifications expected: do nothing */
+			}
+		} else { /* received a standard message, not a notification */
+			/* no standard messages expected: do nothing */
+		}
+	}
+
+	if(keyboard_unsubscribe_int() != OK){
+		return 1;
+	}
+
+	vg_exit(); //the function will go to text mode and to thw wrong terminal, then change to terminal ( alt + f1 )
+
+	return 0;
+
 }
-
-int test_xpm(unsigned short xi, unsigned short yi, char *xpm[]) {
-
-	/* To be completed */
-
-}	
-
-int test_move(unsigned short xi, unsigned short yi, char *xpm[], 
-		unsigned short hor, short delta, unsigned short time) {
-
-	/* To be completed */
-
-}					
-
-int test_controller() {
-
-	/* To be completed */
-
-}					
-
