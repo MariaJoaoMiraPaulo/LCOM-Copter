@@ -33,7 +33,13 @@ int vg_exit(void);
 * @return 0 upon success, non-zero upon failure
 */
 int vg_draw_square(unsigned short x, unsigned short y, unsigned short size, unsigned long color);
+/**
+* @brief Paints a specific pixel on the screen
+*
+* @return 0 upon success, non-zero upon failure
+*/
+int vg_print_pixel(unsigned short x, unsigned short y, unsigned long color);
 
-int vg_draw_square(unsigned short x, unsigned short y, unsigned short size, unsigned long color);
+int vg_draw_sprite(Sprite *image);
  
 #endif /* __VIDEO_GR_H */

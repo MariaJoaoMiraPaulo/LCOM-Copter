@@ -5,6 +5,8 @@
 #include <sys/types.h>
 #include <stdio.h>
 #include <math.h>
+#include <sprite.h>
+#include <pixmap.h>
 
 #include "vbe.h"
 
@@ -220,4 +222,22 @@ int vg_draw_line(unsigned short xi, unsigned short yi,
 	}
 
 	return 0;
+}
+
+int vg_print_pixel(unsigned short x, unsigned short y, unsigned long color){
+
+	video_mem=vg_init(MODE_105);
+
+	if (x>h_res || y> v_res)
+		return 1;
+
+	*(video_mem+(x*bits_per_pixel/8)+(h_res*y*bits_per_pixel/8))=color;
+
+	return 0;
+}
+
+int vg_draw_sprite(Sprite *image){
+
+
+
 }
