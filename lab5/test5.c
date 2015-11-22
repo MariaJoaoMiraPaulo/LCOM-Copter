@@ -157,3 +157,12 @@ int test_line(unsigned short xi, unsigned short yi,
 	return 0;
 
 }
+
+test_xpm(unsigned short xi, unsigned short yi, char *xpm[]){
+
+
+
+
+
+
+}
