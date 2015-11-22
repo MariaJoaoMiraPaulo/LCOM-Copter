@@ -279,14 +279,10 @@ int test_move(unsigned short xi, unsigned short yi, char *xpm[],
 						interruptions=counter%(60/fps);
 						if(interruptions==0){
 							vg_screen_to_black();
-							if(delta>0){
-								animation.x+=animation.xspeed;
-								animation.y+=animation.yspeed;
-							}
-							else {
-								animation.x-=animation.xspeed;
-								animation.y-=animation.yspeed;
-							}
+
+							animation.x+=animation.xspeed;
+							animation.y+=animation.yspeed;
+
 							vg_draw_xpm(animation.x,animation.y,animation.width,animation.height,animation.map);
 						}
 					}
