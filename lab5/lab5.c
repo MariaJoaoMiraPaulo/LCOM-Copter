@@ -1,6 +1,8 @@
 #include <minix/drivers.h>
 #include <float.h>
 #include "test5.h"
+#include "pixmap.h"
+
 
 static int proc_args(int argc, char *argv[]);
 static unsigned long parse_ulong(char *str, int base);
@@ -94,12 +96,44 @@ static int proc_args(int argc, char *argv[]) {
 			printf("xpm: wrong no of arguments for test of test_xpm() \n");
 			return 1;
 		}
-		unsigned short xi=parse_ulong(argv[2],10);
-		unsigned short yi=parse_ulong(argv[3],10);
-		/*	char *xpm[];//??
+		unsigned short xi=parse_ushort(argv[2],10);
+		unsigned short yi=parse_ushort(argv[3],10);
 
-		printf("xpm:: kbd_test_xpm(%d,%d,%d)\n",xi, yi,xpm);
-		test_xpm(xi, yi,xpm);*/
+		char **xpm;
+
+		if(strncmp(argv[4], "pic1", strlen("pic1")) == 0)
+		{
+			xpm = pic1;
+			printf("xpm:: kbd_test_xpm(%d,%d,pic1)\n",xi, yi);
+		}
+		else if (strncmp(argv[4], "pic2", strlen("pic2")) == 0)
+		{
+			xpm = pic2;
+			printf("xpm:: kbd_test_xpm(%d,%d,pic2)\n",xi, yi);
+		}
+		else if (strncmp(argv[4], "cross", strlen("cross")) == 0)
+		{
+			xpm = cross;
+			printf("xpm:: kbd_test_xpm(%d,%d,cross)\n",xi, yi);
+		}
+		else if (strncmp(argv[4], "pic3", strlen("pic3")) == 0)
+		{
+			xpm = pic3;
+			printf("xpm:: kbd_test_xpm(%d,%d,pic3)\n",xi, yi);
+		}
+		else if (strncmp(argv[4], "penguin", strlen("penguin")) == 0)
+		{
+			xpm = penguin;
+			printf("xpm:: kbd_test_xpm(%d,%d,penguin)\n",xi, yi);
+		}
+		else
+		{
+			printf("\nInvalid options\n");
+			return 0;
+		}
+
+
+		test_xpm(xi, yi,xpm);
 
 		return 0;
 	}
@@ -108,16 +142,47 @@ static int proc_args(int argc, char *argv[]) {
 			printf("move: wrong no of arguments for test of test_move() \n");
 			return 1;
 		}
-		unsigned short xi=parse_ulong(argv[2],10);
-		unsigned short yi=parse_ulong(argv[3],10);
-		//	char *xpm[]=parse_ulong(argv[4],10);//??
-		unsigned short hor=parse_ulong(argv[5],10);
-		short delta=parse_ulong(argv[5],10);
-		unsigned short time=parse_ulong(argv[6],10);
+		unsigned short xi=parse_ushort(argv[2],10);
+		unsigned short yi=parse_ushort(argv[3],10);
+		unsigned short hor=parse_ushort(argv[5],10);
+		short delta=parse_short(argv[6],10);
+		unsigned short time=parse_ushort(argv[7],10);
 
 
-		/*	printf("move:: kbd_test_xpm(%d,%d,%d,%d,%d,%d)\n",xi, yi,xpm,hor,delta,time);
-		test_move(xi, yi,xpm,hor,delta,time);*/
+		char **xpm;
+
+		if(strncmp(argv[4], "pic1", strlen("pic1")) == 0)
+		{
+			xpm = pic1;
+			printf("move:: kbd_test_move(%d,%d,pic1,%d,%d,%d)\n",xi, yi,hor,delta,time);
+		}
+		else if (strncmp(argv[4], "pic2", strlen("pic2")) == 0)
+		{
+			xpm = pic2;
+			printf("move:: kbd_test_move(%d,%d,pic2,%d,%d,%d)\n",xi, yi,hor,delta,time);
+		}
+		else if (strncmp(argv[4], "cross", strlen("cross")) == 0)
+		{
+			xpm = cross;
+			printf("move:: kbd_test_move(%d,%d,cross,%d,%d,%d)\n",xi, yi,hor,delta,time);
+		}
+		else if (strncmp(argv[4], "pic3", strlen("pic3")) == 0)
+		{
+			xpm = pic3;
+			printf("move:: kbd_test_move(%d,%d,pic3,%d,%d,%d)\n",xi, yi,hor,delta,time);;
+		}
+		else if (strncmp(argv[4], "penguin", strlen("penguin")) == 0)
+		{
+			xpm = penguin;
+			printf("move:: kbd_test_move(%d,%d,penguin,%d,%d,%d)\n",xi, yi,hor,delta,time);
+		}
+		else
+		{
+			printf("\nInvalid options\n");
+			return 0;
+		}
+
+		test_move(xi,yi,xpm,hor,delta,time);
 
 		return 0;
 	}
@@ -128,7 +193,7 @@ static int proc_args(int argc, char *argv[]) {
 		}
 
 		printf("controller:: kbd_test_controller()\n");
-	//	test_controller();
+		//	test_controller();
 
 		return 0;
 	}

@@ -33,6 +33,7 @@ int vg_exit(void);
 * @return 0 upon success, non-zero upon failure
 */
 int vg_draw_square(unsigned short x, unsigned short y, unsigned short size, unsigned long color);
+
 /**
 * @brief Paints a specific pixel on the screen
 *
@@ -40,6 +41,25 @@ int vg_draw_square(unsigned short x, unsigned short y, unsigned short size, unsi
 */
 int vg_print_pixel(unsigned short x, unsigned short y, unsigned long color);
 
-int vg_draw_sprite(Sprite *image);
+/**
+ * @brief Draws a specific xpm on the screen
+ *
+ * @param x x coordinate of upper left corner
+ * @param y y coordinate of upper left corner
+ * @param width horizontal size of xpm
+ * @param height vertical size of xpm
+ * @param pixmap xpm to be draw
+ *
+ * @return 0 upon success, non-zero upon failure
+ */
+int vg_draw_xpm(unsigned short x, unsigned short y,unsigned short width,unsigned short height, char *pixmap);
+
+/**
+ * @brief Paints the screen on black
+ *
+ */
+void vg_screen_to_black();
+
+//int vg_draw_sprite(Sprite *image);
  
 #endif /* __VIDEO_GR_H */
