@@ -11,6 +11,9 @@
 #include "i8254.h"
 #include "KBD.h"
 #include "keyboard.h"
+#include "sprite.h"
+#include "pixmap.h"
+#include "read_xpm.c"
 
 
 void *test_init(unsigned short mode, unsigned short delay) {
@@ -54,7 +57,7 @@ int test_square(unsigned short x, unsigned short y, unsigned short size, unsigne
 	message msg;
 	int r,scancode=0,over=1;
 
-	if(vg_draw_square(x, y, size, color) != 0)
+	if(vg_draw_square(x, y, size, color) != OK)
 	{
 		vg_exit();
 		if(keyboard_unsubscribe_int() != OK){
@@ -152,17 +155,173 @@ int test_line(unsigned short xi, unsigned short yi,
 		return 1;
 	}
 
-	vg_exit(); //the function will go to text mode and to thw wrong terminal, then change to terminal ( alt + f1 )
+	vg_exit(); //the function will go to text mode and to the wrong terminal,
+	//then change to terminal ( alt + f1 )
 
 	return 0;
 
 }
 
-test_xpm(unsigned short xi, unsigned short yi, char *xpm[]){
+int test_xpm(unsigned short xi, unsigned short yi, char *xpm[]) {
+
+
+	int ipc_status;
+	unsigned long irq_set_kbd =  keyboard_subscribe_int();
+	message msg;
+	int r,scancode=0,over=1;
+	int  width,height;
+
+	vg_init(MODE_105);
+
+	char *map=(char *)read_xpm(xpm,&width,&height);
+
+	if(vg_draw_xpm(xi,yi,width,height,	map)!=OK){
+		printf("\tERROR : vg_draw_xpm() failed\n");
+		vg_exit();
+		if(keyboard_unsubscribe_int() != OK){
+			return 1;
+		}
+		return 1;
+	}
+
+	while( over ) { /* You may want to use a different condition */
+		/* Get a request message. */
+		if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ){
+			printf("driver_receive failed with: %d", r);
+			continue;
+		}
+		if (is_ipc_notify(ipc_status)) {
+			/* received notification */
+			switch (_ENDPOINT_P(msg.m_source)) {
+			case HARDWARE: /* hardware interrupt notification */
+				if (msg.NOTIFY_ARG & irq_set_kbd) { /* subscribed interrupt */
+					scancode=keyboard_c_handler();
+					if(scancode==BREAK_ESC){
+						over=0;
+
+					}
+				}
+				break;
+
+			default:
+				break; /* no other notifications expected: do nothing */
+			}
+		} else { /* received a standard message, not a notification */
+			/* no standard messages expected: do nothing */
+		}
+	}
+
+	free(map);
+
+	if(keyboard_unsubscribe_int() != OK){
+		return 1;
+	}
+
+	vg_exit(); //the function will go to text mode and to the wrong terminal,
+	//then change to terminal ( alt + f1 )
+
+	return 0;
 
 
 
 
 
+}
+
+int test_move(unsigned short xi, unsigned short yi, char *xpm[],
+		unsigned short hor, short delta, unsigned short time) {
+
+	int ipc_status;
+	int irq_set_kbd =  keyboard_subscribe_int();
+	int irq_set_timer=timer_subscribe_int();
+	message msg;
+	int r,scancode=0,over=1;
+	int  width,height;
+	int fps=30,counter=0,interruptions;
+
+	vg_init(MODE_105);
+
+	Sprite animation;
+
+	animation.map=(char *)read_xpm(xpm,&animation.width,&animation.height);
+	animation.x=xi;
+	animation.y=yi;
+	if(hor!=0){
+		animation.xspeed=delta/(time*fps);
+		animation.yspeed=0;
+	}
+	else {
+		animation.yspeed=delta/(time*fps);
+		animation.xspeed=0;
+	}
+
+	vg_draw_xpm(animation.x,animation.y,animation.width,animation.height,animation.map);
+
+	while( over ) { /* You may want to use a different condition */
+		/* Get a request message. */
+		if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ){
+			printf("driver_receive failed with: %d", r);
+			continue;
+		}
+		if (is_ipc_notify(ipc_status)) {
+			/* received notification */
+			switch (_ENDPOINT_P(msg.m_source)) {
+			case HARDWARE: /* hardware interrupt notification */
+				if (msg.NOTIFY_ARG & irq_set_kbd) { /* subscribed interrupt */
+					scancode=keyboard_c_handler();
+					if(scancode==BREAK_ESC){
+						over=0;
+					}
+				}
+				if(msg.NOTIFY_ARG & irq_set_timer){
+					counter++;
+					if(counter/60 <= time){
+						interruptions=counter%(60/fps);
+						if(interruptions==0){
+							vg_screen_to_black();
+							if(delta>0){
+								animation.x+=animation.xspeed;
+								animation.y+=animation.yspeed;
+							}
+							else {
+								animation.x-=animation.xspeed;
+								animation.y-=animation.yspeed;
+							}
+							vg_draw_xpm(animation.x,animation.y,animation.width,animation.height,animation.map);
+						}
+					}
+				}
+				break;
+
+			default:
+				break; /* no other notifications expected: do nothing */
+			}
+		} else { /* received a standard message, not a notification */
+			/* no standard messages expected: do nothing */
+		}
+	}
+
+	free(animation.map);
+
+	if(keyboard_unsubscribe_int() != OK){
+		vg_exit();
+		return 1;
+	}
+
+	if(timer_unsubscribe_int()==1){
+		vg_exit();
+		return 1;
+	}
+
+	vg_exit(); //the function will go to text mode and to the wrong terminal,
+	//then change to terminal ( alt + f1 )
+
+	return 0;
+
+}
+
+int test_controller() {
+
+	/* To be completed */
 
 }
