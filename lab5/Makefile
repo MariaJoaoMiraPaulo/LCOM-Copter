@@ -15,6 +15,6 @@ LDADD+=	 -ldriver -lsys -llm
 LDFLAGS+= -L .
 
 MAN=
-
+  
 .include <bsd.prog.mk>
 .include <bsd.gcc.mk>
