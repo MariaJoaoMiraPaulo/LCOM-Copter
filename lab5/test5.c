@@ -278,12 +278,13 @@ int test_move(unsigned short xi, unsigned short yi, char *xpm[],
 					if(counter/60 <= time){
 						interruptions=counter%(60/fps);
 						if(interruptions==0){
-							vg_screen_to_black();
+							//vg_screen_to_black();
 
 							animation.x+=animation.xspeed;
 							animation.y+=animation.yspeed;
 
 							vg_draw_xpm(animation.x,animation.y,animation.width,animation.height,animation.map);
+							update_screen();
 						}
 					}
 				}

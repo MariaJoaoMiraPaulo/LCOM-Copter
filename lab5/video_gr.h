@@ -60,6 +60,10 @@ int vg_draw_xpm(unsigned short x, unsigned short y,unsigned short width,unsigned
  */
 void vg_screen_to_black();
 
-//int vg_draw_sprite(Sprite *image);
+/**
+ * @brief copy value of double_buffer to video_mem and prints the screen to black
+ *
+ */
+void update_screen();
  
 #endif /* __VIDEO_GR_H */
