@@ -331,7 +331,7 @@ int test_controller() {
 		printf("\ttest_init(): vbe_get_mode_info_block() failed\n");
 		return 1;
 	}
-
+/*
 	if(mode_info.capabilities[0] & DAC_CAPABILITIES){
 		printf("\nDAC width is switchable to 8 bits per primary color");
 	}
@@ -360,7 +360,7 @@ int test_controller() {
 		printf("\n 0x%3x", *p);
 	}
 
-	printf("\n\nTotal Memory: %d\n", mode_info.totalMemory*64);
+	printf("\n\nTotal Memory: %d\n", mode_info.totalMemory*64);*/
 
 	return 0;
 }
