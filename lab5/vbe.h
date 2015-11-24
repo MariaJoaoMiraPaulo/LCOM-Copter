@@ -23,6 +23,9 @@
 #define GET_VBE_CONTROLLER_INFORMATION 0x4F00
 #define VBE_FUNC_SUPPORTED 	0x4F
 #define VBE_FUNC_CALL_SUCCE 0
+#define VBE_FUNC_CALL_FAILED 0x01
+#define VBE_FUNC_NOT_SUPPORTED 0x02
+#define VBE_FUNC_CALL_INVALID 0x03
 #define LINEAR_FRAME_BUFFER BIT(14)
 #define BIOS_VIDEO_CARD 0x10
 #define MODE_105 0x105
@@ -127,6 +130,8 @@ typedef struct {
 int vbe_get_mode_info(unsigned short mode, vbe_mode_info_t *vmi_p);
 
 int vbe_get_mode_info_block( vbe_info_block *vmi_p);
+
+void print_info(vbe_info_block *mode_info);
 
 /** @} end of vbe */
 
