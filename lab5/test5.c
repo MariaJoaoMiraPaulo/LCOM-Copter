@@ -14,6 +14,7 @@
 #include "sprite.h"
 #include "pixmap.h"
 #include "read_xpm.c"
+#include "lmlib.h"
 
 
 void *test_init(unsigned short mode, unsigned short delay) {
@@ -319,6 +320,47 @@ int test_move(unsigned short xi, unsigned short yi, char *xpm[],
 
 int test_controller() {
 
-	/* To be completed */
+	if(lm_init()==NULL)
+	{
+		return 1;
+	}
 
+	vbe_info_block mode_info;
+	if(vbe_get_mode_info_block(&mode_info) != OK)
+	{
+		printf("\ttest_init(): vbe_get_mode_info_block() failed\n");
+		return 1;
+	}
+
+	if(mode_info.capabilities[0] & DAC_CAPABILITIES){
+		printf("\nDAC width is switchable to 8 bits per primary color");
+	}
+	else {
+		printf("\nDAC is fixed width, with 6 bits per primary color");
+	}
+
+	if(mode_info.capabilities[0] & VGA_CAPABILITIES){
+		printf("\nController is not VGA compatible");
+	}
+	else {
+		printf("\nController is VGA compatible");
+	}
+
+	if(mode_info.capabilities[0] & RAMDAC_CAPABILITIES){
+		printf("\nWhen programming large blocks of information to the RAMDAC,use the blank bit in Function 09h");
+	}
+	else {
+		printf("\nNormal RAMDAC operation");
+	}
+
+	unsigned short * p;
+	printf("\tModes: \n");
+	for (p = (unsigned short *)mode_info.videoModePtr; *p !=(unsigned)-1; p++)
+	{
+		printf("\n 0x%3x", *p);
+	}
+
+	printf("\n\nTotal Memory: %d\n", mode_info.totalMemory*64);
+
+	return 0;
 }

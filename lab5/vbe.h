@@ -20,7 +20,7 @@
 #define OK 0
 #define SET_VBE_MODE 0x4F02
 #define GET_VBE_MODE_INFORMATION 0x4F01
-#define GET_VBE_CONTROLLER_INFORMATION 0x0
+#define GET_VBE_CONTROLLER_INFORMATION 0x4F00
 #define VBE_FUNC_SUPPORTED 	0x4F
 #define VBE_FUNC_CALL_SUCCE 0
 #define LINEAR_FRAME_BUFFER BIT(14)
@@ -29,6 +29,9 @@
 #define HRES  1024
 #define VRES 768
 #define BITS_PER_PIXEL	  8
+#define DAC_CAPABILITIES BIT(0)
+#define VGA_CAPABILITIES BIT(1)
+#define RAMDAC_CAPABILITIES BIT(2)
 
 typedef struct {
 	/*  Mandatory information for all VBE revisions */
@@ -91,23 +94,21 @@ typedef struct {
 
 typedef struct {
 
-	uint8_t	 vbeSignature[4];
+	uint8_t	 signature[4];
 	uint16_t vbeVersion;
-	uint32_t oemStringPtr;
+	phys_bytes oemStringPtr;
 	uint8_t capabilities[4];
-	uint32_t videoModePtr;
+	phys_bytes videoModePtr;
 	uint16_t totalMemory;
 
-	// Added for VBE 2.0
-
 	uint16_t oemSoftwareRev;
-	uint32_t oemVendorNamePtr;
-	uint32_t oemProductNamePtr;
-	uint32_t oemProductRevPtr;
+	phys_bytes oemVendorNamePtr;
+	phys_bytes oemProductNamePtr;
+	phys_bytes oemProductRevPtr;
 	uint8_t reserved[222];
 	uint8_t oemData[256];
 
-} __attribute__((packed)) VbeInfoBlock ;
+} __attribute__((packed)) vbe_info_block ;
 
 /** @} end of vbe_mode_info_t*/
 
@@ -125,7 +126,7 @@ typedef struct {
  */
 int vbe_get_mode_info(unsigned short mode, vbe_mode_info_t *vmi_p);
 
-int vbe_get_mode_info_block( vbe_mode_info_t *vmi_p);
+int vbe_get_mode_info_block( vbe_info_block *vmi_p);
 
 /** @} end of vbe */
 
