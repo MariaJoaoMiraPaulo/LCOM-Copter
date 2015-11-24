@@ -49,7 +49,7 @@ int vbe_get_mode_info(unsigned short mode, vbe_mode_info_t *vmi_p) {
 }
 
 int vbe_get_mode_info_block( vbe_mode_info_t *vmi_p) {
-
+/*
 	struct reg86u r;
 
 	if(lm_init()==NULL)
@@ -77,6 +77,6 @@ int vbe_get_mode_info_block( vbe_mode_info_t *vmi_p) {
 		return 1;
 	}
 
-
+*/
 
 }

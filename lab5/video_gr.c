@@ -27,6 +27,7 @@
 /* Private global variables */
 
 static char *video_mem; /* Process address to which VRAM is mapped */
+static char *double_buffer;
 
 static unsigned h_res; /* Horizontal screen resolution in pixels */
 static unsigned v_res; /* Vertical screen resolution in pixels */
@@ -80,6 +81,8 @@ void *vg_init(unsigned short mode) {
 	v_res = mode_info.YResolution;
 	bits_per_pixel = mode_info.BitsPerPixel;
 
+	double_buffer=malloc(h_res*v_res*bits_per_pixel/8);
+
 	return video_mem;
 }
 
@@ -90,6 +93,8 @@ int vg_exit() {
 
 	reg86.u.b.ah = 0x00; /* Set Video Mode function */
 	reg86.u.b.al = 0x03; /* 80x25 text mode*/
+
+	free(double_buffer);
 
 	if (sys_int86(&reg86) != OK) {
 		printf("\tvg_exit(): sys_int86() failed \n");
@@ -225,7 +230,7 @@ int vg_print_pixel(unsigned short x, unsigned short y, unsigned long color) {
 	if (x > h_res || y > v_res)
 		return 1;
 
-	*(video_mem+((x+h_res*y)*bits_per_pixel/8))=color;
+	*(double_buffer+((x+h_res*y)*bits_per_pixel/8))=color;
 
 	return 0;
 
@@ -260,6 +265,16 @@ void vg_screen_to_black(){
 		}
 	}
 
+}
+
+/*void vg_print_screen(unsigned short color){
+	mem_set(double_buffer,color,h_res*v_res*bits_per_pixel/8);
+}*/
+
+void update_screen(){
+	memcpy(video_mem,double_buffer,h_res*v_res*bits_per_pixel/8);
+	vg_screen_to_black();
+	//vg_print_screen(0);
 }
 
 /*int vg_draw_sprite(Sprite *image) {
