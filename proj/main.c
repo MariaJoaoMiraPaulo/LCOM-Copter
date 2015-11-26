@@ -17,9 +17,6 @@ int main() {
 
 	sef_startup();
 
-	Copter* c=newCopter(200,400,40,10);
-	Margin* m1=newMargin(0,0,800,100);
-	Margin* m2=newMargin(0,500,800,100);
 
 	int ipc_status;
 	unsigned long irq_set_kbd =  keyboard_subscribe_int();
@@ -28,6 +25,14 @@ int main() {
 	int r,scancode=0,over=1;
 	int fps=30,counter=0,interruptions;
 	int spacePress=0;
+
+	Copter* c=newCopter(200,400,40,10);
+	Margin* m1=newMargin(0,0,800,100);
+	Margin* m2=newMargin(0,500,800,100);
+	Margin **margins;
+	margins=(Margin **) malloc(2*sizeof(Margin *));
+	margins[0]=m1;
+	margins[1]=m2;
 
 	//vg_init(MODE_105);
 	vg_init(MODE_103);
@@ -64,7 +69,7 @@ int main() {
 							update_copter(c,0);
 
 
-						updateGame(c,m1);
+						updateGame(c,margins);
 					}
 
 				}
@@ -89,9 +94,11 @@ int main() {
 	}
 
 	free(c);
-	free(m1);
-	free(m2);
-
+	int i;
+	for(i=0;i<2;i++){
+		free(margins[i]);
+	}
+	free(margins);//free(m1);free(m2);
 	vg_exit(); //the function will go to text mode and to thw wrong terminal, then change to terminal ( alt + f1 )
 
 	return 0;
