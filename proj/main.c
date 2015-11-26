@@ -1,4 +1,5 @@
 #include <minix/drivers.h>
+#include <stdlib.h>
 #include "copter.h"
 #include "vbe.h"
 #include "keyboard.h"
@@ -8,6 +9,7 @@
 #include "lmlib.h"
 #include "video_gr.h"
 #include "GameState.h"
+#include "Margins.h"
 
 int main() {
 
@@ -16,6 +18,9 @@ int main() {
 	sef_startup();
 
 	Copter* c=newCopter(200,400,40,10);
+	Margin* m1=newMargin(0,0,800,100);
+	Margin* m2=newMargin(0,500,800,100);
+
 	int ipc_status;
 	unsigned long irq_set_kbd =  keyboard_subscribe_int();
 	int irq_set_timer=timer_subscribe_int();
@@ -24,10 +29,9 @@ int main() {
 	int fps=30,counter=0,interruptions;
 	int spacePress=0;
 
-	vg_init(MODE_105);
+	//vg_init(MODE_105);
+	vg_init(MODE_103);
 
-	//	draw_copter(c) ;
-	//	update_screen();
 	while( over ) { /* You may want to use a different condition */
 		/* Get a request message. */
 		if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ){
@@ -42,15 +46,9 @@ int main() {
 					scancode=keyboard_c_handler();
 					if(scancode==MAKE_SPACE){
 						spacePress=1;
-						//	update_copter(c,0);
-						//	draw_copter(c);
-						//	update_screen();
 					}
 					else {
 						spacePress=0;
-						//	update_copter(c,1);
-						//	draw_copter(c);
-						//	update_screen();
 					}
 					if(scancode==BREAK_ESC){
 						over=0;
@@ -65,7 +63,8 @@ int main() {
 						else
 							update_copter(c,0);
 
-						updateGame	(c);
+
+						updateGame(c,m1);
 					}
 
 				}
@@ -90,6 +89,8 @@ int main() {
 	}
 
 	free(c);
+	free(m1);
+	free(m2);
 
 	vg_exit(); //the function will go to text mode and to thw wrong terminal, then change to terminal ( alt + f1 )
 

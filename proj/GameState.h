@@ -2,8 +2,9 @@
 #define __GAMESTATE__H
 
 #include "copter.h"
+#include "Margins.h"
 
-void updateGame(Copter* copter);
+void updateGame(Copter* copter, Margin* margin);
 
 
 
