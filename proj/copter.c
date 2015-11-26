@@ -20,12 +20,9 @@ Copter* newCopter(int x, int y, int width, int height){
 void draw_copter(Copter* copter){  //TROCAR PARA UMA IMAGEM
 	unsigned int i,j;
 
-	printf("x:%d",copter->x);
-	printf("y:%d",copter->x);
-
 	for(i=copter->x;i<copter->width+copter->x;i++){
 		for(j=copter->y;j<copter->height+copter->y;j++){
-			vg_print_pixel(i,j,18);
+			vg_print_pixel(i,j,36);
 
 		}
 	}
