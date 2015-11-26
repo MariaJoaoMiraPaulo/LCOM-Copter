@@ -1,17 +1,22 @@
-#pragma once
+#ifndef __COPTER__H
+#define __COPTER_H
+
+//#define NULL 0
 
 
-typdef struct {
+typedef struct {
 
-	int x, y, w, h, distance;
+	int x, y, width, height, distance;
 	//imagem
 
-}copter;
+}Copter;
 
-Copter* newCopter();
+Copter* newCopter(int x, int y, int width, int height);
 
-void draw_copter(Copter* Copter);
+void draw_copter(Copter* copter);
 
-void delete_copter(Copter* Copter);
+void delete_copter(Copter* copter);
 
-void update_copter(Copter* Copter);
+void update_copter(Copter* copter, int upOrDown);
+
+#endif /* __COPTER_H */
