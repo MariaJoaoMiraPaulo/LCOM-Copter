@@ -4,7 +4,11 @@
 #include "copter.h"
 #include "Margins.h"
 
-void updateGame(Copter* copter, Margin** margin);
+#define HIT 1
+
+int updateGame(Copter* copter, Margin** margin);
+
+int hit(Copter* copter);
 
 
 

@@ -2,10 +2,10 @@
 #define __MARGINS_H
 
 typedef struct {
-	int x,y,width,height;
+	unsigned short x,y,width,height;
 } Margin;
 
-Margin* newMargin(int x, int y, int width, int height);
+Margin* newMargin(unsigned short x, unsigned short y, unsigned short width, unsigned short height);
 
 void draw_margin(Margin** margin);
 

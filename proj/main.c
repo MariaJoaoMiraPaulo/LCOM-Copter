@@ -48,7 +48,7 @@ int main() {
 			switch (_ENDPOINT_P(msg.m_source)) {
 			case HARDWARE: /* hardware interrupt notification */
 				if (msg.NOTIFY_ARG & irq_set_kbd) { /* subscribed interrupt */
-					scancode=keyboard_c_handler();
+					scancode=keyboard_space_proj();
 					if(scancode==MAKE_SPACE){
 						spacePress=1;
 					}
@@ -69,7 +69,10 @@ int main() {
 							update_copter(c,0);
 
 
-						updateGame(c,margins);
+						if(updateGame(c,margins)==HIT){
+							printf("Passou1\n");
+							over=0;
+						}
 					}
 
 				}

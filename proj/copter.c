@@ -2,7 +2,7 @@
 #include "video_gr.h"
 #include <minix/drivers.h>
 
-Copter* newCopter(int x, int y, int width, int height){
+Copter* newCopter(unsigned short x, unsigned short y, unsigned short width, unsigned short height){
 	Copter* c;
 	c=(Copter *)malloc(sizeof(Copter));
 
