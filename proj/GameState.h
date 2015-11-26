@@ -4,7 +4,7 @@
 #include "copter.h"
 #include "Margins.h"
 
-void updateGame(Copter* copter, Margin* margin);
+void updateGame(Copter* copter, Margin** margin);
 
 
 
