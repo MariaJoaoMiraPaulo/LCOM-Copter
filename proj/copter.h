@@ -1,5 +1,5 @@
 #ifndef __COPTER__H
-#define __COPTER_H
+#define __COPTER__H
 
 //#define NULL 0
 
