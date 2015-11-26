@@ -274,7 +274,11 @@ void vg_screen_to_black(){
 void update_screen(){
 	memcpy(video_mem,double_buffer,h_res*v_res*bits_per_pixel/8);
 	vg_screen_to_black();
-	//vg_print_screen(0);
+
+}
+
+unsigned long color(unsigned short x, unsigned short y){
+	return *(video_mem + ((x + y * h_res) * bits_per_pixel / 8));
 }
 
 /*int vg_draw_sprite(Sprite *image) {

@@ -2,7 +2,7 @@
 #include <minix/drivers.h>
 
 
-Margin* newMargin(int x, int y, int width, int height){
+Margin* newMargin(unsigned short x, unsigned short y, unsigned short width, unsigned short height){
 	Margin* m;
 	m=(Margin *)malloc(sizeof(Margin));
 

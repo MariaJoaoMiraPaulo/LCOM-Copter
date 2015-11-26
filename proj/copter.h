@@ -6,12 +6,13 @@
 
 typedef struct {
 
-	int x, y, width, height, distance;
+	unsigned short x, y, width, height;
+	int distance;
 	//imagem
 
 }Copter;
 
-Copter* newCopter(int x, int y, int width, int height);
+Copter* newCopter(unsigned short x, unsigned short y, unsigned short width, unsigned short height);
 
 void draw_copter(Copter* copter);
 
