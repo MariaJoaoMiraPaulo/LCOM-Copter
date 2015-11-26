@@ -231,7 +231,6 @@ int vg_print_pixel(unsigned short x, unsigned short y, unsigned long color) {
 		return 1;
 
 	*(double_buffer+((x+h_res*y)*bits_per_pixel/8))=color;
-	//*(video_mem+((x+h_res*y)*bits_per_pixel/8))=color;
 
 	return 0;
 
