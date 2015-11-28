@@ -67,5 +67,9 @@ void vg_screen_to_black();
 void update_screen();
 
 unsigned long color(unsigned short x, unsigned short y);
+
+unsigned getHres();
+
+unsigned getVres();
  
 #endif /* __VIDEO_GR_H */

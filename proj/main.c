@@ -1,5 +1,6 @@
 #include <minix/drivers.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "copter.h"
 #include "vbe.h"
 #include "keyboard.h"
@@ -17,6 +18,8 @@ int main() {
 
 	sef_startup();
 
+	time_t t;
+	 srand((unsigned) time(&t));
 
 	int ipc_status;
 	unsigned long irq_set_kbd =  keyboard_subscribe_int();
@@ -33,6 +36,7 @@ int main() {
 	margins=(Margin **) malloc(2*sizeof(Margin *));
 	margins[0]=m1;
 	margins[1]=m2;
+	unsigned short sizeOfArray=2;
 
 	//vg_init(MODE_105);
 	vg_init(MODE_103);
@@ -69,8 +73,7 @@ int main() {
 							update_copter(c,0);
 
 
-						if(updateGame(c,margins)==HIT){
-							printf("Passou1\n");
+						if(updateGame(c,margins,&sizeOfArray)==HIT){
 							over=0;
 						}
 					}
@@ -98,11 +101,11 @@ int main() {
 
 	free(c);
 	int i;
-	for(i=0;i<2;i++){
+	for(i=0;i<sizeOfArray;i++){
 		free(margins[i]);
 	}
 	free(margins);//free(m1);free(m2);
-	vg_exit(); //the function will go to text mode and to thw wrong terminal, then change to terminal ( alt + f1 )
+	vg_exit(); //the function will go to text mode and to the wrong terminal, then change to terminal ( alt + f1 )
 
 	return 0;
 }

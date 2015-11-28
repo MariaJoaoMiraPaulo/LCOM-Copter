@@ -281,6 +281,10 @@ unsigned long color(unsigned short x, unsigned short y){
 	return *(video_mem + ((x + y * h_res) * bits_per_pixel / 8));
 }
 
-/*int vg_draw_sprite(Sprite *image) {
+unsigned getHres(){
+	return h_res;
+}
 
-}*/
+unsigned getVres(){
+	return v_res;
+}
