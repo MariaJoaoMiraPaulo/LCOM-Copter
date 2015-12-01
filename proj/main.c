@@ -18,6 +18,9 @@ int main() {
 
 	sef_startup();
 
+	//vg_exit();
+	//return 0;
+
 	time_t t;
 	 srand((unsigned) time(&t));
 
@@ -33,7 +36,8 @@ int main() {
 	Margin* m1=newMargin(0,0,800,100);
 	Margin* m2=newMargin(0,500,800,100);
 	Margin **margins;
-	margins=(Margin **) malloc(2*sizeof(Margin *));
+//	margins=(Margin **) malloc(2*sizeof(Margin *));
+	margins=(Margin **) malloc(20*sizeof(Margin *));
 	margins[0]=m1;
 	margins[1]=m2;
 	unsigned short sizeOfArray=2;
@@ -101,7 +105,7 @@ int main() {
 
 	free(c);
 	int i;
-	for(i=0;i<sizeOfArray;i++){
+	for(i=0;i<20;i++){
 		free(margins[i]);
 	}
 	free(margins);//free(m1);free(m2);

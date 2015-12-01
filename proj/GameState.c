@@ -25,11 +25,10 @@ int updateGame(Copter* copter, Margin** margin, unsigned short *sizeOfArray){
 	if(hit(copter)==HIT){
 		return 1;
 	}
-
 	draw_copter(copter);
-	draw_margin(margin);
+	draw_margin(margin,sizeOfArray);
 	update_screen();
-	//pullToTheLeft(margin,sizeOfArray);
+	pullToTheLeft(margin,sizeOfArray);
 
 	return 0;
 }

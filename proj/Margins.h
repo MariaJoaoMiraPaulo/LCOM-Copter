@@ -2,15 +2,18 @@
 #define __MARGINS_H
 
 typedef struct {
-	unsigned short x,y,width,height;
+	short x,y;
+	short width,height;
 	unsigned short totallyPrinted;  //if the margin is totally printed this variable will be equal to 1
 } Margin;
 
-Margin* newMargin(unsigned short x, unsigned short y, unsigned short width, unsigned short height);
+Margin* newMargin(short x, short y, short width, short height);
 
-void draw_margin(Margin** margin);
+void delete_margin(Margin** margins,unsigned short *sizeOfArray);
 
-Margin* randomMargin(unsigned short x, unsigned short y);
+void draw_margin(Margin** margins,unsigned short *sizeOfArray);
+
+Margin* randomMargin(short x,short y);
 
 int is_totallyPrinted(Margin* margin);
 
