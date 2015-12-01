@@ -61,5 +61,6 @@ int test_config(void);
 
 
 int test_gesture(short length, unsigned short tolerance);
+int test_proj();
 
 #endif /* __TEST4_H*/

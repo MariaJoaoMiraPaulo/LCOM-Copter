@@ -4,6 +4,7 @@
 #include "mouse.h"
 #include "KBD.h"
 #include "timer.h"
+#include "keyboard.h"
 
 int test_packet(unsigned short cnt){
 	int ipc_status;
@@ -191,6 +192,75 @@ int test_gesture(short length, unsigned short tolerance) {
 		if(sys_outb(KBD_IN_BUF,DISABLE_STREAM_MODE)!=OK)
 			return 1;*/
 	if(mouse_unsubscribe_int() != 0)
+		return 1;
+
+	while_out_buf_full();
+
+	return 0;
+}
+
+int test_proj(){
+	int ipc_status;
+	unsigned long irq_set_kbd =  keyboard_subscribe_int();
+	unsigned long irq_set_mouse =  mouse_subscribe_int();
+	message msg;
+	int r,over=1,scancode=0;
+	printf("INICIO");
+
+	configure_environment();
+
+	while( over ) {
+		/* You may want to use a different condition */
+		/* Get a request message. */
+		if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ){
+			printf("driver_receive failed with: %d", r);
+			continue;
+		}
+		if (is_ipc_notify(ipc_status)) {
+			/* received notification */
+			switch (_ENDPOINT_P(msg.m_source)){
+			case HARDWARE: /* hardware interrupt notification */
+				if (msg.NOTIFY_ARG & irq_set_kbd) { /* subscribed interrupt */
+					scancode=keyboard_space_proj();
+					if(scancode==BREAK_ESC){
+						over=0;
+					}
+
+				}
+				if(msg.NOTIFY_ARG & irq_set_mouse){
+					if(mouse_handler()==1)
+					{
+						if (mouse_over_proj()==1)
+						{
+							printf("SOBE");
+
+						}
+						else (printf("DESCE"));
+
+					}
+				}
+
+				break;
+
+			default:
+				break; /* no other notifications expected: do nothing */
+			}
+		} else { /* received a standard message, not a notification */
+			/* no standard messages expected: do nothing */
+		}
+	}
+
+
+	/*if(sys_outb(STAT_REG, MOUSE_COMMAND)!=OK)
+			return 1;
+
+		if(sys_outb(KBD_IN_BUF,DISABLE_STREAM_MODE)!=OK)
+			return 1;*/
+
+	if(mouse_unsubscribe_int() != 0)
+		return 1;
+
+	if (timer_unsubscribe_int() != OK)
 		return 1;
 
 	while_out_buf_full();
