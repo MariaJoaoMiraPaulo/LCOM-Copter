@@ -11,6 +11,7 @@
 #include "video_gr.h"
 #include "GameState.h"
 #include "Margins.h"
+#include "mouse.h"
 
 int main() {
 
@@ -22,21 +23,22 @@ int main() {
 	//return 0;
 
 	time_t t;
-	 srand((unsigned) time(&t));
+	srand((unsigned) time(&t));
 
 	int ipc_status;
 	unsigned long irq_set_kbd =  keyboard_subscribe_int();
 	int irq_set_timer=timer_subscribe_int();
+	unsigned long irq_set_mouse =  mouse_subscribe_int();
 	message msg;
 	int r,scancode=0,over=1;
 	int fps=30,counter=0,interruptions;
-	int spacePress=0;
+	int spacePress=0, LeftButtonPress=0;
 
 	Copter* c=newCopter(200,400,40,10);
 	Margin* m1=newMargin(0,0,800,100);
 	Margin* m2=newMargin(0,500,800,100);
 	Margin **margins;
-//	margins=(Margin **) malloc(2*sizeof(Margin *));
+	//	margins=(Margin **) malloc(2*sizeof(Margin *));
 	margins=(Margin **) malloc(20*sizeof(Margin *));
 	margins[0]=m1;
 	margins[1]=m2;
@@ -67,15 +69,27 @@ int main() {
 						over=0;
 					}
 				}
+				if(msg.NOTIFY_ARG & irq_set_mouse){
+					if(mouse_handler()==1)
+					{
+						if (mouse_left_button_press()==1)
+						{
+							LeftButtonPress=1;
+
+						}
+						else LeftButtonPress=0;
+
+					}
+				}
+
 				if(msg.NOTIFY_ARG & irq_set_timer){
 					counter++;
 					interruptions=counter%(60/fps);
 					if(interruptions==0){
-						if(spacePress==0)
-							update_copter(c,1);
+						if( LeftButtonPress==0 && spacePress==0 )
+							update_copter(c,1);  //==0sobe !=0desce
 						else
 							update_copter(c,0);
-
 
 						if(updateGame(c,margins,&sizeOfArray)==HIT){
 							over=0;
@@ -99,6 +113,11 @@ int main() {
 	}
 
 	if(timer_unsubscribe_int()==1){
+		vg_exit();
+		return 1;
+	}
+
+	if(mouse_unsubscribe_int() != 0){
 		vg_exit();
 		return 1;
 	}
