@@ -171,7 +171,7 @@ int mouse_config_handler() {
 	sys_inb(KBD_OUT_BUF, &byte);
 	config[2] = byte;
 
-	mouse_print_config();
+	//mouse_print_config();
 
 	return 0;
 }
@@ -261,4 +261,14 @@ int mouse_is_over(unsigned short tolerance, short length) {
 
 	return 0;
 
+}
+
+int mouse_over_proj(){
+
+	if ( packet[0] & RIGHT_BUTTON )
+	{
+		return 1;
+	}
+
+	return 0;
 }

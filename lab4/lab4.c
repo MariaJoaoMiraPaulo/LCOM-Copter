@@ -32,8 +32,9 @@ static void print_usage(char *argv[]) {
 			"\t service run %s -args \"packet <int cnt>\" \n"
 			"\t service run %s -args \"async <int idle_time>\" \n"
 			"\t service run %s -args \"config\" \n"
-			"\t service run %s -args \"gesture <short length, unsigned short tolerance>\" \n",
-			argv[0],argv[0],argv[0],argv[0]);
+			"\t service run %s -args \"gesture <short length, unsigned short tolerance>\" \n"
+			"\t service run %s -args \"proj\" \n",
+			argv[0],argv[0],argv[0],argv[0],argv[0]);
 }
 
 static int proc_args(int argc, char *argv[]) {
@@ -90,6 +91,16 @@ static int proc_args(int argc, char *argv[]) {
 
 		return 0;
 	}
+	else if(strncmp(argv[1], "proj", strlen("proj")) == 0) {
+			if( argc != 2 ) {
+				printf("proj: wrong no of arguments for test of test_gesture() \n");
+				return 1;
+			}
+
+			test_proj();
+
+			return 0;
+		}
 
 	else {
 		printf("Mouse: non valid function \"%s\" to test\n", argv[1]);
