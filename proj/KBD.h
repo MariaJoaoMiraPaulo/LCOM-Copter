@@ -53,4 +53,36 @@
 
 #define BREAK_SPACE 0xB9
 
+///////////////////////////		 MOUSE		\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+#define MOUSE_IRQ 12
+
+#define IBF BIT(1)			//use to test if input buffer is full
+
+#define OBF BIT(0)			//use to test if output buffer is full
+
+#define FIRST_BYTE BIT(3)     //use to test if is the first byte of the packet
+
+#define ENABLE_MOUSE 0xA8
+
+#define MOUSE_COMMAND 0xD4
+
+#define ENABLE_DATA_PACKETS 0xF4
+
+#define DISABLE_STREAM_MODE 0xF5
+
+#define CONFIG_FIRST_BYTE (BIT(3)|BIT(7))
+
+#define CONFIG_SECOND_BYTE (BIT(2) | BIT(3) | BIT(4) | BIT(5) | BIT(6)| BIT(7))
+
+#define STATUS_REQUEST 0xE9
+
+#define SET_RESOLUTION (BIT(0) | BIT(1))
+
+#define STREAM_MOD 0xEA
+
+#define LEFT_BUTTON BIT(0)
+
+#define RIGHT_BUTTON BIT(1)
+
 #endif /* _LCOM_KBD_H */
