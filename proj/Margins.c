@@ -38,17 +38,15 @@ void draw_margin(Margin** margins,unsigned short *sizeOfArray){
 		}
 	}*/
 
-	printf("sizedraw: %d\n", *sizeOfArray);
-
-	if(*sizeOfArray>2){printf("Passou, %d\n",margins[2]->x);
-		if(margins[*sizeOfArray-1]->x+margins[*sizeOfArray-1]->width>h_res){printf("Passou1\n");
+	if(*sizeOfArray>2){
+		if(margins[*sizeOfArray-1]->x+margins[*sizeOfArray-1]->width>h_res){
 			for(i=margins[*sizeOfArray-1]->x;i<h_res;i++){
 				for(j=margins[*sizeOfArray-1]->y;j<margins[*sizeOfArray-1]->y+margins[*sizeOfArray-1]->height;j++){
 					vg_print_pixel(i,j,18);
 				}
 			}
 		}
-		else {printf("Passou2\n");
+		else {
 			for(i=margins[*sizeOfArray-1]->x;i<margins[*sizeOfArray-1]->x+margins[*sizeOfArray-1]->width;i++){
 				for(j=margins[*sizeOfArray-1]->y;j<margins[*sizeOfArray-1]->y+margins[*sizeOfArray-1]->height;j++){
 					vg_print_pixel(i,j,18);
@@ -110,7 +108,7 @@ void pullToTheLeft(Margin** margins, unsigned short *sizeOfArray){
 	unsigned short numberOfpixelsPushed=3;
 	unsigned h_res=getHres();
 
-	printf("size1: %d\n", *sizeOfArray);
+	printf("size: %d\n", *sizeOfArray);
 
 	if(*sizeOfArray>2){
 		int i;
@@ -126,18 +124,19 @@ void pullToTheLeft(Margin** margins, unsigned short *sizeOfArray){
 				delete_margin(margins,sizeOfArray);
 			}
 		}
-
+		printf("Passou!\n");
 		if(margins[*sizeOfArray-1]->totallyPrinted==0){
+			printf("Boas!\n");
 			margins[*sizeOfArray-1]->x=margins[*sizeOfArray-1]->x-numberOfpixelsPushed;
-			printf("Novo size: %d\n", *sizeOfArray);
 			if(is_totallyPrinted(margins[*sizeOfArray-1])==1){
+				printf("Novo!\n");
 				margins[*sizeOfArray-1]->totallyPrinted=1;
 
-				if(margins[*sizeOfArray-1]->x+margins[*sizeOfArray-1]->width<h_res){
+				if(margins[*sizeOfArray-1]->x+margins[*sizeOfArray-1]->width<=h_res){
 					//margins=realloc(margins,(*sizeOfArray+1)*sizeof(Margin *));
 
 					(*sizeOfArray)++;
-					printf("Novo size1: %d\n", *sizeOfArray);
+					printf("Novo size: %d\n", *sizeOfArray);
 					margins[*sizeOfArray-1]=randomMargin(margins[*sizeOfArray-2]->x+margins[*sizeOfArray-2]->width,100);
 				}
 			}
