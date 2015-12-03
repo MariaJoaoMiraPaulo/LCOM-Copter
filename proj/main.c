@@ -117,6 +117,7 @@ int main() {
 		return 1;
 	}
 
+	while_out_buf_full();
 	if(mouse_unsubscribe_int() != 0){
 		vg_exit();
 		return 1;
