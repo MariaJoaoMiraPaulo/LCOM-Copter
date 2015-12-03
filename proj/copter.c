@@ -30,7 +30,7 @@ void draw_copter(Copter* copter){  //TROCAR PARA UMA IMAGEM
 
 void update_copter(Copter* copter, int upOrDown){   //up=0, down != 0
 	if(upOrDown == 0)
-		copter->y=copter->y-10;
+		copter->y=copter->y-5;
 	else
-		copter->y=copter->y+10;
+		copter->y=copter->y+5;
 }

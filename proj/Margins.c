@@ -80,15 +80,15 @@ Margin* randomMargin(short x, short y){
 	if(m==NULL)
 		return NULL;
 
-	/*	m->x=x;
-	m->y=y;
-	m->width=rand()%51+50;
-	m->height=rand()%49+1;*/
-
 	m->x=x;
 	m->y=y;
+	m->width=rand()%51+50;
+	m->height=rand()%49+1;
+
+	/*m->x=x;
+	m->y=y;
 	m->width=100;
-	m->height=30;
+	m->height=30;*/
 
 	return m;
 }
