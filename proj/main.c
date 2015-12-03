@@ -31,7 +31,7 @@ int main() {
 	unsigned long irq_set_mouse =  mouse_subscribe_int();
 	message msg;
 	int r,scancode=0,over=1;
-	int fps=30,counter=0,interruptions;
+	int fps=60,counter=0,interruptions;
 	int spacePress=0, LeftButtonPress=0;
 
 	Copter* c=newCopter(200,400,40,10);
