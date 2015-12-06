@@ -35,8 +35,8 @@ int main() {
 	int spacePress=0, LeftButtonPress=0;
 
 	Copter* c=newCopter(200,400,40,10);
-	Margin* m1=newMargin(0,0,800,100);
-	Margin* m2=newMargin(0,500,800,100);
+	Margin* m1=newMargin(0,0,800,50);
+	Margin* m2=newMargin(0,550,800,50);
 	Margin **margins;
 	//	margins=(Margin **) malloc(2*sizeof(Margin *));
 	margins=(Margin **) malloc(20*sizeof(Margin *));
@@ -46,6 +46,8 @@ int main() {
 
 	//vg_init(MODE_105);
 	vg_init(MODE_103);
+
+	configure_environment();
 
 	while( over ) { /* You may want to use a different condition */
 		/* Get a request message. */
@@ -91,7 +93,7 @@ int main() {
 						else
 							update_copter(c,0);
 
-						if(updateGame(c,margins,&sizeOfArray)==HIT){
+						if(updateGame(c,margins,&sizeOfArray,counter%60)==HIT){
 							over=0;
 						}
 					}

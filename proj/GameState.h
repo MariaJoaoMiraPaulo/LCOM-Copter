@@ -6,7 +6,7 @@
 
 #define HIT 1
 
-int updateGame(Copter* copter, Margin** margin,unsigned short *sizeOfArray);
+int updateGame(Copter* copter, Margin** margin,unsigned short *sizeOfArray,unsigned int time);
 
 int hit(Copter* copter);
 
