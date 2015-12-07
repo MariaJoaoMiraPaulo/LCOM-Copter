@@ -114,7 +114,7 @@ void mouse_print_packet() {
 
 	if (BIT(5) & packet[0]) {
 		unsigned long y_Sign = packet[2];
-		y_Sign = (0xFF & ~(0xFF & packet[1]));
+		y_Sign = (0xFF & ~(0xFF & packet[2]));
 		//y_Sign = ~y_Sign;
 		y_Sign += 1;
 		y_Sign = -y_Sign;

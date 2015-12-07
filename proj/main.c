@@ -10,6 +10,7 @@
 #include "lmlib.h"
 #include "video_gr.h"
 #include "GameState.h"
+#include "Obstacles.h"
 #include "Margins.h"
 #include "mouse.h"
 
@@ -43,6 +44,7 @@ int main() {
 	margins[0]=m1;
 	margins[1]=m2;
 	unsigned short sizeOfArray=2;
+	Obstacle* obs;
 
 	//vg_init(MODE_105);
 	vg_init(MODE_103);
@@ -87,13 +89,15 @@ int main() {
 				if(msg.NOTIFY_ARG & irq_set_timer){
 					counter++;
 					interruptions=counter%(60/fps);
+					if((double)counter/60==5)
+						obs=newObstacle(margins[sizeOfArray-1]);
 					if(interruptions==0){
 						if( LeftButtonPress==0 && spacePress==0 )
 							update_copter(c,1);  //==0sobe !=0desce
 						else
 							update_copter(c,0);
 
-						if(updateGame(c,margins,&sizeOfArray,counter%60)==HIT){
+						if(updateGame(c,margins,&sizeOfArray,counter/60,obs)==HIT){
 							over=0;
 						}
 					}
@@ -131,6 +135,7 @@ int main() {
 		free(margins[i]);
 	}
 	free(margins);//free(m1);free(m2);
+	free(obs);
 	vg_exit(); //the function will go to text mode and to the wrong terminal, then change to terminal ( alt + f1 )
 
 	return 0;

@@ -3,10 +3,11 @@
 
 #include "copter.h"
 #include "Margins.h"
+#include "Obstacles.h"
 
 #define HIT 1
 
-int updateGame(Copter* copter, Margin** margin,unsigned short *sizeOfArray,unsigned int time);
+int updateGame(Copter* copter, Margin** margins,unsigned short *sizeOfArray,unsigned int time,Obstacle* obs);
 
 int hit(Copter* copter);
 
