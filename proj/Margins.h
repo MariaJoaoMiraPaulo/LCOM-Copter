@@ -50,4 +50,5 @@ void pullToTheLeft(Margin** margins, unsigned short *sizeOfArray,unsigned int ti
 
 
 
+
 #endif /* __MARGINS_H */

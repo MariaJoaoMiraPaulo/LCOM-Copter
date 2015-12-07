@@ -1,5 +1,6 @@
 #include "GameState.h"
 #include "video_gr.h"
+#include "Obstacles.c"
 
 int hit(Copter* copter){
 	int i;
@@ -20,15 +21,23 @@ int hit(Copter* copter){
 	return 0;
 }
 
-int updateGame(Copter* copter, Margin** margin, unsigned short *sizeOfArray, unsigned int time){
+int updateGame(Copter* copter, Margin** margins, unsigned short *sizeOfArray, unsigned int time,Obstacle* obs){
 
 	if(hit(copter)==HIT){
 		return 1;
 	}
+
+	if(time>=5){
+		drawObstacle(obs);
+		obsPullToTheLeft(obs);
+		if(obs->x+WIDTH<0)
+			setObstacle(obs,margins[*sizeOfArray-1]);
+	}
+
 	draw_copter(copter);
-	draw_margin(margin,sizeOfArray,time);
+	draw_margin(margins,sizeOfArray,time);
 	update_screen();
-	pullToTheLeft(margin,sizeOfArray,time);
+	pullToTheLeft(margins,sizeOfArray,time);
 
 	return 0;
 }

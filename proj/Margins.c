@@ -78,7 +78,7 @@ void draw_margin(Margin** margins,unsigned short *sizeOfArray,unsigned int time)
 }
 
 int numberGeneration(int x1,int x2){
-	return rand()%x2+x1;
+	return rand()%(x2-x1)+x1;
 }
 
 unsigned int tubeSize(unsigned int time){
@@ -104,10 +104,6 @@ Margin* randomMargin(short x, short y,unsigned int time){
 			tickeness=300;
 		}
 	}
-
-
-
-
 
 	static int n,widthInUse,heightInUse,differenceInHeights, upOrDownOrEqual;
 
@@ -180,29 +176,19 @@ int isTotallyPrinted(Margin* margin){
 
 
 void pullToTheLeft(Margin** margins, unsigned short *sizeOfArray,unsigned int time){
-	unsigned short numberOfpixelsPushed=3;
+	unsigned short numberOfpixelsPushed=5;
 	unsigned h_res=getHres();
 
 	if(*sizeOfArray>2){
 
 		int i;
-		for(i=3;i<*sizeOfArray-1;i++){
+		for(i=2;i<*sizeOfArray-1;i++){
 			margins[i]->x=margins[i]->x-numberOfpixelsPushed;
-			if(margins[i]->x>=-3 && margins[i]->x<=0){
-				margins[i]->width=margins[i]->width-(margins[i]->x+numberOfpixelsPushed);
-				margins[i]->x=0;
-			}
 		}
 
-			if(margins[2]->x<=0){
-				margins[2]->x=0;
-				margins[2]->width=margins[2]->width-numberOfpixelsPushed;
-				if(margins[2]->width<0){
-					delete_margin(margins,sizeOfArray);
-				}
-			}
-			else margins[2]->x=margins[2]->x-numberOfpixelsPushed;
-
+		if(margins[2]->x+margins[2]->width<0){
+			delete_margin(margins,sizeOfArray);
+		}
 
 		if(margins[*sizeOfArray-1]->totallyPrinted==0){
 
@@ -227,6 +213,5 @@ void pullToTheLeft(Margin** margins, unsigned short *sizeOfArray,unsigned int ti
 		margins[*sizeOfArray-1]=randomMargin(780,50,time);
 		//printf("size: %d\n", *sizeOfArray);
 	}
-
-
 }
+
