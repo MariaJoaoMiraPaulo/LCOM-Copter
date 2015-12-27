@@ -2,6 +2,7 @@
 #include "Obstacles.h"
 #include "Margins.h"
 #include "video_gr.h"
+#include "KBD.h"
 
 short HEIGHT=100, WIDTH=30;
 
@@ -44,7 +45,7 @@ void drawObstacle(Obstacle* obs){
 	if(obs->x+WIDTH>Hres){
 		for(i=obs->x;i<=Hres;i++){
 			for(j=obs->y;j<obs->y+HEIGHT;j++){
-				vg_print_pixel(i,j,18);
+				vg_print_pixel(i,j,OBSTACLES_COLOR);
 			}
 		}
 	}
@@ -52,7 +53,7 @@ void drawObstacle(Obstacle* obs){
 	{
 		for(i=obs->x;i<obs->x+WIDTH;i++){
 			for(j=obs->y;j<obs->y+HEIGHT;j++){
-				vg_print_pixel(i,j,18);
+				vg_print_pixel(i,j,OBSTACLES_COLOR);
 			}
 		}
 	}

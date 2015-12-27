@@ -12,9 +12,76 @@
 #include "GameState.h"
 #include "Obstacles.h"
 #include "Margins.h"
-#include "mouse.h"
+#include "bitmap.h"
 
 int main() {
+
+//	int ipc_status;
+//	unsigned long irq_set_kbd =  keyboard_subscribe_int();
+//	message msg;
+//	int r,scancode=0,over=1;
+//	int  width,height;
+//	unsigned long cor=0,RGB=0;
+//	sef_startup();
+//
+//	vg_init(0x114);
+//	Bitmap* teste;
+//	vg_draw_square(0, 0, 100,rgb(255,255,0));
+//	teste=loadBitmap("/home/lcom/repos/proj/images/copt.bmp");
+//	drawBitmap(teste, 0, 0);
+//	//color=rgb(102,255,102);
+//	//printf("COR=%06x",color);
+//	RGB = rgb(255,255,0);
+//	printf("RGB=%d",RGB);
+//	update_screen();
+//	cor=color(0,90);
+//	printf("passei");
+//	printf("COR=%d",cor);
+//	//vg_draw_square_frame(400, 400, 200,rgb(255,255,51));
+//
+//	//vg_print_pixel(30,30,rgb(255,0,127));
+//	//vg_draw_line(20, 100, 300,400, rgb(255,255,51));
+//
+//	while( over ) { /* You may want to use a different condition */
+//		/* Get a request message. */
+//		if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ){
+//			printf("driver_receive failed with: %d", r);
+//			continue;
+//		}
+//		if (is_ipc_notify(ipc_status)) {
+//			/* received notification */
+//			switch (_ENDPOINT_P(msg.m_source)) {
+//			case HARDWARE: /* hardware interrupt notification */
+//				if (msg.NOTIFY_ARG & irq_set_kbd) { /* subscribed interrupt */
+//					scancode=keyboard_c_handler();
+//					if(scancode==BREAK_ESC){
+//						over=0;
+//
+//					}
+//				}
+//				break;
+//
+//			default:
+//				break; /* no other notifications expected: do nothing */
+//			}
+//		} else { /* received a standard message, not a notification */
+//			/* no standard messages expected: do nothing */
+//		}
+//	}
+//
+//	deleteBitmap(teste);
+//
+//	if(keyboard_unsubscribe_int() != OK){
+//		return 1;
+//	}
+//
+//	vg_exit(); //the function will go to text mode and to the wrong terminal,
+//	//then change to terminal ( alt + f1 )
+//
+//	return 0;
+//
+//}
+
 
 	/* Initialize service */
 
@@ -35,7 +102,7 @@ int main() {
 	int fps=60,counter=0,interruptions;
 	int spacePress=0, LeftButtonPress=0;
 
-	Copter* c=newCopter(200,400,40,10);
+	Copter* c=newCopter(200,400,80,80);
 	Margin* m1=newMargin(0,0,800,50);
 	Margin* m2=newMargin(0,550,800,50);
 	Margin **margins;
@@ -47,7 +114,8 @@ int main() {
 	Obstacle* obs;
 
 	//vg_init(MODE_105);
-	vg_init(MODE_103);
+	//vg_init(MODE_103);
+	vg_init(0x114);
 
 	configure_environment();
 
@@ -64,6 +132,7 @@ int main() {
 				if (msg.NOTIFY_ARG & irq_set_kbd) { /* subscribed interrupt */
 					scancode=keyboard_space_proj();
 					if(scancode==MAKE_SPACE){
+						printf("RECEBI INTERRUOÇAO::::::");
 						spacePress=1;
 					}
 					else {

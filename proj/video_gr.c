@@ -7,6 +7,7 @@
 #include <math.h>
 #include "sprite.h"
 #include "pixmap.h"
+#include "KBD.h"
 
 #include "vbe.h"
 
@@ -19,10 +20,6 @@
  * Better run my version of lab5 as follows:
  *     service run `pwd`/lab5 -args "mode 0x105"
  */
-#define VRAM_PHYS_ADDR	0xF0000000
-#define H_RES             1024
-#define V_RES		  768
-#define BITS_PER_PIXEL	  8
 
 /* Private global variables */
 
@@ -103,157 +100,90 @@ int vg_exit() {
 		return 0;
 }
 
+unsigned getVideoMemSize(){
+	return v_res*h_res*2;
+}
+
+
+unsigned int rgb(unsigned char r, unsigned char g, unsigned char b){
+
+	//	if(r < 0 || r > 255 || g<0 || g > 255 || b < 0 || b > 255)
+	//		return -1;
+	//
+	//	int red=r*31/255;
+	//	int green= g*63/255;
+	//	int blue= b*31/255;
+	//
+	//	return (red << 11) | (green << 5) | blue;
+
+	return ((r >> 3) << 11) | ((g >> 2) << 5) | (b >> 3);
+
+}
+
+
+int vg_print_pixel(unsigned short x, unsigned short y, unsigned int color) {
+
+	if (x > h_res || y > v_res)
+		return 1;
+
+	char colorByte1, colorByte2;
+
+	colorByte1 = color & 0xFF;
+
+	colorByte2 = (color >> 8) & 0xFF;
+
+
+	double_buffer[(x+h_res*y)*bits_per_pixel/8]=colorByte1;
+	double_buffer[(x+h_res*y)*bits_per_pixel/8+1]=colorByte2;
+
+	return 0;
+
+
+}
+
 int vg_draw_square(unsigned short x, unsigned short y, unsigned short size,
-		unsigned long color) {
+		unsigned long color){
 
 	int i, j;
-	video_mem = vg_init(MODE_105);
 
 	if (x < 0 || x + size > h_res || y < 0 || y + size > v_res) {
 		return 1;
 	}
 
 	for (i = x; i < size + x; i++) {
-		*(video_mem + ((i + y * h_res) * bits_per_pixel / 8)) = color;
-		*(video_mem + ((i + (y + size) * h_res) * bits_per_pixel / 8)) = color;
+		for (j = y; j < size + y; j++) {
+			vg_print_pixel(i,j,color);
+		}
+	}
+
+	return 0;
+
+
+}
+
+int vg_draw_square_frame(unsigned short x, unsigned short y, unsigned short size,
+		unsigned long color) {
+
+	int i, j;
+
+	if (x < 0 || x + size > h_res || y < 0 || y + size > v_res) {
+		return 1;
+	}
+
+	for (i = x; i < size + x; i++) {
+		vg_print_pixel(i,y,color);
+		vg_print_pixel(i,y+size,color);
 	}
 
 	for (i = y; i < size + y; i++) {
-		*(video_mem + ((x + i * h_res) * bits_per_pixel / 8)) = color;
-		*(video_mem + (((x + size) + i * h_res) * bits_per_pixel / 8)) = color;
+		vg_print_pixel(x,i,color);
+		vg_print_pixel(x+size,i,color);
 	}
+
 
 	return 0;
 }
 
-int vg_draw_line(unsigned short xi, unsigned short yi, unsigned short xf,
-		unsigned short yf, unsigned long color) {
-	//double m,b;
-	float m, b;
-	unsigned short i, j, tempx, tempy;
-	int length;
-
-	video_mem = vg_init(MODE_105);
-
-	//test limits of coordinates, i will not test that the coordinates are <0 because they are unsigned short
-
-	if (xi > h_res)
-		xi = h_res - 1;
-
-	if (xf > h_res)
-		xf = h_res - 1;
-
-	if (yi > v_res)
-		yi = v_res - 1;
-
-	if (yf > v_res)
-		yf = v_res - 1;
-
-	//to know what where we start to draw line
-	if (yi > yf) {
-		tempy = yf;
-		tempx = xf;
-		xf = xi;
-		yf = yi;
-		xi = tempx;
-		yi = tempy;
-	}
-
-	//horizontal line
-	if (yi == yf) {
-		if (xi < xf)
-			length = xf - xi;
-		else
-			length = xi - xf;
-
-		i = xi;
-		while (length > 0) {
-			*(video_mem + ((i + yi * h_res) * bits_per_pixel / 8)) = color;
-			if (xi < xf)
-				i++;
-			else
-				i--;
-			length--;
-		}
-	} else if (xi == xf) {   //vertical line
-		i = yi;
-		while (i <= yf) {
-			*(video_mem + ((xi + i * h_res) * bits_per_pixel / 8)) = color;
-			i++;
-		}
-	} else if (yf > yi) {
-		m = ((float) (yf - yi)) / (xf - xi);
-		b = ((float) yi - ((float) m * xi));
-		i = xi;
-		j = yi;
-		if (m > 1) { //slope is greater than 1, so y will change value faster than x
-			while (j <= yf) {
-				*(video_mem + ((i + j * h_res) * bits_per_pixel / 8)) = color;
-				j++;
-				i = trunc(((float) (j - b)) / m);
-			}
-		} else if (m > 0 && m < 1) { //slope is between 1 and 0, so x will change value faster than y
-			while (i <= xf) {
-				*(video_mem + ((i + j * h_res) * bits_per_pixel / 8)) = color;
-				i++;
-				j = trunc(((float) (m * i)) + b);
-			}
-		} else if (m < 0 && m < -1) { //slope is smaller than -1, so y will change value faster than x
-			while (j <= yf) {
-				*(video_mem + ((i + j * h_res) * bits_per_pixel / 8)) = color;
-				j++;
-				i = trunc(((float) (j - b)) / m);
-			}
-		} else if (m < 0 && m > -1) { //slope between 0 and -1, so x will change value faster than y
-			while (i >= xf) {
-				*(video_mem + ((i + j * h_res) * bits_per_pixel / 8)) = color;
-				i--;
-				j = trunc(((float) (m * i)) + b);
-			}
-		} else if (m == 1 || m == -1) { //inclination is 45 degrees so x and y change value at same time
-			while (j <= yf) {
-				*(video_mem + ((i + j * h_res) * bits_per_pixel / 8)) = color;
-				if (m == 1)
-					i++;
-				else
-					i--;
-				j++;
-			}
-		}
-	}
-
-	return 0;
-}
-
-int vg_print_pixel(unsigned short x, unsigned short y, unsigned long color) {
-
-	if (x > h_res || y > v_res)
-		return 1;
-
-	*(double_buffer+((x+h_res*y)*bits_per_pixel/8))=color;
-
-	return 0;
-
-}
-
-int vg_draw_xpm(unsigned short x, unsigned short y, unsigned short width,
-		unsigned short height, char *map) {
-
-	if (x + width > h_res || y + height > v_res) {
-		return 1;
-	}
-
-	int i, j;
-	for (i = 0; i < width; i++)
-	{
-		for (j = 0; j < height; j++)
-		{
-			vg_print_pixel(x + i, y + j, *(map + (i + j * width) * bits_per_pixel / 8));
-		}
-	}
-
-	return 0;
-}
 
 void vg_screen_to_black(){
 	int i, j;
@@ -261,24 +191,15 @@ void vg_screen_to_black(){
 	{
 		for (j = 0; j < v_res; j++)
 		{
-			vg_print_pixel(i,j,0);
+			vg_print_pixel(i,j,rgb(0,0,0));
 		}
 	}
 
 }
 
-/*void vg_print_screen(unsigned short color){
-	mem_set(double_buffer,color,h_res*v_res*bits_per_pixel/8);
-}*/
-
 void update_screen(){
 	memcpy(video_mem,double_buffer,h_res*v_res*bits_per_pixel/8);
 	vg_screen_to_black();
-
-}
-
-unsigned long color(unsigned short x, unsigned short y){
-	return *(video_mem + ((x + y * h_res) * bits_per_pixel / 8));
 }
 
 unsigned getHres(){
@@ -288,3 +209,37 @@ unsigned getHres(){
 unsigned getVres(){
 	return v_res;
 }
+
+unsigned char* getDoubleBuffer(){
+	return double_buffer;
+}
+
+unsigned char* getVideoMem(){
+	return video_mem;
+}
+
+int color(long x, long y){
+
+	//
+	//	unsigned long color = 0;
+	//	color|= double_buffer[(x+h_res*y)*bits_per_pixel/8] & 0xFF;
+	//	color|=( (double_buffer[(x+h_res*y)*bits_per_pixel/8+1] & 0xFF) << 8);
+	//	return color;
+	//
+
+	if (x < 0 || y < 0 || x >= getHres() || y >= getVres())
+		return -1;
+
+	int id = (x + y * getHres()) * bits_per_pixel/8;
+
+	unsigned short color = 0;
+	color |= video_mem[id] & 0xFF;
+	color |= (video_mem[id + 1] & 0xFF) << 8;
+
+	return color;
+
+
+}
+
+
+

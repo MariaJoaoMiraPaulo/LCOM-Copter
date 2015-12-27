@@ -1,6 +1,7 @@
 #include <minix/drivers.h>
 #include "Margins.h"
 #include "video_gr.h"
+#include "KBD.h"
 
 GenerationState generationState=FIRST_MARGIN_OF_THE_BREAK;
 
@@ -38,14 +39,14 @@ void draw_margin(Margin** margins,unsigned short *sizeOfArray,unsigned int time)
 		if(margins[*sizeOfArray-1]->x+margins[*sizeOfArray-1]->width>h_res){
 			for(i=margins[*sizeOfArray-1]->x;i<h_res;i++){
 				for(j=margins[*sizeOfArray-1]->y;j<margins[*sizeOfArray-1]->y+margins[*sizeOfArray-1]->height;j++){
-					vg_print_pixel(i,j,18);
+					vg_print_pixel(i,j,MARGINS_COLOR);
 				}
 			}
 		}
 		else {
 			for(i=margins[*sizeOfArray-1]->x;i<margins[*sizeOfArray-1]->x+margins[*sizeOfArray-1]->width;i++){
 				for(j=margins[*sizeOfArray-1]->y;j<margins[*sizeOfArray-1]->y+margins[*sizeOfArray-1]->height;j++){
-					vg_print_pixel(i,j,18);
+					vg_print_pixel(i,j,MARGINS_COLOR);
 				}
 			}
 		}
@@ -53,7 +54,7 @@ void draw_margin(Margin** margins,unsigned short *sizeOfArray,unsigned int time)
 		for(idx=0;idx<*sizeOfArray-1;idx++){
 			for(i=margins[idx]->x;i<margins[idx]->x+margins[idx]->width;i++){
 				for(j=margins[idx]->y;j<margins[idx]->y+margins[idx]->height;j++){
-					vg_print_pixel(i,j,18);
+					vg_print_pixel(i,j,MARGINS_COLOR);
 				}
 			}
 		}
@@ -62,7 +63,7 @@ void draw_margin(Margin** margins,unsigned short *sizeOfArray,unsigned int time)
 		for(idx=0;idx<*sizeOfArray;idx++){
 			for(i=margins[idx]->x;i<margins[idx]->x+margins[idx]->width;i++){
 				for(j=margins[idx]->y;j<margins[idx]->y+margins[idx]->height;j++){
-					vg_print_pixel(i,j,18);
+					vg_print_pixel(i,j,MARGINS_COLOR);
 				}
 			}
 		}
@@ -70,7 +71,7 @@ void draw_margin(Margin** margins,unsigned short *sizeOfArray,unsigned int time)
 	for(idx=2;idx<*sizeOfArray;idx++){
 		for(i=margins[idx]->x;i<margins[idx]->x+margins[idx]->width;i++){
 			for(j=margins[idx]->y+margins[idx]->height+margins[idx]->distanceToOtherMargin;j<550;j++)
-				vg_print_pixel(i,j,18);
+				vg_print_pixel(i,j,MARGINS_COLOR);
 
 		}
 	}
