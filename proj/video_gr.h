@@ -73,17 +73,34 @@ void vg_screen_to_black();
  *
  */
 void update_screen();
+/**
+ * @brief returns the color on pixel (x,y)
+ *
+ * @param x coordinate x
+ * @param y coordinate y
+ */
 
 int color(long x, long y);
+/**
+ * @brief returns Horizontal Resolution
+ */
 
 unsigned getHres();
-
+/**
+ * @brief returns Vertical Resolution
+ */
 unsigned getVres();
-
+/**
+ * @brief returns doublebuffer
+ */
 unsigned char* getDoubleBuffer();
-
+/**
+ * @brief returns getVideoMem
+ */
 unsigned char* getVideoMem();
-
+/**
+ * @brief converts color to rgb
+ */
 unsigned int rgb(unsigned char r, unsigned char g, unsigned char b);
 
 #endif /* __VIDEO_GR_H */
