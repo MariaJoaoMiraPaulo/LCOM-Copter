@@ -20,7 +20,7 @@
  */
 void *vg_init(unsigned short mode);
 
- /**
+/**
  * @brief Returns to default Minix 3 text mode (0x03: 25 x 80, 16 colors)
  * 
  * @return 0 upon success, non-zero upon failure
@@ -28,17 +28,25 @@ void *vg_init(unsigned short mode);
 int vg_exit(void);
 
 /**
-* @brief Draws a square on the screen
-*
-* @return 0 upon success, non-zero upon failure
-*/
+ * @brief Draws a square frame on the screen
+ *
+ * @return 0 upon success, non-zero upon failure
+ */
 int vg_draw_square(unsigned short x, unsigned short y, unsigned short size, unsigned long color);
 
 /**
-* @brief Paints a specific pixel on the screen
-*
-* @return 0 upon success, non-zero upon failure
-*/
+ * @brief Draws a square on the screen
+ *
+ * @return 0 upon success, non-zero upon failure
+ */
+int vg_draw_square_frame(unsigned short x, unsigned short y, unsigned short size,unsigned long color);
+
+/**
+ * @brief Paints a specific pixel on the screen
+ *
+ * @return 0 upon success, non-zero upon failure
+ */
+
 int vg_print_pixel(unsigned short x, unsigned short y, unsigned long color);
 
 /**
@@ -66,10 +74,16 @@ void vg_screen_to_black();
  */
 void update_screen();
 
-unsigned long color(unsigned short x, unsigned short y);
+int color(long x, long y);
 
 unsigned getHres();
 
 unsigned getVres();
- 
+
+unsigned char* getDoubleBuffer();
+
+unsigned char* getVideoMem();
+
+unsigned int rgb(unsigned char r, unsigned char g, unsigned char b);
+
 #endif /* __VIDEO_GR_H */

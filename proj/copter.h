@@ -2,13 +2,14 @@
 #define __COPTER__H
 
 //#define NULL 0
+#include "bitmap.h"
 
 
 typedef struct {
 
 	unsigned short x, y, width, height;
 	int distance;
-	//imagem
+	Bitmap* image_copter;
 
 }Copter;
 

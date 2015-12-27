@@ -85,4 +85,11 @@
 
 #define RIGHT_BUTTON BIT(1)
 
+
+////////////////////////////// VIDEO_GR \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+#define MARGINS_COLOR rgb(51,255,51)
+
+#define OBSTACLES_COLOR rgb(51,255,51)
+
 #endif /* _LCOM_KBD_H */
