@@ -43,7 +43,7 @@ int playingGame(){
 	Singleplayer* sp;
 	sp=singleplayerInit();
 
-////////////////////////////////////
+	////////////////////////////////////
 
 	int ipc_status;
 	message msg;
@@ -99,9 +99,12 @@ int playingGame(){
 						else
 							update_copter(sp->copter,0);
 
-						if(updateGame(sp->copter,sp->margins, &(sp->sizeOfArray),counter/60, sp->obs)==HIT){
+						if(updateGame(sp,counter/60)==HIT){
 							over=0;
 						}
+						//						if(updateGame(sp->copter,sp->margins, &(sp->sizeOfArray),counter/60, sp->obs)==HIT){
+						//							over=0;
+						//						}
 					}
 
 				}
