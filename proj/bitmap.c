@@ -120,6 +120,100 @@ void drawBitmap(Bitmap* bmp, int x, int y)
 
 }
 
+void drawBitmapWithoutBackground (Bitmap* bmp, int x, int y){
+
+
+	unsigned short byte1,byte2,color;
+	int width = bmp->bitmapInfoHeader.width;
+	int height = bmp->bitmapInfoHeader.height;
+
+	if (bmp == NULL)
+		return;
+
+	if (x + width < 0 || x > getHres() || y + height < 0 || y > getVres())
+		return;
+
+	unsigned char* buffer;
+	unsigned char* imageStartPos= bmp->bitmapData;
+	int i,j;
+
+	for (i=0;i<height;i++){
+		buffer= getDoubleBuffer()+x*2+(y+height-1-i)*getHres()*2;
+
+		for (j=0;j<width*2;j++){
+
+			byte1=imageStartPos[j+i*width*2];
+			byte2=imageStartPos[j+i*width*2+1];
+			color= (byte1 | (byte2 << 8));
+
+			if (color!=rgb(0,255,0)){
+				*buffer=imageStartPos[j+i*width*2];
+				buffer++;
+				*buffer=imageStartPos[j+i*width*2+1];
+				j++;
+				buffer++;
+
+			}
+			else{
+				j++;
+				buffer++;
+				buffer++;
+
+			}
+		}
+	}
+
+
+}
+
+void drawNumbers(Bitmap* bmp,int x,int y, char number){
+
+	int space=20;
+	int limit;
+	limit=number-48;
+
+	unsigned short byte1,byte2,color;
+	int width = space;
+	int height = bmp->bitmapInfoHeader.height;
+
+	if (bmp == NULL)
+		return;
+
+	if (x + width < 0 || x > getHres() || y + height < 0 || y > getVres())
+		return;
+
+	unsigned char* buffer;
+	unsigned char* imageStartPos= bmp->bitmapData+limit*space*2;
+	int i,j;
+
+	for (i=0;i<height;i++){
+		buffer= getDoubleBuffer()+x*2+(y+height-1-i)*getHres()*2;
+
+		for (j=0;j<width*2;j++){
+
+			byte1=imageStartPos[j+i*bmp->bitmapInfoHeader.width*2];
+			byte2=imageStartPos[j+i*bmp->bitmapInfoHeader.width*2+1];
+			color= (byte1 | (byte2 << 8));
+
+			if (color!=rgb(0,255,0)){
+				*buffer=imageStartPos[j+i*bmp->bitmapInfoHeader.width*2];
+				buffer++;
+				*buffer=imageStartPos[j+i*bmp->bitmapInfoHeader.width*2+1];
+				j++;
+				buffer++;
+
+			}
+			else{
+				j++;
+				buffer++;
+				buffer++;
+
+			}
+		}
+	}
+
+}
+
 
 //
 //void drawBitmap(Bitmap* bmp, int x, int y, Alignment alignment) {
@@ -171,6 +265,38 @@ void drawBitmap(Bitmap* bmp, int x, int y)
 //
 //}
 
+void draw_distance(int distance, Bitmap* bmp){
+
+
+
+	//FREE IMAGES
+	drawNumbers(bmp,466,530,'D');
+	drawNumbers(bmp,483,530,'I');
+	drawNumbers(bmp,500,530,'S');
+	drawNumbers(bmp,517,530,'T');
+	drawNumbers(bmp,534,530,'A');
+	drawNumbers(bmp,551,530,'N');
+	drawNumbers(bmp,566,530,'C');
+	drawNumbers(bmp,583,530,'E');
+	drawNumbers(bmp,600,530,':');
+
+	int i=0;
+	int pos;
+	char t;
+	while (distance > 0) {
+		int digit = distance % 10;
+		pos=750-i*20;
+		t= (char) (digit + '0');
+		drawNumbers(bmp,pos,530,t);
+		distance /= 10;
+		i++;
+	}
+
+
+}
+
+
+
 void deleteBitmap(Bitmap* bmp) {
 	if (bmp == NULL)
 		return;
@@ -178,3 +304,5 @@ void deleteBitmap(Bitmap* bmp) {
 	free(bmp->bitmapData);
 	free(bmp);
 }
+
+

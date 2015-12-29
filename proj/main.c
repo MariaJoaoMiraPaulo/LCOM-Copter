@@ -13,6 +13,7 @@
 #include "Obstacles.h"
 #include "Margins.h"
 #include "bitmap.h"
+#include "math.h"
 
 int main() {
 
@@ -26,21 +27,38 @@ int main() {
 //
 //	vg_init(0x114);
 //	Bitmap* teste;
-//	vg_draw_square(0, 0, 100,rgb(255,255,0));
-//	teste=loadBitmap("/home/lcom/repos/proj/images/copt.bmp");
-//	drawBitmap(teste, 0, 0);
-//	//color=rgb(102,255,102);
-//	//printf("COR=%06x",color);
-//	RGB = rgb(255,255,0);
-//	printf("RGB=%d",RGB);
-//	update_screen();
-//	cor=color(0,90);
-//	printf("passei");
-//	printf("COR=%d",cor);
-//	//vg_draw_square_frame(400, 400, 200,rgb(255,255,51));
+//	//vg_draw_square(0, 0, 600,rgb(0,255,0));
+//	//teste=loadBitmap("/home/lcom/repos/proj/images/abcp.bmp");
+//	DrawCircle(300, 300, 100, rgb(0,255,0));
 //
-//	//vg_print_pixel(30,30,rgb(255,0,127));
-//	//vg_draw_line(20, 100, 300,400, rgb(255,255,51));
+//
+////	int i=0;
+////	int pos;
+////	int distance = 1056789;
+////	char t;
+////	while (distance > 0) {
+////		int digit = distance % 10;
+////		pos=400-i*20;
+////		t= (char) (digit + '0');
+////		drawNumbers(teste,pos,0,t);
+////		distance /= 10;
+////		i++;
+////
+////		printf("i::%d",i);
+////	}
+////
+//
+//
+//	update_screen();
+//
+//
+//	//drawNumbers(teste, 0, 0, 'O');
+//	//drawNumbers(teste, 20, 0, 'L');
+//	//drawNumbers(teste, 40, 1, 'A');
+//	//drawBitmapWithoutBackground (teste,0,0);
+//	//drawBitmap(teste, 0, 0);
+//
+//
 //
 //	while( over ) { /* You may want to use a different condition */
 //		/* Get a request message. */
@@ -102,7 +120,7 @@ int main() {
 	int fps=60,counter=0,interruptions;
 	int spacePress=0, LeftButtonPress=0;
 
-	Copter* c=newCopter(200,400,80,80);
+	Copter* c=newCopter(200,400,80,44);
 	Margin* m1=newMargin(0,0,800,50);
 	Margin* m2=newMargin(0,550,800,50);
 	Margin **margins;
@@ -116,6 +134,7 @@ int main() {
 	//vg_init(MODE_105);
 	//vg_init(MODE_103);
 	vg_init(0x114);
+
 
 	configure_environment();
 
@@ -198,7 +217,7 @@ int main() {
 		return 1;
 	}
 
-	free(c);
+	delete_copter(c);
 	int i;
 	for(i=0;i<20;i++){
 		free(margins[i]);
@@ -208,4 +227,4 @@ int main() {
 	vg_exit(); //the function will go to text mode and to the wrong terminal, then change to terminal ( alt + f1 )
 
 	return 0;
-}
+ }

@@ -21,4 +21,6 @@ void delete_copter(Copter* copter);
 
 void update_copter(Copter* copter, int upOrDown);
 
+void incrementDistance(Copter* copter);
+
 #endif /* __COPTER_H */

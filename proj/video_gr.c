@@ -15,7 +15,7 @@
 
 /* The physical address may vary from VM to VM.
  * At one time it was 0xD0000000
- *  #define VRAM_PHYS_ADDR    0xD0000000 
+ *  #define VRAM_PHYS_ADDR    0xD0000000
  * Currently on lab B107 is 0xF0000000
  * Better run my version of lab5 as follows:
  *     service run `pwd`/lab5 -args "mode 0x105"
@@ -141,6 +141,20 @@ int vg_print_pixel(unsigned short x, unsigned short y, unsigned int color) {
 
 }
 
+
+void DrawCircle(int x0, int y0, int radius, unsigned long color)
+{
+
+int i,j;
+
+for( i=-radius; i<=radius; i++)
+	for( j=-radius; j<=radius; j++)
+		if(j*j+i*i <= radius*radius)
+			 vg_print_pixel(x0+j, y0+i,color);
+
+}
+
+
 int vg_draw_square(unsigned short x, unsigned short y, unsigned short size,
 		unsigned long color){
 
@@ -160,6 +174,7 @@ int vg_draw_square(unsigned short x, unsigned short y, unsigned short size,
 
 
 }
+
 
 int vg_draw_square_frame(unsigned short x, unsigned short y, unsigned short size,
 		unsigned long color) {

@@ -4,9 +4,9 @@
 
 #include <minix/syslib.h>
 
-typedef enum {
-	ALIGN_LEFT, ALIGN_CENTER, ALIGN_RIGHT
-} Alignment;
+//typedef enum {
+//	ALIGN_LEFT, ALIGN_CENTER, ALIGN_RIGHT
+//} Alignment;
 
 typedef struct {
 	unsigned short type; // specifies the file type
@@ -59,6 +59,31 @@ void drawBitmap(Bitmap* bitmap, int x, int y); //, Alignment alignment
  * @param bitmap bitmap to be destroyed
  */
 void deleteBitmap(Bitmap* bmp);
+/**
+ * @brief Draws images without background
+ *
+ * @param bitmap bitmap to be drawn
+ * @param x destiny x coord
+ * @param y destiny y coord
+ */
+
+void drawBitmapWithoutBackground (Bitmap* bmp, int x, int y);
+/**
+ * @brief Draws images without background
+ *
+ * @param bitmap bitmap to be drawn
+ * @param x destiny x coord
+ * @param y destiny y coord
+ * @param number to be draw
+ */
+void drawNumbers(Bitmap* bmp,int x,int y, char number);
+/**
+ * @brief Rights distance of copter
+ *
+ * @param bitmap bitmap to be drawn
+ * @param distance distance of the opter
+ */
+void draw_distance(int distance,Bitmap* bmp);
 
 
 #endif /* __BITMAP_H */
