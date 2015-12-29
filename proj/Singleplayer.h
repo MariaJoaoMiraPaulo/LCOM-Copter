@@ -6,23 +6,12 @@
 #include "Obstacles.h"
 
 typedef struct {
-	Copter* copter;
-	Margin **margins;
-	unsigned short sizeOfArray;
-	Obstacle* obs;
+	Copter* copter;  ///< copter in the game
+	Margin **margins;   ///< array that contains the margins of the game
+	unsigned short sizeOfArray;   ///< size of the array that contains the margins
+	Obstacle* obs;   ///< obs that is being shown on the screen
 }Singleplayer;
 
-
-//Copter* c=newCopter(200,400,80,44);
-//	Margin* m1=newMargin(0,0,800,50);
-//	Margin* m2=newMargin(0,550,800,50);
-//	Margin **margins;
-//	//	margins=(Margin **) malloc(2*sizeof(Margin *));
-//	margins=(Margin **) malloc(20*sizeof(Margin *));
-//	margins[0]=m1;
-//	margins[1]=m2;
-//	unsigned short sizeOfArray=2;
-//	Obstacle* obs;
 
 /*
  * @brief Functions that will act like a constructor, initializing members of singleplayer struct

@@ -1,5 +1,5 @@
-#ifndef __GAMESTATE__H
-#define __GAMESTATE__H
+#ifndef __GAMESTATE_H
+#define __GAMESTATE_H
 
 #include "copter.h"
 #include "Margins.h"

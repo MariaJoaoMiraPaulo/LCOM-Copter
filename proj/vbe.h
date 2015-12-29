@@ -30,6 +30,7 @@
 #define BIOS_VIDEO_CARD 0x10
 #define MODE_105 0x105
 #define MODE_103 0x103
+#define MODE_114 0x114
 #define HRES  1024
 #define VRES 768
 #define BITS_PER_PIXEL	  8

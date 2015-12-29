@@ -1,5 +1,5 @@
-#ifndef __COPTER__H
-#define __COPTER__H
+#ifndef __COPTER_H
+#define __COPTER_H
 
 //#define NULL 0
 #include "bitmap.h"
