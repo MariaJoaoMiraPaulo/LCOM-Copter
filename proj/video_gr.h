@@ -50,18 +50,14 @@ int vg_draw_square_frame(unsigned short x, unsigned short y, unsigned short size
 int vg_print_pixel(unsigned short x, unsigned short y, unsigned long color);
 
 /**
- * @brief Draws a specific xpm on the screen
+ *@brief Draws a Circle on scree
  *
- * @param x x coordinate of upper left corner
- * @param y y coordinate of upper left corner
- * @param width horizontal size of xpm
- * @param height vertical size of xpm
- * @param pixmap xpm to be draw
- *
- * @return 0 upon success, non-zero upon failure
+ *@param x coordinate x
+ *@param y coordinate y
+ *@param radius radius of the circle
+ *@param color color of the circle
  */
-int vg_draw_xpm(unsigned short x, unsigned short y,unsigned short width,unsigned short height, char *pixmap);
-
+ void DrawCircle(int x0, int y0, int radius,unsigned long color);
 /**
  * @brief Paints the screen on black
  *
@@ -100,7 +96,12 @@ unsigned char* getDoubleBuffer();
 unsigned char* getVideoMem();
 /**
  * @brief converts color to rgb
+ *
+ * @param r quantity of red
+ * @param g quantity of green
+ * @param b quantity of blue
  */
 unsigned int rgb(unsigned char r, unsigned char g, unsigned char b);
+
 
 #endif /* __VIDEO_GR_H */

@@ -2,6 +2,7 @@
 #include "video_gr.h"
 #include "Obstacles.c"
 #include "KBD.h"
+#include "bitmap.h"
 
 int hit(Copter* copter){
 	int i;
@@ -23,8 +24,11 @@ int hit(Copter* copter){
 	return 0;
 }
 
+
 int updateGame(Copter* copter, Margin** margins, unsigned short *sizeOfArray, unsigned int time,Obstacle* obs){
 
+	Bitmap* teste;
+	teste=loadBitmap("/home/lcom/repos/proj/images/abcp.bmp");
 
 	if(hit(copter)==HIT){
 		return 1;
@@ -39,8 +43,11 @@ int updateGame(Copter* copter, Margin** margins, unsigned short *sizeOfArray, un
 
 	draw_copter(copter);
 	draw_margin(margins,sizeOfArray,time);
+	incrementDistance(copter);
+	draw_distance(copter->distance,teste);
 	update_screen();
 	pullToTheLeft(margins,sizeOfArray,time);
+
 
 	return 0;
 }
