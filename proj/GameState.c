@@ -25,28 +25,29 @@ int hit(Copter* copter){
 }
 
 
-int updateGame(Copter* copter, Margin** margins, unsigned short *sizeOfArray, unsigned int time,Obstacle* obs){
+//int updateGame(Copter* copter, Margin** margins, unsigned short *sizeOfArray, unsigned int time,Obstacle* obs){
+int updateGame(Singleplayer *sp,unsigned int time){
 
 	Bitmap* teste;
 	teste=loadBitmap("/home/lcom/repos/proj/images/abcp.bmp");
 
-	if(hit(copter)==HIT){
+	if(hit(sp->copter)==HIT){
 		return 1;
 	}
 
 	if(time>=5){
-		drawObstacle(obs);
-		obsPullToTheLeft(obs);
-		if(obs->x+WIDTH<0)
-			setObstacle(obs,margins[*sizeOfArray-1]);
+		drawObstacle(sp->obs);
+		obsPullToTheLeft(sp->obs);
+		if(sp->obs->x+WIDTH<0)
+			setObstacle(sp->obs,sp->margins[(sp->sizeOfArray)-1]);
 	}
 
-	draw_copter(copter);
-	draw_margin(margins,sizeOfArray,time);
-	incrementDistance(copter);
-	draw_distance(copter->distance,teste);
+	draw_copter(sp->copter);
+	draw_margin(sp->margins,&(sp->sizeOfArray),time);
+	incrementDistance(sp->copter);
+	draw_distance(sp->copter->distance,teste);
 	update_screen();
-	pullToTheLeft(margins,sizeOfArray,time);
+	pullToTheLeft(sp->margins,&(sp->sizeOfArray),time);
 
 
 	return 0;
