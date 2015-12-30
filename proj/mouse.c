@@ -1,9 +1,11 @@
+#include "mouse.h"
+
 #include <minix/syslib.h>
 #include <minix/drivers.h>
 #include <minix/sysutil.h>
-#include "mouse.h"
-#include "KBD.h"
 #include <stdlib.h>
+#include "KBD.h"
+#include "video_gr.h"
 
 int hook_id = MOUSE_IRQ;
 unsigned long packet[3];
@@ -62,7 +64,7 @@ int mouse_handler() {
 		return 0;
 	} else if (counter == 2) {
 		packet[2] = byte;
-		mouse_print_packet();
+		//mouse_print_packet();
 		counter = 0;
 		return 1;
 	}
@@ -271,4 +273,67 @@ int mouse_left_button_press(){
 	}
 
 	return 0;
+}
+
+void atualMousePosition(MouseInfo* mouse){
+	unsigned h_res=800;//getHres();
+	unsigned v_res=600;//getVres();
+
+	if(BIT(0) & packet[0])
+		mouse->lButton=1;
+	else
+		mouse->lButton=0;
+
+	if(BIT(1) & packet[0])
+		mouse->rButton=1;
+	else
+		mouse->rButton=0;
+
+	if(BIT(2) & packet[0])
+		mouse->mButton=1;
+	else
+		mouse->mButton=0;
+
+	if (BIT(4) & packet[0]) {
+		unsigned long x_Sign = packet[1];
+		x_Sign = (0xFF & ~(0xFF & packet[1]));
+		//x_Sign = ~x_Sign;
+		x_Sign += 1;
+		x_Sign = -x_Sign;
+		mouse->x+=x_Sign;
+	} else
+		mouse->x+=packet[1];
+
+	if (BIT(5) & packet[0]) {
+		unsigned long y_Sign = packet[2];
+		y_Sign = (0xFF & ~(0xFF & packet[2]));
+		//y_Sign = ~y_Sign;
+		y_Sign += 1;
+		y_Sign = -y_Sign;
+		mouse->y-=y_Sign;
+	} else
+		mouse->y-=packet[2];
+
+	if(mouse->x<0)
+		mouse->x=0;
+	if(mouse->x>=h_res)
+		mouse->x=h_res-2;
+
+	if(mouse->y<0)
+		mouse->y=0;
+	if(mouse->y>v_res)
+		mouse->y=v_res;
+
+}
+
+void drawMouse(MouseInfo* mouse){
+
+	int i,j;
+	for(i=mouse->x;i<mouse->x+2;i++){
+		for(j=mouse->y;j<mouse->y+2;j++){
+			vg_print_pixel(i,j,rgb(51,255,51));
+		}
+	}
+	printf("x: %d\n",mouse->x);
+	printf("y: %d\n", mouse->y);
 }

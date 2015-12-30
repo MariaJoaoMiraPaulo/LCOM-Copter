@@ -6,6 +6,11 @@
 #include "mouse.h"
 #include "KBD.h"
 
+typedef struct{
+	short x,y;
+	char lButton,rButton,mButton;
+} MouseInfo;
+
 /** @defgroup test4 test4
  * @{
  *
@@ -77,5 +82,9 @@ void while_out_buf_full();
 int mouse_is_over(unsigned short tolerance,short length);
 
 int mouse_left_button_press();
+
+void atualMousePosition(MouseInfo* mouse);
+
+void drawMouse(MouseInfo* mouse);
 
 #endif /* _LCOM_MOUSE_H */

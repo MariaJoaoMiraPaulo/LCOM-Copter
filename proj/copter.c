@@ -4,10 +4,11 @@
 #include <minix/drivers.h>
 
 Copter* newCopter(unsigned short x, unsigned short y, unsigned short width, unsigned short height){
+	printf("COPTER::ENTREI\n");
 	Copter* c;
 	c=(Copter *)malloc(sizeof(Copter));
+	printf("COPTER::passei o malloc\n");
 	c->image_copter=loadBitmap("/home/lcom/repos/proj/images/copter.bmp");
-
 
 	if(c==NULL)
 		return NULL;
