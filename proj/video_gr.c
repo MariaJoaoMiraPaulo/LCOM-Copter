@@ -165,10 +165,19 @@ int vg_draw_square(unsigned short x, unsigned short y, unsigned short size,
 	}
 
 	for (i = x; i < size + x; i++) {
+		vg_print_pixel(i,y,color);
+		vg_print_pixel(i,y+size,color);
+	}
+	for(i = y; i< size+y;i++){
+		vg_print_pixel(x,i,color);
+		vg_print_pixel(x+size,i,color);
+	}
+	/*
+	for (i = x; i < size + x; i++) {
 		for (j = y; j < size + y; j++) {
 			vg_print_pixel(i,j,color);
 		}
-	}
+	}*/
 
 	return 0;
 

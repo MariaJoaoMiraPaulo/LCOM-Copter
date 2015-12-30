@@ -13,8 +13,9 @@ Singleplayer* singleplayerInit(){
 	Singleplayer* sp;
 
 	sp=(Singleplayer*) malloc(sizeof(Singleplayer *));
-
+	printf("COPTER A FODER\n");
 	sp->copter=newCopter(200,400,80,80);
+	printf("ANDO AQUI\n");
 	sp->margins=(Margin **) malloc(20*sizeof(Margin *));
 	sp->margins[0]=newMargin(0,0,800,50);
 	sp->margins[1]=newMargin(0,550,800,50);
@@ -40,9 +41,12 @@ void singleplayerDestructor(Singleplayer* sp){
 
 int playingGame(){
 
+	printf("ENTREI\n");
+
 	Singleplayer* sp;
 	sp=singleplayerInit();
 
+	printf("PASSEI\n");
 	////////////////////////////////////
 
 	int ipc_status;
@@ -51,7 +55,7 @@ int playingGame(){
 	int fps=60,counter=0,interruptions;
 	int spacePress=0, LeftButtonPress=0;
 
-	configure_environment();
+//	configure_environment();
 
 	while( over ) { /* You may want to use a different condition */
 		/* Get a request message. */

@@ -6,6 +6,9 @@
 #include "video_gr.h"
 #include "vbe.h"
 #include "Menu.h"
+#include "MainMenu.h"
+#include "mouse.h"
+
 
 int main() {
 
@@ -17,8 +20,10 @@ int main() {
 	srand((unsigned) time(&t));
 
 	subscribe();
+	configure_environment();
 	vg_init(MODE_114);
 
+	//mainMenu();
 	playingGame();
 
 	unsubscribe();
