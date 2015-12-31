@@ -22,7 +22,7 @@ MainMenu* mainMenuInit(){
 	mM->mouse.rButton=0;
 	mM->mouse.mButton=0;
 
-	mM->mouse.mouseImage=loadBitmap("/home/lcom/repos/proj/images/copter.bmp");
+	mM->mouse.mouseImage=loadBitmap("/home/lcom/repos/proj/images/mouse.bmp");
 	//button
 	mM->b1.x=300;
 	mM->b1.y=200;
