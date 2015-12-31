@@ -12,8 +12,8 @@ extern unsigned long IRQ_SET_MOUSE ;
 Singleplayer* singleplayerInit(){
 	Singleplayer* sp;
 
-	sp=(Singleplayer*) malloc(sizeof(Singleplayer *));
-	printf("COPTER A FODER\n");
+	sp=(Singleplayer*) malloc(sizeof(Singleplayer));
+	printf("COPTER A crashar o programa\n");
 	sp->copter=newCopter(200,400,80,80);
 	printf("ANDO AQUI\n");
 	sp->margins=(Margin **) malloc(20*sizeof(Margin *));

@@ -6,7 +6,7 @@ CC=gcc
 
 PROG=	proj
 SRCS=	vbe.c video_gr.c timer.c keyboard.c copter.c main.c 
-SRCS+=	GameState.c Margins.c mouse.c bitmap.c Singleplayer.c Menu.c MainMenu.c Button.c
+SRCS+=	GameState.c Margins.c mouse.c bitmap.c Singleplayer.c Menu.c MainMenu.c Button.c rtc.c
 
 CCFLAGS= -Wall
 

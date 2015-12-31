@@ -8,6 +8,7 @@
 #include "Menu.h"
 #include "MainMenu.h"
 #include "mouse.h"
+#include "bitmap.h"
 
 
 int main() {
@@ -23,6 +24,10 @@ int main() {
 	configure_environment();
 	vg_init(MODE_114);
 
+//	Bitmap* teste;
+//	teste=loadBitmap("/home/lcom/repos/proj/images/copter.bmp");
+//  drawBitmap(teste,0,0);
+
 	mainMenu();
 	//playingGame();
 
@@ -32,4 +37,4 @@ int main() {
 	return 0;
 
 
- }
+}

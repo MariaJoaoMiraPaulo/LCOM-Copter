@@ -3,6 +3,9 @@
 #include "KBD.h"
 #include <minix/drivers.h>
 
+const float GRAVITY = 1;
+float VELOCITY = 0;
+
 Copter* newCopter(unsigned short x, unsigned short y, unsigned short width, unsigned short height){
 	printf("COPTER::ENTREI\n");
 	Copter* c;
@@ -42,6 +45,14 @@ void update_copter(Copter* copter, int upOrDown){   //up=0, down != 0
 		copter->y=copter->y-5;
 	else
 		copter->y=copter->y+5;
+	//	{
+	//		VELOCITY += GRAVITY;
+	//		copter->y=copter->y- VELOCITY;
+	//	}
+	//	else{
+	//		VELOCITY += GRAVITY;
+	//		copter->y=copter->y+VELOCITY;
+	//	}
 }
 
 void incrementDistance(Copter* copter){

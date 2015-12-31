@@ -121,22 +121,27 @@ void drawBitmap(Bitmap* bmp, int x, int y)
 }
 
 void drawBitmapWithoutBackground (Bitmap* bmp, int x, int y){
-
-
+	printf("ENTREI\n");
 	unsigned short byte1,byte2,color;
 	int width = bmp->bitmapInfoHeader.width;
 	int height = bmp->bitmapInfoHeader.height;
 
+	printf("0");
+
 	if (bmp == NULL)
 		return;
+
+	printf("1");
 
 	if (x + width < 0 || x > getHres() || y + height < 0 || y > getVres())
 		return;
 
+	printf("2");
 	unsigned char* buffer;
 	unsigned char* imageStartPos= bmp->bitmapData;
 	int i,j;
 
+	printf("3");
 	for (i=0;i<height;i++){
 		buffer= getDoubleBuffer()+x*2+(y+height-1-i)*getHres()*2;
 
@@ -249,10 +254,13 @@ void drawTime(char* time){
 
 	Bitmap* teste;
 	Bitmap* clock;
+
 	teste=loadBitmap("/home/lcom/repos/proj/images/abcp.bmp");
 	clock=loadBitmap("/home/lcom/repos/proj/images/clock.bmp");
 
+
 	drawBitmapWithoutBackground(clock,2,10);
+
 	drawNumbers(teste,30,2, time[0]);
 	drawNumbers(teste,45,2, time[1]);
 	drawNumbers(teste,60,2, ':');

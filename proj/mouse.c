@@ -316,24 +316,25 @@ void atualMousePosition(MouseInfo* mouse){
 
 	if(mouse->x<0)
 		mouse->x=0;
-	if(mouse->x>=h_res)
-		mouse->x=h_res-2;
+	if(mouse->x>=h_res-20)
+		mouse->x=h_res-20;
 
 	if(mouse->y<0)
 		mouse->y=0;
-	if(mouse->y>v_res)
-		mouse->y=v_res;
+	if(mouse->y>v_res-20)
+		mouse->y=v_res-20;
 
 }
 
 void drawMouse(MouseInfo* mouse){
 
-	int i,j;
-	for(i=mouse->x;i<mouse->x+2;i++){
-		for(j=mouse->y;j<mouse->y+2;j++){
-			vg_print_pixel(i,j,rgb(51,255,51));
-		}
-	}
-	printf("x: %d\n",mouse->x);
-	printf("y: %d\n", mouse->y);
+//	int i,j;
+//	for(i=mouse->x;i<mouse->x+2;i++){
+//		for(j=mouse->y;j<mouse->y+2;j++){
+//			vg_print_pixel(i,j,rgb(51,255,51));
+//		}
+//	}
+	printf("PASSEI\n");
+	drawBitmapWithoutBackground(mouse->mouseImage,mouse->x,mouse->y);
+	printf("NAO CRASHOU \n");
 }

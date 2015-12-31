@@ -13,7 +13,7 @@ extern unsigned long IRQ_SET_MOUSE ;
 MainMenu* mainMenuInit(){
 	MainMenu* mM;
 
-	mM=(MainMenu*)malloc(sizeof(MainMenu *));
+	mM=(MainMenu*)malloc(sizeof(MainMenu ));
 
 	//mouse
 	mM->mouse.x=0;
@@ -21,6 +21,8 @@ MainMenu* mainMenuInit(){
 	mM->mouse.lButton=0;
 	mM->mouse.rButton=0;
 	mM->mouse.mButton=0;
+
+	mM->mouse.mouseImage=loadBitmap("/home/lcom/repos/proj/images/copter.bmp");
 	//button
 	mM->b1.x=300;
 	mM->b1.y=200;
@@ -88,6 +90,8 @@ int mainMenu(){
 					if(hasClickedOnButton(&(mM->b1),&(mM->mouse)) != OK){
 						printf("ACABOU!!!\n");
 						playingGame();
+						printf("ACABOU O JOGO\n");
+						mainMenu();
 						over=0;
 					}
 					update_screen();
@@ -107,7 +111,7 @@ int mainMenu(){
 		}
 	}
 
-	mainMenuDestructor(mM);
+	//mainMenuDestructor(mM);
 
 	return 0;
 
