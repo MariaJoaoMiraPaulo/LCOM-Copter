@@ -6,10 +6,12 @@
 #include <stdlib.h>
 #include "KBD.h"
 #include "video_gr.h"
+#include "bitmap.h"
 
 int hook_id = MOUSE_IRQ;
 unsigned long packet[3];
 unsigned long config[3];
+
 
 int mouse_subscribe_int() {
 	int tmp = BIT(hook_id);
