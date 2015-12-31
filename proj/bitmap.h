@@ -78,12 +78,18 @@ void drawBitmapWithoutBackground (Bitmap* bmp, int x, int y);
  */
 void drawNumbers(Bitmap* bmp,int x,int y, char number);
 /**
- * @brief Rights distance of copter
+ * @brief writes distance of copter
  *
  * @param bitmap bitmap to be drawn
  * @param distance distance of the opter
  */
 void draw_distance(int distance,Bitmap* bmp);
+
+/**
+ * @brief draws real time on the game
+ * @param char* time array of char with real time
+ */
+void drawTime(char* time);
 
 
 #endif /* __BITMAP_H */

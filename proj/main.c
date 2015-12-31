@@ -23,8 +23,8 @@ int main() {
 	configure_environment();
 	vg_init(MODE_114);
 
-	//mainMenu();
-	playingGame();
+	mainMenu();
+	//playingGame();
 
 	unsubscribe();
 	vg_exit();
