@@ -3,7 +3,6 @@
 #include "Obstacles.c"
 #include "KBD.h"
 #include "bitmap.h"
-#include "rtc.c"
 
 int hit(Copter* copter){
 	int i;

@@ -5,10 +5,12 @@
 #include <minix/com.h>
 #include "mouse.h"
 #include "KBD.h"
+#include "bitmap.h"
 
 typedef struct{
 	short x,y;
 	char lButton,rButton,mButton;
+	Bitmap* mouseImage;
 } MouseInfo;
 
 /** @defgroup test4 test4
