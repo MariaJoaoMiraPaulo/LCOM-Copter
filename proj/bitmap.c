@@ -215,56 +215,6 @@ void drawNumbers(Bitmap* bmp,int x,int y, char number){
 }
 
 
-//
-//void drawBitmap(Bitmap* bmp, int x, int y, Alignment alignment) {
-//    if (bmp == NULL)
-//        return;
-//
-//    int width = bmp->bitmapInfoHeader.width;
-//    int drawWidth = width;
-//    int height = bmp->bitmapInfoHeader.height;
-//
-//    if (alignment == ALIGN_CENTER)
-//        x -= width / 2;
-//    else if (alignment == ALIGN_RIGHT)
-//        x -= width;
-//
-//    if (x + width < 0 || x > getHres()|| y + height < 0
-//            || y > getVres())
-//        return;
-//
-//    int xCorrection = 0;
-//    if (x < 0) {
-//        xCorrection = -x;
-//        drawWidth -= xCorrection;
-//        x = 0;
-//
-//        if (drawWidth > getHres())
-//            drawWidth = getHres();
-//    } else if (x + drawWidth >= getHres()) {
-//        drawWidth = getHres() - x;
-//    }
-//
-//    char* bufferStartPos;
-//    char* imgStartPos;
-//
-//    int i;
-//    for (i = 0; i < height; i++) {
-//        int pos = y + height - 1 - i;
-//
-//        if (pos < 0 || pos >= getVres())
-//            continue;
-//
-//        bufferStartPos = getDoubleBuffer();
-//        bufferStartPos += x * 2 + pos * getHres() * 2;
-//
-//        imgStartPos = bmp->bitmapData + xCorrection * 2 + i * width * 2;
-//
-//        memcpy(bufferStartPos, imgStartPos, drawWidth * 2);
-//    }
-//
-//}
-
 void draw_distance(int distance, Bitmap* bmp){
 
 
@@ -295,6 +245,30 @@ void draw_distance(int distance, Bitmap* bmp){
 
 }
 
+void drawTime(char* time){
+
+	Bitmap* teste;
+	Bitmap* clock;
+	teste=loadBitmap("/home/lcom/repos/proj/images/abcp.bmp");
+	clock=loadBitmap("/home/lcom/repos/proj/images/clock.bmp");
+
+	drawBitmapWithoutBackground(clock,2,10);
+	drawNumbers(teste,30,2, time[0]);
+	drawNumbers(teste,45,2, time[1]);
+	drawNumbers(teste,60,2, ':');
+	drawNumbers(teste,75,2, time[2]);
+	drawNumbers(teste,90,2, time[3]);
+	drawNumbers(teste,105,2, ':');
+	drawNumbers(teste,120,2, time[4]);
+	drawNumbers(teste,135,2, time[5]);
+
+	deleteBitmap(teste);
+	deleteBitmap(clock);
+
+
+
+
+}
 
 
 void deleteBitmap(Bitmap* bmp) {

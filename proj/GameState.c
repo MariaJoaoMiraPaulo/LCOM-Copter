@@ -3,6 +3,7 @@
 #include "Obstacles.c"
 #include "KBD.h"
 #include "bitmap.h"
+#include "rtc.c"
 
 int hit(Copter* copter){
 	int i;
@@ -46,6 +47,7 @@ int updateGame(Singleplayer *sp,unsigned int time){
 	draw_margin(sp->margins,&(sp->sizeOfArray),time);
 	incrementDistance(sp->copter);
 	draw_distance(sp->copter->distance,teste);
+	rtc_test_date();
 	update_screen();
 	pullToTheLeft(sp->margins,&(sp->sizeOfArray),time);
 
