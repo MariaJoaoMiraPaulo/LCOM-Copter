@@ -106,8 +106,6 @@ void drawBitmap(Bitmap* bmp, int x, int y)
 	unsigned char* bufferStartPos = getDoubleBuffer();
 	unsigned char* imgStartPos;
 
-
-
 	int i,pos;
 	for (i=0;i<height;i++)
 	{
@@ -116,32 +114,24 @@ void drawBitmap(Bitmap* bmp, int x, int y)
 		memcpy(bufferStartPos+x*2+pos*getHres()*2,imgStartPos,width*2);
 	}
 
-
-
 }
 
 void drawBitmapWithoutBackground (Bitmap* bmp, int x, int y){
-	printf("ENTREI\n");
 	unsigned short byte1,byte2,color;
 	int width = bmp->bitmapInfoHeader.width;
 	int height = bmp->bitmapInfoHeader.height;
 
-	printf("0");
 
 	if (bmp == NULL)
 		return;
 
-	printf("1");
-
 	if (x + width < 0 || x > getHres() || y + height < 0 || y > getVres())
 		return;
 
-	printf("2");
 	unsigned char* buffer;
 	unsigned char* imageStartPos= bmp->bitmapData;
 	int i,j;
 
-	printf("3");
 	for (i=0;i<height;i++){
 		buffer= getDoubleBuffer()+x*2+(y+height-1-i)*getHres()*2;
 
