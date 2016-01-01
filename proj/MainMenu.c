@@ -25,12 +25,12 @@ MainMenu* mainMenuInit(){
 	mM->mouse.mouseImage=loadBitmap("/home/lcom/repos/proj/images/mouse.bmp");
 	//button
 	mM->b1.x=300;
-	mM->b1.y=200;
-	mM->b1.height=100;
-	mM->b1.weight=200;
+	mM->b1.y=340;
+	mM->b1.height=55;
+	mM->b1.weight=160;
 
 	//image
-	mM->mouse.mouseImage=loadBitmap("/home/lcom/repos/proj/images/mouse.bmp");
+	mM->menuImage=loadBitmap("/home/lcom/repos/proj/images/Menu.bmp");
 
 	return mM;
 }
