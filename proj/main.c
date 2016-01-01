@@ -24,11 +24,11 @@ int main() {
 	configure_environment();
 	vg_init(MODE_114);
 
-//	Bitmap* teste;
-//	teste=loadBitmap("/home/lcom/repos/proj/images/copter.bmp");
-//  drawBitmap(teste,0,0);
+	Bitmap* teste;
+	teste=loadBitmap("/home/lcom/repos/proj/images/copter.bmp");
+  drawBitmap(teste,0,0);
 
-	mainMenu();
+//	mainMenu();
 	//playingGame();
 
 	unsubscribe();

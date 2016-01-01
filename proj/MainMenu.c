@@ -29,6 +29,9 @@ MainMenu* mainMenuInit(){
 	mM->b1.height=100;
 	mM->b1.weight=200;
 
+	//image
+	mM->mouse.mouseImage=loadBitmap("/home/lcom/repos/proj/images/mouse.bmp");
+
 	return mM;
 }
 
@@ -85,6 +88,7 @@ int mainMenu(){
 				interruptions=counter%(60/fps);
 				if(interruptions==0){
 					printf("TIMER:: entrei no if\n");
+					drawBitmap(mM->menuImage,0,0);
 					drawButton(&(mM->b1));
 					drawMouse(&(mM->mouse));
 					if(hasClickedOnButton(&(mM->b1),&(mM->mouse)) != OK){
