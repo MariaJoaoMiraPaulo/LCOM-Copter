@@ -44,12 +44,9 @@ void singleplayerDestructor(Singleplayer* sp){
 
 int playingGame(){
 
-	printf("ENTREI\n");
-
 	Singleplayer* sp;
 	sp=singleplayerInit();
 
-	printf("PASSEI\n");
 	////////////////////////////////////
 
 	int ipc_status;
