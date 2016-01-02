@@ -9,7 +9,7 @@ float VELOCITY = 0;
 Bitmap* copterImage;
 
 void loadCopterImage(){
-	copterImage=loadBitmap("/home/lcom/repos/proj/images/copter.bmp");
+	copterImage=loadBitmap("/home/lcom/repos/proj/images/teste.bmp");
 }
 
 void deleteCopterImage(){
@@ -36,17 +36,18 @@ Copter* newCopter(unsigned short x, unsigned short y, unsigned short width, unsi
 	return c;
 }
 
-void draw_copter(Copter* copter){  //TROCAR PARA UMA IMAGEM
+void draw_copter(Copter* copter, char c){  //TROCAR PARA UMA IMAGEM
 	unsigned int i,j;
 
-	//	for(i=copter->x;i<copter->width+copter->x;i++){
-	//		for(j=copter->y;j<copter->height+copter->y;j++){
-	//			vg_print_pixel(i,j,rgb(255,102,102));
-	//
-	//		}
-	//	}
+//		for(i=copter->x;i<copter->width+copter->x;i++){
+//			for(j=copter->y;j<copter->height+copter->y;j++){
+//				vg_print_pixel(i,j,rgb(255,102,102));
+//
+//			}
+//		}
 
-	drawBitmap(copter->image_copter,copter->x, copter->y);
+	//drawBitmap(copter->image_copter,copter->x, copter->y);
+	drawCopters(copter->image_copter,copter->x, copter->y, c);
 }
 
 void update_copter(Copter* copter, int upOrDown){   //up=0, down != 0

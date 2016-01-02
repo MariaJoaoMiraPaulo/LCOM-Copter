@@ -156,7 +156,7 @@ int mainMenu(){
 					drawMouse(&(mM->mouse));
 					if(hasClickedOnButton(&(mM->b1),&(mM->mouse)) != OK){
 						printf("ACABOU!!!\n");
-						playingGame();
+						playingGame('0');
 						printf("ACABOU O JOGO\n");
 						gameOver();
 						//mainMenu();
@@ -244,7 +244,7 @@ int gameOver(){
 						over=0;
 					}
 					if(hasClickedOnButton(&(mGO->b2),&(mGO->mouse)) != OK){
-						playingGame();
+						playingGame('0');
 						gameOver();
 						over=0;
 					}

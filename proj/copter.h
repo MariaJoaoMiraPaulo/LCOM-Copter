@@ -37,7 +37,7 @@ Copter* newCopter(unsigned short x, unsigned short y, unsigned short width, unsi
  *
  * @param copter pointer to copter
  */
-void draw_copter(Copter* copter);
+void draw_copter(Copter* copter, char c);
 
 /**
  * @brief delets copter's object

@@ -146,11 +146,21 @@ int vg_print_pixel(unsigned short x, unsigned short y, unsigned int color) {
 void vg_updating_double(){
 	int i,j;
 	int generatedNumber;
+	unsigned short byte1,byte2,color1;
 
 	for(i=80; i < 520  ; i++){
 		for(j=0; j < h_res - NUMBER_OF_PIXELS_PUSHED ; j++){
+			//printf("ENTREI\n");
+
+						byte1=video_mem[(j + NUMBER_OF_PIXELS_PUSHED + i * h_res)* bits_per_pixel/8];
+						byte2=video_mem[(j + NUMBER_OF_PIXELS_PUSHED + i * h_res)* bits_per_pixel/8+1];
+						color1= (byte1 | (byte2 << 8));
+
+			if(color1 == 65510){//MARGINS_COLOR	){
+				//	printf("%d   %d\n",MARGINS_COLOR , color1 );
 				double_buffer[(j + i * h_res)* bits_per_pixel/8]=video_mem[(j + NUMBER_OF_PIXELS_PUSHED + i * h_res)* bits_per_pixel/8];
 				double_buffer[(j + i * h_res)* bits_per_pixel/8+1]=video_mem[(j + NUMBER_OF_PIXELS_PUSHED + i * h_res)* bits_per_pixel/8+1];
+			}
 		}
 	}
 
@@ -161,7 +171,7 @@ void vg_updating_double(){
 	case 0:
 		for(i=795;i<h_res;i++){
 			for(j=0;j<= fronteira + 5 ; j++){
-				vg_print_pixel(i,j,rgb(51,255,51));
+				vg_print_pixel(i,j,MARGINS_COLOR);
 
 			}
 		}
@@ -173,7 +183,7 @@ void vg_updating_double(){
 	case 1:
 		for(i=795;i<h_res;i++){
 			for(j=0;j<= fronteira - 5; j++){
-				vg_print_pixel(i,j,rgb(51,255,51));
+				vg_print_pixel(i,j,MARGINS_COLOR);
 
 			}
 		}
@@ -185,7 +195,7 @@ void vg_updating_double(){
 	case 2:
 		for(i=795;i<h_res;i++){
 			for(j=0;j<= fronteira ; j++){
-				vg_print_pixel(i,j,rgb(51,255,51));
+				vg_print_pixel(i,j,MARGINS_COLOR);
 
 			}
 		}
@@ -197,7 +207,7 @@ void vg_updating_double(){
 		for(j=80; j < 300 ; j ++){
 			if(color(i, j) == rgb(51,255,51) && color(i, j+1) != rgb(51,255,51)){
 				for(altura= j + 300; altura< 520; altura++ )
-					vg_print_pixel(i,altura,rgb(51,255,51));
+					vg_print_pixel(i,altura,MARGINS_COLOR);
 			}
 
 		}

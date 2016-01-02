@@ -13,7 +13,7 @@ Singleplayer* singleplayerInit(){
 	Singleplayer* sp;
 
 	sp=(Singleplayer*) malloc(sizeof(Singleplayer));
-	sp->copter=newCopter(200,300,80,44);
+	sp->copter=newCopter(200,300,60,30);
 
 	//	sp->margins=(Margin **) malloc(20*sizeof(Margin *));
 	//	sp->margins[0]=newMargin(0,0,800,50);
@@ -42,7 +42,7 @@ void singleplayerDestructor(Singleplayer* sp){
 	free(sp);
 }
 
-int playingGame(){
+int playingGame(char c){
 
 	Singleplayer* sp;
 	sp=singleplayerInit();
@@ -105,7 +105,7 @@ int playingGame(){
 						else
 							update_copter(sp->copter,0);
 
-						if(updateGame(sp,counter/60)==HIT){
+						if(updateGame(sp,counter/60,c)==HIT){
 							over=0;
 						}
 						//						if(updateGame(sp->copter,sp->margins, &(sp->sizeOfArray),counter/60, sp->obs)==HIT){
