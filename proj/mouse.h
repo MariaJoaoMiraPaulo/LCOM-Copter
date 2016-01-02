@@ -82,11 +82,23 @@ void while_out_buf_full();
  * @return Return 1 when the delta_y is bigger than length and delta_x lower than tolerance
  */
 int mouse_is_over(unsigned short tolerance,short length);
-
+/**
+ *@brief checks if mouse left button is pressed or not
+ */
 int mouse_left_button_press();
 
+/**
+ *@brief gives mouse atual position
+ *
+ *@param mouse pointer to MouseInfo
+ */
 void atualMousePosition(MouseInfo* mouse);
 
+/**
+ * @brief draws mouse on the screen
+ *
+ * @param mouse pointer to MouseInfo
+ */
 void drawMouse(MouseInfo* mouse);
 
 #endif /* _LCOM_MOUSE_H */
