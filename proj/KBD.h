@@ -92,4 +92,6 @@
 
 #define OBSTACLES_COLOR rgb(51,255,51)
 
+#define NUMBER_OF_PIXELS_PUSHED 5
+
 #endif /* _LCOM_KBD_H */

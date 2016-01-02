@@ -13,13 +13,16 @@ Singleplayer* singleplayerInit(){
 	Singleplayer* sp;
 
 	sp=(Singleplayer*) malloc(sizeof(Singleplayer));
-	printf("COPTER A crashar o programa\n");
-	sp->copter=newCopter(200,400,80,80);
-	printf("ANDO AQUI\n");
-	sp->margins=(Margin **) malloc(20*sizeof(Margin *));
-	sp->margins[0]=newMargin(0,0,800,50);
-	sp->margins[1]=newMargin(0,550,800,50);
-	sp->sizeOfArray=2;
+	sp->copter=newCopter(200,300,80,80);
+
+//	sp->margins=(Margin **) malloc(20*sizeof(Margin *));
+//	sp->margins[0]=newMargin(0,0,800,50);
+//	sp->margins[1]=newMargin(0,550,800,50);
+//	sp->sizeOfArray=2;
+
+	update_screen();
+	firstImage();
+	update_screen();
 
 	return sp;
 }
@@ -95,8 +98,8 @@ int playingGame(){
 				if(msg.NOTIFY_ARG & IRQ_SET_TIMER){
 					counter++;
 					interruptions=counter%(60/fps);
-					if((double)counter/60==5)
-						sp->obs=newObstacle(sp->margins[sp->sizeOfArray-1]);
+//					if((double)counter/60==5)
+//						sp->obs=newObstacle(sp->margins[sp->sizeOfArray-1]);
 					if(interruptions==0){
 						if( LeftButtonPress==0 && spacePress==0 )
 							update_copter(sp->copter,1);  //==0sobe !=0desce

@@ -35,20 +35,21 @@ int updateGame(Singleplayer *sp,unsigned int time){
 		return 1;
 	}
 
-	if(time>=5){
-		drawObstacle(sp->obs);
-		obsPullToTheLeft(sp->obs);
-		if(sp->obs->x+WIDTH<0)
-			setObstacle(sp->obs,sp->margins[(sp->sizeOfArray)-1]);
-	}
+//	if(time>=5){
+//		drawObstacle(sp->obs);
+//		obsPullToTheLeft(sp->obs);
+//		if(sp->obs->x+WIDTH<0)
+//			setObstacle(sp->obs,sp->margins[(sp->sizeOfArray)-1]);
+//	}
 
+	drawMargin();
 	draw_copter(sp->copter);
-	draw_margin(sp->margins,&(sp->sizeOfArray),time);
+//	draw_margin(sp->margins,&(sp->sizeOfArray),time);
 	incrementDistance(sp->copter);
 	draw_distance(sp->copter->distance,teste);
 	rtc_test_date();
 	update_screen();
-	pullToTheLeft(sp->margins,&(sp->sizeOfArray),time);
+	//pullToTheLeft(sp->margins,&(sp->sizeOfArray),time);
 
 
 	return 0;
