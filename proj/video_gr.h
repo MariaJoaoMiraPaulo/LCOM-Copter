@@ -66,6 +66,11 @@ int vg_print_pixel(unsigned short x, unsigned short y, unsigned long color);
 void vg_updating_double();
 
 /*
+ * @brief checks whats is y height on column 799
+ */
+int checkingDoubleBuffer();
+
+/*
  * @brief generate a number on in the break
  *
  * @param x1 start of the break

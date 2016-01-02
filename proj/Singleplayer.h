@@ -9,7 +9,7 @@ typedef struct {
 	Copter* copter;  ///< copter in the game
 //	Margin **margins;   ///< array that contains the margins of the game
 //	unsigned short sizeOfArray;   ///< size of the array that contains the margins
-//	Obstacle* obs;   ///< obs that is being shown on the screen
+	Obstacle* obs;   ///< obs that is being shown on the screen
 }Singleplayer;
 
 
