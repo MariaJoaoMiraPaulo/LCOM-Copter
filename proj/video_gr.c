@@ -203,7 +203,17 @@ void vg_updating_double(){
 		}
 	}
 
+}
 
+int checkingDoubleBuffer(){
+	int i;
+	for(i=80; i< 520; i++){
+		if(color(h_res-1, i)==rgb(51,255,51) && color(h_res-1,i+1) != rgb(51,255,51)){
+			return i;
+		}
+	}
+
+	return 0;
 }
 
 int randomNumber(int x1,int x2){

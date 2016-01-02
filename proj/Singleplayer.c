@@ -13,12 +13,12 @@ Singleplayer* singleplayerInit(){
 	Singleplayer* sp;
 
 	sp=(Singleplayer*) malloc(sizeof(Singleplayer));
-	sp->copter=newCopter(200,300,80,80);
+	sp->copter=newCopter(200,300,80,44);
 
-//	sp->margins=(Margin **) malloc(20*sizeof(Margin *));
-//	sp->margins[0]=newMargin(0,0,800,50);
-//	sp->margins[1]=newMargin(0,550,800,50);
-//	sp->sizeOfArray=2;
+	//	sp->margins=(Margin **) malloc(20*sizeof(Margin *));
+	//	sp->margins[0]=newMargin(0,0,800,50);
+	//	sp->margins[1]=newMargin(0,550,800,50);
+	//	sp->sizeOfArray=2;
 
 	update_screen();
 	firstImage();
@@ -55,7 +55,7 @@ int playingGame(){
 	int fps=60,counter=0,interruptions;
 	int spacePress=0, LeftButtonPress=0;
 
-//	configure_environment();
+	//	configure_environment();
 
 	while( over ) { /* You may want to use a different condition */
 		/* Get a request message. */
@@ -95,8 +95,10 @@ int playingGame(){
 				if(msg.NOTIFY_ARG & IRQ_SET_TIMER){
 					counter++;
 					interruptions=counter%(60/fps);
-//					if((double)counter/60==5)
-//						sp->obs=newObstacle(sp->margins[sp->sizeOfArray-1]);
+					//					if((double)counter/60==5)
+					//						sp->obs=newObstacle(sp->margins[sp->sizeOfArray-1]);
+					if((double)counter/60==5)
+						sp->obs=newObstacle();
 					if(interruptions==0){
 						if( LeftButtonPress==0 && spacePress==0 )
 							update_copter(sp->copter,1);  //==0sobe !=0desce
