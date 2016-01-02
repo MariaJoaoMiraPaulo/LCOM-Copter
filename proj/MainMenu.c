@@ -23,11 +23,17 @@ MainMenu* mainMenuInit(){
 	mM->mouse.mButton=0;
 
 	mM->mouse.mouseImage=loadBitmap("/home/lcom/repos/proj/images/mouse.bmp");
-	//button
+	//button play
 	mM->b1.x=300;
 	mM->b1.y=340;
 	mM->b1.height=55;
 	mM->b1.weight=160;
+
+	//button Exit
+	mM->b2.x=153;
+	mM->b2.y=318;
+	mM->b2.height=60;
+	mM->b2.weight=110;
 
 	//image
 	mM->menuImage=loadBitmap("/home/lcom/repos/proj/images/Menu.bmp");
@@ -90,6 +96,7 @@ int mainMenu(){
 					printf("TIMER:: entrei no if\n");
 					drawBitmap(mM->menuImage,0,0);
 					drawButton(&(mM->b1));
+					drawButton(&(mM->b2));
 					drawMouse(&(mM->mouse));
 					if(hasClickedOnButton(&(mM->b1),&(mM->mouse)) != OK){
 						printf("ACABOU!!!\n");
@@ -98,6 +105,8 @@ int mainMenu(){
 						mainMenu();
 						over=0;
 					}
+					if(hasClickedOnButton(&(mM->b2),&(mM->mouse)) != OK)
+						over=0;
 					update_screen();
 
 				}
@@ -115,7 +124,7 @@ int mainMenu(){
 		}
 	}
 
-	//mainMenuDestructor(mM);
+	mainMenuDestructor(mM);
 
 	return 0;
 
