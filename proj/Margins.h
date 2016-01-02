@@ -28,6 +28,10 @@ int isTotallyPrinted(Margin* margin);
 
 void pullToTheLeft(Margin** margins, unsigned short *sizeOfArray,unsigned int time);
 
+void firstImage();
+
+void drawMargin();
+
 
 
 

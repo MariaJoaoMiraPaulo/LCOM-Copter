@@ -35,6 +35,17 @@ int vg_exit(void);
 int vg_draw_square(unsigned short x, unsigned short y, unsigned short size, unsigned long color);
 
 /**
+ * @brief Draw a rectangle on the screen
+ *
+ * @param x left corner horizontal coordinate
+ * @param y left corner horizontal coordinate
+ * @param width width of the rectangle
+ * @param height height of the rectangle
+ * @param color color of the rectangle
+ */
+void vg_draw_rectangle(unsigned short x, unsigned short y, unsigned short width, unsigned short height, unsigned long color);
+
+/**
  * @brief Draws a square on the screen
  *
  * @return 0 upon success, non-zero upon failure
@@ -48,6 +59,21 @@ int vg_draw_square_frame(unsigned short x, unsigned short y, unsigned short size
  */
 
 int vg_print_pixel(unsigned short x, unsigned short y, unsigned long color);
+
+/*
+ * @brief pushes green to the left using video mem
+ */
+void vg_updating_double();
+
+/*
+ * @brief generate a number on in the break
+ *
+ * @param x1 start of the break
+ * @param x2 end of the break
+ *
+ * @return a number between x1 and x2
+ */
+int randomNumber(int x1,int x2);
 
 /**
  *@brief Draws a Circle on scree

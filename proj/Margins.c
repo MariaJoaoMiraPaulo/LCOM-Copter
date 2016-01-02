@@ -216,3 +216,39 @@ void pullToTheLeft(Margin** margins, unsigned short *sizeOfArray,unsigned int ti
 	}
 }
 
+void firstImage(){
+	unsigned hres = getHres();
+	//	unsigned vres = getVres();
+
+	vg_draw_rectangle(0,0,hres,80,rgb(51,255,51) );
+	vg_draw_rectangle(0,520,hres,80,rgb(51,255,51));
+}
+
+void drawMargin() {
+	//	char* videoMem = getVideoMem();
+	//	char* doubleBuffer = getDoubleBuffer();
+		unsigned hres = getHres();
+	//	unsigned vres = getVres();
+	//	unsigned bitsPerPixel = getBitsPerPixel();
+	vg_draw_rectangle(0,0,hres,80,rgb(51,255,51) );
+	vg_draw_rectangle(0,520,hres,80,rgb(51,255,51));
+	vg_updating_double();
+
+	//polling pixels to the left 5 pixels for each frame
+	//	int i, j;
+	//	for (i = 0; j < vres - NUMBER_OF_PIXELS_PUSHED; i++) {
+	//		for (j = 0; i < hres- NUMBER_OF_PIXELS_PUSHED; j++) {
+	//			*doubleBuffer=*(videoMem + ((j+NUMBER_OF_PIXELS_PUSHED+i * hres)* bitsPerPixel/8));
+	//		}
+	//	}
+
+	//creating and drawing pixels that are in dimensions hres-NUMBER_OF_PIXELS_PUSHED
+	//	for(i = vres - NUMBER_OF_PIXELS_PUSHED; i < vres; i++){
+	//		for(j = hres - NUMBER_OF_PIXELS_PUSHED; j < hres; j++){
+	//			if(*(doubleBuffer + (( (j-1) + NUMBER_OF_PIXELS_PUSHED + i * hres)* bitsPerPixel/8))== 18)
+	//				**(doubleBuffer + (( j + NUMBER_OF_PIXELS_PUSHED + i * hres)* bitsPerPixel/8)) = 18;
+	//		}
+	//	}
+
+}
+

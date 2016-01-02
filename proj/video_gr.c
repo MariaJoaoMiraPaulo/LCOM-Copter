@@ -30,6 +30,8 @@ static unsigned h_res; /* Horizontal screen resolution in pixels */
 static unsigned v_res; /* Vertical screen resolution in pixels */
 static unsigned bits_per_pixel; /* Number of VRAM bits per pixel */
 
+int fronteira = 87;
+
 void *vg_init(unsigned short mode) {
 	struct reg86u reg86;
 
@@ -141,16 +143,82 @@ int vg_print_pixel(unsigned short x, unsigned short y, unsigned int color) {
 
 }
 
+void vg_updating_double(){
+	int i,j;
+	int generatedNumber;
+
+	for(i=80; i < 520  ; i++){
+		for(j=0; j < h_res - NUMBER_OF_PIXELS_PUSHED ; j++){
+				double_buffer[(j + i * h_res)* bits_per_pixel/8]=video_mem[(j + NUMBER_OF_PIXELS_PUSHED + i * h_res)* bits_per_pixel/8];
+				double_buffer[(j + i * h_res)* bits_per_pixel/8+1]=video_mem[(j + NUMBER_OF_PIXELS_PUSHED + i * h_res)* bits_per_pixel/8+1];
+		}
+	}
+
+	generatedNumber=randomNumber(0,3);
+
+	switch(generatedNumber){
+	//sobe
+	case 0:
+		for(i=795;i<h_res;i++){
+			for(j=0;j<= fronteira + 5 ; j++){
+				vg_print_pixel(i,j,rgb(51,255,51));
+
+			}
+		}
+		fronteira= fronteira + 5;
+		if(fronteira>300)
+			fronteira = 260;
+		break;
+		//desce
+	case 1:
+		for(i=795;i<h_res;i++){
+			for(j=0;j<= fronteira - 5; j++){
+				vg_print_pixel(i,j,rgb(51,255,51));
+
+			}
+		}
+		fronteira= fronteira -5;
+		if(fronteira < 87)
+			fronteira =87;
+		break;
+		//mantem
+	case 2:
+		for(i=795;i<h_res;i++){
+			for(j=0;j<= fronteira ; j++){
+				vg_print_pixel(i,j,rgb(51,255,51));
+
+			}
+		}
+		break;
+	}
+
+	int altura;
+	for(i=795; i < h_res; i++){
+		for(j=80; j < 300 ; j ++){
+			if(color(i, j) == rgb(51,255,51) && color(i, j+1) != rgb(51,255,51)){
+				for(altura= j + 300; altura< 520; altura++ )
+					vg_print_pixel(i,altura,rgb(51,255,51));
+			}
+
+		}
+	}
+
+
+}
+
+int randomNumber(int x1,int x2){
+	return rand()%(x2-x1)+x1;
+}
 
 void DrawCircle(int x0, int y0, int radius, unsigned long color)
 {
 
-int i,j;
+	int i,j;
 
-for( i=-radius; i<=radius; i++)
-	for( j=-radius; j<=radius; j++)
-		if(j*j+i*i <= radius*radius)
-			 vg_print_pixel(x0+j, y0+i,color);
+	for( i=-radius; i<=radius; i++)
+		for( j=-radius; j<=radius; j++)
+			if(j*j+i*i <= radius*radius)
+				vg_print_pixel(x0+j, y0+i,color);
 
 }
 
@@ -184,6 +252,14 @@ int vg_draw_square(unsigned short x, unsigned short y, unsigned short size,
 
 }
 
+void vg_draw_rectangle(unsigned short x, unsigned short y, unsigned short width, unsigned short height, unsigned long color){
+	int i, j;
+	for (i = y; i < y + height  ; i++) {
+		for (j = x; j < x + width ; j++) {
+			vg_print_pixel(j,i,rgb(51,255,51));
+		}
+	}
+}
 
 int vg_draw_square_frame(unsigned short x, unsigned short y, unsigned short size,
 		unsigned long color) {
