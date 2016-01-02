@@ -336,7 +336,5 @@ void drawMouse(MouseInfo* mouse){
 //			vg_print_pixel(i,j,rgb(51,255,51));
 //		}
 //	}
-	printf("PASSEI\n");
 	drawBitmapWithoutBackground(mouse->mouseImage,mouse->x,mouse->y);
-	printf("NAO CRASHOU \n");
 }
