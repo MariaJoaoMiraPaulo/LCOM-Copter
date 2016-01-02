@@ -12,20 +12,20 @@ void drawButton(Button *b){
 //		return 1;
 //	}
 
-	for (i = b->x; i < b->weight + b->x; i++) {
+	for (i = b->x; i < b->width + b->x; i++) {
 		vg_print_pixel(i,b->y,rgb(51,255,51));
 		vg_print_pixel(i,b->y+b->height,rgb(51,255,51));
 	}
 	for(i = b->y; i< b->height+b->y;i++){
 		vg_print_pixel(b->x,i,rgb(51,255,51));
-		vg_print_pixel(b->x+b->weight,i,rgb(51,255,51));
+		vg_print_pixel(b->x+b->width,i,rgb(51,255,51));
 	}
 	//vg_draw_square(b->x,b->y,b->height,rgb(51,255,51));
 }
 
 int hasClickedOnButton(Button *b, MouseInfo *mouse){
 	if(mouse->lButton == 1){
-		if( mouse->x >= b->x && mouse->x <= b->x+b->weight)
+		if( mouse->x >= b->x && mouse->x <= b->x+b->width)
 			if( mouse->y >= b->y && mouse->y <= b->y+b->height)
 				return 1;
 	}

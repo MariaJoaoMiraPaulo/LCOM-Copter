@@ -8,7 +8,7 @@
 
 typedef	struct{
 	unsigned short x,y;
-	unsigned short height, weight;
+	unsigned short height, width;
 } Button;
 
 /**
