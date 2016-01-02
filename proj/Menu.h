@@ -16,6 +16,10 @@ void subscribe();
  */
 void unsubscribe();
 
+void loadAllImages();
+
+void DeleteAllImages();
+
 
 
 

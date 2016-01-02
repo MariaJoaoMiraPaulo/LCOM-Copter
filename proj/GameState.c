@@ -4,6 +4,8 @@
 #include "KBD.h"
 #include "bitmap.h"
 
+Bitmap* teste;
+
 int hit(Copter* copter){
 	int i;
 	for (i = copter->x; i < copter->width + copter->x; i++) {
@@ -24,12 +26,19 @@ int hit(Copter* copter){
 	return 0;
 }
 
+void loadGameStateImage(){
+
+	teste=loadBitmap("/home/lcom/repos/proj/images/abcp.bmp");
+}
+
+void deleteGameStateImage(){
+
+	deleteBitmap(teste);
+}
 
 //int updateGame(Copter* copter, Margin** margins, unsigned short *sizeOfArray, unsigned int time,Obstacle* obs){
 int updateGame(Singleplayer *sp,unsigned int time){
 
-	Bitmap* teste;
-	teste=loadBitmap("/home/lcom/repos/proj/images/abcp.bmp");
 
 	if(hit(sp->copter)==HIT){
 		return 1;

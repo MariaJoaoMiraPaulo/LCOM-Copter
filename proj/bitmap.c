@@ -263,9 +263,6 @@ void drawTime(char* time){
 	deleteBitmap(teste);
 	deleteBitmap(clock);
 
-
-
-
 }
 
 
