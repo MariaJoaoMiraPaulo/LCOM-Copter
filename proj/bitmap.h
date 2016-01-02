@@ -91,5 +91,9 @@ void draw_distance(int distance,Bitmap* bmp);
  */
 void drawTime(char* time);
 
+void loadClock();
+
+void deleteClock();
+
 
 #endif /* __BITMAP_H */

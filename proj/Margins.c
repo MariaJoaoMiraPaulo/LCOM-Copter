@@ -220,8 +220,8 @@ void firstImage(){
 	unsigned hres = getHres();
 	//	unsigned vres = getVres();
 
-	vg_draw_rectangle(0,0,hres,80,rgb(51,255,51) );
-	vg_draw_rectangle(0,520,hres,80,rgb(51,255,51));
+	vg_draw_rectangle(0,0,hres,80, MARGINS_COLOR );
+	vg_draw_rectangle(0,520,hres,80, MARGINS_COLOR);
 }
 
 void drawMargin() {
@@ -230,8 +230,8 @@ void drawMargin() {
 		unsigned hres = getHres();
 	//	unsigned vres = getVres();
 	//	unsigned bitsPerPixel = getBitsPerPixel();
-	vg_draw_rectangle(0,0,hres,80,rgb(51,255,51) );
-	vg_draw_rectangle(0,520,hres,80,rgb(51,255,51));
+	vg_draw_rectangle(0,0,hres,80, MARGINS_COLOR );
+	vg_draw_rectangle(0,520,hres,80, MARGINS_COLOR);
 	vg_updating_double();
 
 	//polling pixels to the left 5 pixels for each frame

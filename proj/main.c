@@ -26,6 +26,7 @@ int main() {
 	subscribe();
 	configure_environment();
 	vg_init(MODE_114);
+	loadAllImages();
 
 
 
@@ -94,13 +95,11 @@ int main() {
 
 
 
-
-
-
 	mainMenu();
 	//playingGame();
 
 	unsubscribe();
+	DeleteAllImages();
 	vg_exit();
 
 	return 0;

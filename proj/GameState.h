@@ -8,6 +8,7 @@
 
 #define HIT 1
 
+void loadImagem();
 
 int hit(Copter* copter);
 

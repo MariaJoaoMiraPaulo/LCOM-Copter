@@ -1,4 +1,7 @@
 #include "Menu.h"
+#include "bitmap.h"
+
+
 
 
 
@@ -24,4 +27,29 @@ void unsubscribe(){
 		vg_exit();
 		return ;
 	}
+}
+
+void loadAllImages(){
+
+	//Distance Image
+	loadGameStateImage();
+
+	//Main Menu Image
+	loadImageMainMenu();
+
+	//Clock and Numbers Image
+	//loadClock();
+
+
+}
+
+void DeleteAllImages(){
+	//Distance Image
+	deleteGameStateImage();
+
+	//Main Menu Image
+	deleteImageMainMenu();
+
+	//Clock and Numbers Image
+	//deleteClock();
 }

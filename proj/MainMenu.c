@@ -10,6 +10,23 @@ extern unsigned long IRQ_SET_KBD;
 extern int IRQ_SET_TIMER;
 extern unsigned long IRQ_SET_MOUSE ;
 
+Bitmap* mouse;
+Bitmap* menu;
+
+void loadImageMainMenu(){
+
+	mouse=loadBitmap("/home/lcom/repos/proj/images/mouse.bmp");
+	menu=loadBitmap("/home/lcom/repos/proj/images/Menu.bmp");
+
+}
+
+void deleteImageMainMenu(){
+
+	deleteBitmap(mouse);
+	deleteBitmap(menu);
+
+}
+
 MainMenu* mainMenuInit(){
 	MainMenu* mM;
 
@@ -22,7 +39,7 @@ MainMenu* mainMenuInit(){
 	mM->mouse.rButton=0;
 	mM->mouse.mButton=0;
 
-	mM->mouse.mouseImage=loadBitmap("/home/lcom/repos/proj/images/mouse.bmp");
+	mM->mouse.mouseImage=mouse;
 	//button play
 	mM->b1.x=300;
 	mM->b1.y=340;
@@ -36,10 +53,11 @@ MainMenu* mainMenuInit(){
 	mM->b2.weight=110;
 
 	//image
-	mM->menuImage=loadBitmap("/home/lcom/repos/proj/images/Menu.bmp");
+	mM->menuImage=menu;
 
 	return mM;
 }
+
 
 void mainMenuDestructor(MainMenu* mM){
 	free(mM);
