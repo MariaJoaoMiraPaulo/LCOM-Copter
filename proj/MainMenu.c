@@ -12,11 +12,13 @@ extern unsigned long IRQ_SET_MOUSE ;
 
 Bitmap* mouse;
 Bitmap* menu;
+Bitmap* gameOverImage;
 
 void loadImageMainMenu(){
 
 	mouse=loadBitmap("/home/lcom/repos/proj/images/mouse.bmp");
 	menu=loadBitmap("/home/lcom/repos/proj/images/Menu.bmp");
+	gameOverImage=loadBitmap("/home/lcom/repos/proj/images/gameOver.bmp");
 
 }
 
@@ -24,7 +26,7 @@ void deleteImageMainMenu(){
 
 	deleteBitmap(mouse);
 	deleteBitmap(menu);
-
+	deleteBitmap(gameOverImage);
 }
 
 MainMenu* mainMenuInit(){
@@ -44,13 +46,13 @@ MainMenu* mainMenuInit(){
 	mM->b1.x=300;
 	mM->b1.y=340;
 	mM->b1.height=55;
-	mM->b1.weight=160;
+	mM->b1.width=160;
 
 	//button Exit
 	mM->b2.x=153;
 	mM->b2.y=318;
 	mM->b2.height=60;
-	mM->b2.weight=110;
+	mM->b2.width=110;
 
 	//image
 	mM->menuImage=menu;
@@ -58,8 +60,44 @@ MainMenu* mainMenuInit(){
 	return mM;
 }
 
+MenuGameOver* MenuGameOverInit(){
+	MenuGameOver* mM;
+
+	mM=(MenuGameOver*)malloc(sizeof(MenuGameOver ));
+
+	//mouse
+	mM->mouse.x=0;
+	mM->mouse.y=0;
+	mM->mouse.lButton=0;
+	mM->mouse.rButton=0;
+	mM->mouse.mButton=0;
+
+	mM->mouse.mouseImage=mouse;
+
+	//button EXIT
+	mM->b1.x=135;
+	mM->b1.y=203;
+	mM->b1.height=130;
+	mM->b1.width=260;
+
+	//button PLAY
+	mM->b2.x=406;
+	mM->b2.y=89;
+	mM->b2.height=142;
+	mM->b2.width=360;
+
+	//image
+	mM->menuImage=gameOverImage;
+
+	return mM;
+}
+
 
 void mainMenuDestructor(MainMenu* mM){
+	free(mM);
+}
+
+void  menuGameOverDestructor(MenuGameOver* mM){
 	free(mM);
 }
 
@@ -147,3 +185,5 @@ int mainMenu(){
 	return 0;
 
 }
+
+
