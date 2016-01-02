@@ -6,11 +6,21 @@
 const float GRAVITY = 1;
 float VELOCITY = 0;
 
+Bitmap* copterImage;
+
+void loadCopterImage(){
+	copterImage=loadBitmap("/home/lcom/repos/proj/images/copter.bmp");
+}
+
+void deleteCopterImage(){
+	deleteBitmap(copterImage);
+}
+
 Copter* newCopter(unsigned short x, unsigned short y, unsigned short width, unsigned short height){
 
 	Copter* c;
 	c=(Copter *)malloc(sizeof(Copter));
-	c->image_copter=loadBitmap("/home/lcom/repos/proj/images/copter.bmp");
+	c->image_copter=copterImage;
 
 	if(c==NULL)
 		return NULL;
@@ -59,7 +69,6 @@ void incrementDistance(Copter* copter){
 }
 
 void delete_copter(Copter* copter){
-	deleteBitmap(copter->image_copter);
 	free(copter);
 }
 

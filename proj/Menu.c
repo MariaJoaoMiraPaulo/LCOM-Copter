@@ -40,6 +40,9 @@ void loadAllImages(){
 	//Clock and Numbers Image
 	//loadClock();
 
+	//copter image
+	loadCopterImage();
+
 
 }
 
@@ -52,4 +55,7 @@ void DeleteAllImages(){
 
 	//Clock and Numbers Image
 	//deleteClock();
+
+	//copter image
+	deleteCopterImage();
 }

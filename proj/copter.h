@@ -12,6 +12,15 @@ typedef struct {
 	Bitmap* image_copter;
 
 }Copter;
+/**
+ *@brief Function that loads Copter's image
+ */
+void loadCopterImage();
+
+/**
+ *@brief Function that delets Copter's image
+ */
+void deleteCopterImage();
 
 /**
  * @brief creates a new copter
