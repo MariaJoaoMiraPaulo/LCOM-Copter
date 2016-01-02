@@ -5,11 +5,12 @@ service proj
                 INT86
                 PRIVCTL
                 READBIOS
-                DEVIO    
+                DEVIO
                 IRQCTL
+                IOPENABLE
                 ;
         ipc
-                SYSTEM  
+                SYSTEM
                 rs
                 vm
                 pm
@@ -19,11 +20,13 @@ service proj
                 40:4
                 60
                 64
+                70:2      # RTC
                 ;               
         irq
                 0         # TIMER 0 IRQ
                 1         # KBD IRQ 
                 12        # AUX/MOUSE IRQ
+                8         # RTC
                 ;       
         uid     0               
                 ;	
