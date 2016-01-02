@@ -87,6 +87,7 @@ void draw_distance(int distance,Bitmap* bmp);
 
 /**
  * @brief draws real time on the game
+ *
  * @param char* time array of char with real time
  */
 void drawTime(char* time);
@@ -98,6 +99,15 @@ void loadClock();
  * @brief delete clock image
  */
 void deleteClock();
+
+/*
+ * @brief draw copter image
+ *
+ * @param bmp pointer to copter image
+ * @param x x coordinate left corner of copter image
+ * @param y y coordinate left corner of copter image
+ */
+void drawCopters(Bitmap* bmp,int x,int y, char number);
 
 
 #endif /* __BITMAP_H */

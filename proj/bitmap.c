@@ -265,6 +265,53 @@ void drawTime(char* time){
 
 }
 
+void drawCopters(Bitmap* bmp,int x,int y, char number){
+
+	int space=80;
+	int limit;
+	limit=number-48;
+
+	unsigned short byte1,byte2,color;
+	int width = space;
+	int height = bmp->bitmapInfoHeader.height;
+
+	if (bmp == NULL)
+		return;
+
+	if (x + width < 0 || x > getHres() || y + height < 0 || y > getVres())
+		return;
+
+	unsigned char* buffer;
+	unsigned char* imageStartPos= bmp->bitmapData+limit*space*2;
+	int i,j;
+
+	for (i=0;i<height;i++){
+		buffer= getDoubleBuffer()+x*2+(y+height-1-i)*getHres()*2;
+
+		for (j=0;j<width*2;j++){
+
+			byte1=imageStartPos[j+i*bmp->bitmapInfoHeader.width*2];
+			byte2=imageStartPos[j+i*bmp->bitmapInfoHeader.width*2+1];
+			color= (byte1 | (byte2 << 8));
+
+			if (color!=rgb(0,255,0)){
+				*buffer=imageStartPos[j+i*bmp->bitmapInfoHeader.width*2];
+				buffer++;
+				*buffer=imageStartPos[j+i*bmp->bitmapInfoHeader.width*2+1];
+				j++;
+				buffer++;
+
+			}
+			else{
+				j++;
+				buffer++;
+				buffer++;
+
+			}
+		}
+	}
+
+}
 
 void deleteBitmap(Bitmap* bmp) {
 	if (bmp == NULL)
