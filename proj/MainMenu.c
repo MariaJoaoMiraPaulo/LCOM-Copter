@@ -60,7 +60,7 @@ MainMenu* mainMenuInit(){
 	return mM;
 }
 
-MenuGameOver* MenuGameOverInit(){
+MenuGameOver* menuGameOverInit(){
 	MenuGameOver* mM;
 
 	mM=(MenuGameOver*)malloc(sizeof(MenuGameOver ));
@@ -158,7 +158,8 @@ int mainMenu(){
 						printf("ACABOU!!!\n");
 						playingGame();
 						printf("ACABOU O JOGO\n");
-						mainMenu();
+						gameOver();
+						//mainMenu();
 						over=0;
 					}
 					if(hasClickedOnButton(&(mM->b2),&(mM->mouse)) != OK)
@@ -186,4 +187,85 @@ int mainMenu(){
 
 }
 
+int gameOver(){
 
+	MenuGameOver* mGO;
+	mGO=menuGameOverInit();
+
+	////////////////////////////////////
+
+	int ipc_status;
+	message msg;
+	int r,scancode=0,over=1,spacePress;
+	int fps=60,counter=0,interruptions;
+
+	//configure_environment();
+
+	while( over ) { /* You may want to use a different condition */
+		/* Get a request message. */
+		if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ){
+			printf("driver_receive failed with: %d", r);
+			continue;
+		}
+		if (is_ipc_notify(ipc_status)) {
+			/* received notification */
+			switch (_ENDPOINT_P(msg.m_source)) {
+			case HARDWARE: /* hardware interrupt notification */
+				if (msg.NOTIFY_ARG & IRQ_SET_KBD) { /* subscribed interrupt */
+					scancode=keyboard_space_proj();
+					//					if(scancode==MAKE_SPACE){
+					//						spacePress=1;
+					//					}
+					//					else {
+					//						spacePress=0;
+					//					}
+					if(scancode==BREAK_ESC){
+						over=0;
+					}
+				}
+				if(msg.NOTIFY_ARG & IRQ_SET_MOUSE){printf("MOUSE::entrei na int\n");
+				if(mouse_handler()==1)	{
+					printf("MOUSE:: entrei no if\n");
+					atualMousePosition(&(mGO->mouse));
+				}
+				printf("MOUSE::sai da int\n");
+				}
+
+				if(msg.NOTIFY_ARG & IRQ_SET_TIMER){printf("TIMER::entrei na int\n");
+				counter++;
+				interruptions=counter%(60/fps);
+				if(interruptions==0){
+					printf("TIMER:: entrei no if\n");
+					drawBitmap(mGO->menuImage,0,0);
+					drawButton(&(mGO->b1));
+					drawButton(&(mGO->b2));
+					drawMouse(&(mGO->mouse));
+					if(hasClickedOnButton(&(mGO->b1),&(mGO->mouse)) != OK){
+						over=0;
+					}
+					if(hasClickedOnButton(&(mGO->b2),&(mGO->mouse)) != OK){
+						playingGame();
+						gameOver();
+						over=0;
+					}
+					update_screen();
+
+				}
+				printf("TIMER::sai da int\n");
+				}
+
+
+				break;
+
+			default:
+				break; /* no other notifications expected: do nothing */
+			}
+		} else { /* received a standard message, not a notification */
+			/* no standard messages expected: do nothing */
+		}
+	}
+
+	menuGameOverDestructor(mGO);
+
+	return 0;
+}
