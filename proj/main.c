@@ -30,68 +30,68 @@ int main() {
 
 
 
-//	int ipc_status;
-//	message msg;
-//	int r,scancode=0,over=1,spacePress;
-//	int fps=60,counter=0,interruptions;
-//
-//	//configure_environment();
-//
-//	while( over ) { /* You may want to use a different condition */
-//		/* Get a request message. */
-//		if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ){
-//			printf("driver_receive failed with: %d", r);
-//			continue;
-//		}
-//		if (is_ipc_notify(ipc_status)) {
-//			/* received notification */
-//			switch (_ENDPOINT_P(msg.m_source)) {
-//			case HARDWARE: /* hardware interrupt notification */
-//				if (msg.NOTIFY_ARG & IRQ_SET_KBD) { /* subscribed interrupt */
-//					scancode=keyboard_space_proj();
-//					//					if(scancode==MAKE_SPACE){
-//					//						spacePress=1;
-//					//					}
-//					//					else {
-//					//						spacePress=0;
-//					//					}
-//					if(scancode==BREAK_ESC){
-//						over=0;
-//					}
-//				}
-//				if(msg.NOTIFY_ARG & IRQ_SET_MOUSE){
-//					printf("MOUSE::entrei na int\n");
-//					if(mouse_handler()==1)	{
-//						printf("MOUSE:: entrei no if\n");
-//					}
-//					printf("MOUSE::sai da int\n");
-//				}
-//
-//				if(msg.NOTIFY_ARG & IRQ_SET_TIMER){
-//
-//					counter++;
-//					interruptions=counter%(60/fps);
-//					if(interruptions==0){
-//
-//						if(counter/60 >2)
-//							drawMargin();//vg_updating_double();
-//						else firstImage();
-//						update_screen();
-//
-//					}
-//
-//				}
-//
-//
-//				break;
-//
-//			default:
-//				break; /* no other notifications expected: do nothing */
-//			}
-//		} else { /* received a standard message, not a notification */
-//			/* no standard messages expected: do nothing */
-//		}
-//	}
+	//	int ipc_status;
+	//	message msg;
+	//	int r,scancode=0,over=1,spacePress;
+	//	int fps=60,counter=0,interruptions;
+	//
+	//	//configure_environment();
+	//
+	//	while( over ) { /* You may want to use a different condition */
+	//		/* Get a request message. */
+	//		if ( (r = driver_receive(ANY, &msg, &ipc_status)) != 0 ){
+	//			printf("driver_receive failed with: %d", r);
+	//			continue;
+	//		}
+	//		if (is_ipc_notify(ipc_status)) {
+	//			/* received notification */
+	//			switch (_ENDPOINT_P(msg.m_source)) {
+	//			case HARDWARE: /* hardware interrupt notification */
+	//				if (msg.NOTIFY_ARG & IRQ_SET_KBD) { /* subscribed interrupt */
+	//					scancode=keyboard_space_proj();
+	//					//					if(scancode==MAKE_SPACE){
+	//					//						spacePress=1;
+	//					//					}
+	//					//					else {
+	//					//						spacePress=0;
+	//					//					}
+	//					if(scancode==BREAK_ESC){
+	//						over=0;
+	//					}
+	//				}
+	//				if(msg.NOTIFY_ARG & IRQ_SET_MOUSE){
+	//					printf("MOUSE::entrei na int\n");
+	//					if(mouse_handler()==1)	{
+	//						printf("MOUSE:: entrei no if\n");
+	//					}
+	//					printf("MOUSE::sai da int\n");
+	//				}
+	//
+	//				if(msg.NOTIFY_ARG & IRQ_SET_TIMER){
+	//
+	//					counter++;
+	//					interruptions=counter%(60/fps);
+	//					if(interruptions==0){
+	//
+	//						if(counter/60 >2)
+	//							drawMargin();//vg_updating_double();
+	//						else firstImage();
+	//						update_screen();
+	//
+	//					}
+	//
+	//				}
+	//
+	//
+	//				break;
+	//
+	//			default:
+	//				break; /* no other notifications expected: do nothing */
+	//			}
+	//		} else { /* received a standard message, not a notification */
+	//			/* no standard messages expected: do nothing */
+	//		}
+	//	}
 
 
 

@@ -26,7 +26,7 @@ int hit(Copter* copter);
  * @param sp pointer to singleplayer
  * @param time
  */
-int updateGame(Singleplayer *sp,unsigned int time);
+int updateGame(Singleplayer *sp,unsigned int time, char c);
 //int updateGame(Copter* copter, Margin** margins,unsigned short *sizeOfArray,unsigned int time,Obstacle* obs);
 
 

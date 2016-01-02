@@ -30,7 +30,7 @@ void singleplayerDestructor(Singleplayer* sp);
 /*
  * @brief Functions that will run the singleplayer mode
  */
-int playingGame();
+int playingGame(char c);
 
 
 

@@ -267,7 +267,7 @@ void drawTime(char* time){
 
 void drawCopters(Bitmap* bmp,int x,int y, char number){
 
-	int space=80;
+	int space=60;
 	int limit;
 	limit=number-48;
 

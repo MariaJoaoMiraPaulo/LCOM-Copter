@@ -37,7 +37,7 @@ void deleteGameStateImage(){
 }
 
 //int updateGame(Copter* copter, Margin** margins, unsigned short *sizeOfArray, unsigned int time,Obstacle* obs){
-int updateGame(Singleplayer *sp,unsigned int time){
+int updateGame(Singleplayer *sp,unsigned int time,char c){
 
 
 	if(hit(sp->copter)==HIT){
@@ -58,7 +58,7 @@ int updateGame(Singleplayer *sp,unsigned int time){
 	}
 
 	drawMargin();
-	draw_copter(sp->copter);
+	draw_copter(sp->copter, c);
 	//	draw_margin(sp->margins,&(sp->sizeOfArray),time);
 	incrementDistance(sp->copter);
 	draw_distance(sp->copter->distance,teste);
