@@ -37,7 +37,7 @@ int mainMenu();
 /**
  *@brief Functions that will act like a constructor, initializing members of menu game over struct
  */
-MenuGameOver* MenuGameOverInit();
+MenuGameOver* menuGameOverInit();
 /*
  * @brief Functions that deletes struct menu GameOver and all of is members
  *
