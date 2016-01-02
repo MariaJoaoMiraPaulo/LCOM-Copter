@@ -7,6 +7,7 @@
 typedef struct {
 	MouseInfo mouse;
 	Button b1;
+	Button b2;
 	Bitmap* menuImage;
 } MainMenu;
 
