@@ -16,8 +16,14 @@ void subscribe();
  */
 void unsubscribe();
 
+/**
+ * @brief load all images of the game
+ */
 void loadAllImages();
 
+/**
+ * @brief delets all images of the game
+ */
 void DeleteAllImages();
 
 

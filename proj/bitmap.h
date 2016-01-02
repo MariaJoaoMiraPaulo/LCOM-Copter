@@ -90,9 +90,13 @@ void draw_distance(int distance,Bitmap* bmp);
  * @param char* time array of char with real time
  */
 void drawTime(char* time);
-
+/**
+ * @brief load clock image
+ */
 void loadClock();
-
+/**
+ * @brief delete clock image
+ */
 void deleteClock();
 
 
