@@ -5,10 +5,6 @@ typedef struct {
 	short x,y;
 } Obstacle;
 
-//Obstacle* newObstacle( Margin* margin);
-//
-//void setObstacle(Obstacle* obs, Margin* margin);
-
 Obstacle* newObstacle( );
 
 void setObstacle(Obstacle* obs);
