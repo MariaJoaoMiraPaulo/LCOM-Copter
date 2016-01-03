@@ -6,33 +6,6 @@
 
 short HEIGHT=80, WIDTH=30;
 
-//Obstacle* newObstacle( Margin* margin){
-//	Obstacle* obs;
-//	obs=(Obstacle *)malloc(sizeof(Obstacle));
-//
-//	if(obs==NULL)
-//		return NULL;
-//
-//	obs->x= getHres()-1;
-//	short yMin=margin->y+margin->height;
-//	short yMax=yMin+margin->distanceToOtherMargin-HEIGHT;
-//	obs->y=numberGeneration(yMin,yMax);
-//
-//	return obs;
-//}
-
-//void setObstacle(Obstacle* obs, Margin* margin){
-//	short newX=getHres()-1;
-//
-//	if(margin->x+margin->width < newX+WIDTH){
-//		return;
-//	}
-//
-//	obs->x= newX;
-//	short yMin=margin->y+margin->height;
-//	short yMax=yMin+margin->distanceToOtherMargin-HEIGHT;
-//	obs->y=numberGeneration(yMin,yMax);
-//}
 
 Obstacle* newObstacle(){
 	Obstacle* obs;
