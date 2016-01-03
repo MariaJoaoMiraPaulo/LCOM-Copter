@@ -109,5 +109,9 @@ void deleteClock();
  */
 void drawCopters(Bitmap* bmp,int x,int y, char number);
 
+/**
+ * @brief draws best score
+ */
+void drawBest(int distance, Bitmap* bmp);
 
 #endif /* __BITMAP_H */

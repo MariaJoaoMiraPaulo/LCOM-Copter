@@ -62,6 +62,12 @@ int updateGame(Singleplayer *sp,unsigned int time,char c){
 	//	draw_margin(sp->margins,&(sp->sizeOfArray),time);
 	incrementDistance(sp->copter);
 	draw_distance(sp->copter->distance,teste);
+
+
+	if(time%2==0)
+		highScore(sp->copter);
+
+	refreshHighScore(sp->copter);
 	rtc_test_date();
 	update_screen();
 	//pullToTheLeft(sp->margins,&(sp->sizeOfArray),time);
