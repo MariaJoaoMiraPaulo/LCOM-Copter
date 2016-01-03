@@ -41,6 +41,15 @@ MainMenu* mainMenuInit();
 void mainMenuDestructor(MainMenu* mM);
 
 /*
+ * @brief deals with main menu timer interrupt
+ *
+ * @param mM struct to get informations
+ *
+ * @return 0 if is to end the cycle
+ */
+int mainMenuTimerInt(MainMenu* mM);
+
+/*
  * @brief will be the core of main menu
  */
 int mainMenu();
@@ -49,6 +58,7 @@ int mainMenu();
  *@brief Functions that will act like a constructor, initializing members of menu game over struct
  */
 MenuGameOver* menuGameOverInit();
+
 /*
  * @brief Functions that deletes struct menu GameOver and all of is members
  *
