@@ -43,7 +43,7 @@ Obstacle* newObstacle(){
 
 	obs->x= getHres()-1;
 	short yMin=checkingDoubleBuffer()+20;
-	short yMax=yMin+ 230;
+	short yMax=yMin+ 180;
 	obs->y=randomNumber(yMin,yMax);
 
 	return obs;
@@ -54,7 +54,7 @@ void setObstacle(Obstacle* obs){
 
 	obs->x= newX;
 	short yMin=checkingDoubleBuffer()+20;
-	short yMax=yMin+ 230;
+	short yMax=yMin+ 180;
 	obs->y=randomNumber(yMin,yMax);
 }
 

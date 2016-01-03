@@ -97,7 +97,7 @@ int playingGame(char c){
 					interruptions=counter%(60/fps);
 					//					if((double)counter/60==5)
 					//						sp->obs=newObstacle(sp->margins[sp->sizeOfArray-1]);
-					if((double)counter/60==5)
+					if((double)counter/60==3)
 						sp->obs=newObstacle();
 					if(interruptions==0){
 						if( LeftButtonPress==0 && spacePress==0 )
