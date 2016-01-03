@@ -8,6 +8,7 @@ typedef struct {
 	MouseInfo mouse;
 	Button b1;
 	Button b2;
+	Button b3;
 	Bitmap* menuImage;
 } MainMenu;
 
@@ -15,8 +16,17 @@ typedef struct {
 	MouseInfo mouse;
 	Button b1;
 	Button b2;
+	Button b3;
 	Bitmap* menuImage;
 } MenuGameOver;
+
+typedef struct {
+	MouseInfo mouse;
+	Button b1;
+	Button b2;
+	Button b3;
+	Bitmap* menuImage;
+} OptionMenu;
 
 /*
  * @brief Functions that will act like a constructor, initializing members of main menu struct
@@ -34,6 +44,7 @@ void mainMenuDestructor(MainMenu* mM);
  * @brief will be the core of main menu
  */
 int mainMenu();
+
 /**
  *@brief Functions that will act like a constructor, initializing members of menu game over struct
  */
@@ -49,6 +60,29 @@ void  menuGameOverDestructor(MenuGameOver* mM);
  */
 int gameOver();
 
+/**
+ *@brief Functions that will act like a constructor, initializing members of option menu struct
+ */
+OptionMenu* optionMenuInit();
+
+/*
+ * @brief Functions that deletes struct option menu and all of is members
+ *
+ * @param oM struct to be deleted
+ */
+void  optionMenuDestructor(OptionMenu* oM);
+
+/*
+ * @brief option menu
+ */
+int optionMenu();
+
+/*
+ * @brief reset all mouse config
+ *
+ * @param mouse mouse to be reseted
+ */
+void resetMouse(MouseInfo* mouse);
 
 
 
