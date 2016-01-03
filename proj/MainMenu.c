@@ -84,7 +84,7 @@ int mainMenuTimerInt(MainMenu* mM){
 		resetMouse(&(mM->mouse));
 
 		playingGame(chooseImage);
-		gameOver();
+		return gameOver();
 	}
 	if(hasClickedOnButton(&(mM->b2),&(mM->mouse)) != OK)
 		return 0;
@@ -125,9 +125,9 @@ MenuGameOver* menuGameOverInit(){
 
 	//button main menu
 	mM->b3.x=47;
-	mM->b3.y=39;
-	mM->b3.height=150;
-	mM->b3.width=100;
+	mM->b3.y=60;
+	mM->b3.height=130;
+	mM->b3.width=220;
 
 	//image
 	mM->menuImage=gameOverImage;
@@ -236,6 +236,8 @@ int gameOver(){
 	MenuGameOver* mGO;
 	mGO=menuGameOverInit();
 
+	int ret=1;
+
 	////////////////////////////////////
 
 	int ipc_status;
@@ -283,6 +285,7 @@ int gameOver(){
 						drawButton(&(mGO->b3));
 						drawMouse(&(mGO->mouse));
 						if(hasClickedOnButton(&(mGO->b1),&(mGO->mouse)) != OK){
+							ret=0;
 							over=0;
 						}
 						if(hasClickedOnButton(&(mGO->b2),&(mGO->mouse)) != OK){
@@ -311,7 +314,7 @@ int gameOver(){
 
 	menuGameOverDestructor(mGO);
 
-	return 0;
+	return ret;
 }
 
 OptionMenu* optionMenuInit(){
