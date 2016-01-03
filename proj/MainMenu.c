@@ -15,6 +15,7 @@ Bitmap* mouse;
 Bitmap* menu;
 Bitmap* gameOverImage;
 Bitmap* optionImage;
+Bitmap* checkImage;
 
 void loadImageMainMenu(){
 
@@ -22,6 +23,7 @@ void loadImageMainMenu(){
 	menu=loadBitmap("/home/lcom/repos/proj/images/Menu.bmp");
 	gameOverImage=loadBitmap("/home/lcom/repos/proj/images/gameOver.bmp");
 	optionImage=loadBitmap("/home/lcom/repos/proj/images/option.bmp");
+	checkImage=loadBitmap("/home/lcom/repos/proj/images/check.bmp");
 
 }
 
@@ -31,6 +33,7 @@ void deleteImageMainMenu(){
 	deleteBitmap(menu);
 	deleteBitmap(gameOverImage);
 	deleteBitmap(optionImage);
+	deleteBitmap(checkImage);
 }
 
 MainMenu* mainMenuInit(){
@@ -187,23 +190,23 @@ int mainMenu(){
 					counter++;
 					interruptions=counter%(60/fps);
 					if(interruptions==0){
-//						drawBitmap(mM->menuImage,0,0);
-//						drawButton(&(mM->b1));
-//						drawButton(&(mM->b2));
-//						drawButton(&(mM->b3));
-//						drawMouse(&(mM->mouse));
-//						if(hasClickedOnButton(&(mM->b1),&(mM->mouse)) != OK){
-//							resetMouse(&(mM->mouse));
-//
-//							playingGame(chooseImage);
-//							gameOver();
-//						}
-//						if(hasClickedOnButton(&(mM->b2),&(mM->mouse)) != OK)
-//							over=0;
-//						if(hasClickedOnButton(&(mM->b3),&(mM->mouse)) != OK){
-//							resetMouse(&(mM->mouse));
-//							optionMenu();
-//						}
+						//						drawBitmap(mM->menuImage,0,0);
+						//						drawButton(&(mM->b1));
+						//						drawButton(&(mM->b2));
+						//						drawButton(&(mM->b3));
+						//						drawMouse(&(mM->mouse));
+						//						if(hasClickedOnButton(&(mM->b1),&(mM->mouse)) != OK){
+						//							resetMouse(&(mM->mouse));
+						//
+						//							playingGame(chooseImage);
+						//							gameOver();
+						//						}
+						//						if(hasClickedOnButton(&(mM->b2),&(mM->mouse)) != OK)
+						//							over=0;
+						//						if(hasClickedOnButton(&(mM->b3),&(mM->mouse)) != OK){
+						//							resetMouse(&(mM->mouse));
+						//							optionMenu();
+						//						}
 						over=mainMenuTimerInt(mM);
 
 						update_screen();
@@ -326,25 +329,50 @@ OptionMenu* optionMenuInit(){
 	oM->mouse.mouseImage=mouse;
 
 	//button copter
-	oM->b1.x=117;
-	oM->b1.y=200;
-	oM->b1.height=133;
-	oM->b1.width=230;
+	oM->b1.x=75;
+	oM->b1.y=180;
+	oM->b1.height=101;
+	oM->b1.width=151;
 
 	//button fish
-	oM->b2.x=476;
-	oM->b2.y=187;
-	oM->b2.height=151;
-	oM->b2.width=227;
+	oM->b2.x=567;
+	oM->b2.y=230;
+	oM->b2.height=142;
+	oM->b2.width=181;
+
+	//button flappy
+	oM->b3.x=138;
+	oM->b3.y=342;
+	oM->b3.height=81;
+	oM->b3.width=112;
+
+	//button rocket
+	oM->b4.x=320;
+	oM->b4.y=366;
+	oM->b4.height=183;
+	oM->b4.width=140;
+
+	//button paper plane
+	oM->b5.x=105;
+	oM->b5.y=445;
+	oM->b5.height=120;
+	oM->b5.width=180;
+
+	//button plane
+	oM->b6.x=252;
+	oM->b6.y=200;
+	oM->b6.height=141;
+	oM->b6.width=300;
 
 	//button exit
-	oM->b3.x=254;
-	oM->b3.y=395;
-	oM->b3.height=103;
-	oM->b3.width=256;
+	oM->b7.x=539;
+	oM->b7.y=446;
+	oM->b7.height=94;
+	oM->b7.width=198;
 
-	//image
+	//images
 	oM->menuImage=optionImage;
+	oM->check=checkImage;
 
 	return oM;
 }
@@ -356,11 +384,12 @@ void  optionMenuDestructor(OptionMenu* oM){
 int optionMenu(){
 	OptionMenu* oM;
 	oM=optionMenuInit();
+	CheckState checkState=NO_CHECK;
+
+	int time=0;
 
 	////////////////////////////////////
 
-
-	printf("ENTREIIIIIIIIIIIIIIIIIIII\n");
 
 	int ipc_status;
 	message msg;
@@ -397,31 +426,65 @@ int optionMenu(){
 					}
 				}
 
-				if(msg.NOTIFY_ARG & IRQ_SET_TIMER){printf("TIMER::Entrei no timer\n");
-				counter++;
-				interruptions=counter%(60/fps);
-				if(interruptions==0){
-					drawBitmap(oM->menuImage,0,0);
-					drawButton(&(oM->b1));
-					drawButton(&(oM->b2));
-					drawButton(&(oM->b3));
+				if(msg.NOTIFY_ARG & IRQ_SET_TIMER){
+					counter++;
+					interruptions=counter%(60/fps);
+					if(interruptions==0){
+						drawBitmap(oM->menuImage,0,0);
 
+						switch(checkState){
+						case NO_CHECK:
+							drawButton(&(oM->b1));
+							drawButton(&(oM->b2));
+							drawButton(&(oM->b3));
+							drawButton(&(oM->b4));
+							drawButton(&(oM->b5));
+							drawButton(&(oM->b6));
+							drawButton(&(oM->b7));
 
-					drawMouse(&(oM->mouse));
-					if(hasClickedOnButton(&(oM->b1),&(oM->mouse)) != OK){
-						chooseImage='0';
+							if(hasClickedOnButton(&(oM->b1),&(oM->mouse)) != OK){
+								chooseImage='0';
+								checkState=SHOW_CHECK;
+							}
+							if(hasClickedOnButton(&(oM->b2),&(oM->mouse)) != OK){
+								chooseImage='1';
+								checkState=SHOW_CHECK;
+							}
+							if(hasClickedOnButton(&(oM->b3),&(oM->mouse)) != OK){
+								chooseImage='2';
+								checkState=SHOW_CHECK;
+							}
+							if(hasClickedOnButton(&(oM->b4),&(oM->mouse)) != OK){
+								chooseImage='3';
+								checkState=SHOW_CHECK;
+							}
+							if(hasClickedOnButton(&(oM->b5),&(oM->mouse)) != OK){
+								chooseImage='4';
+								checkState=SHOW_CHECK;
+							}
+							if(hasClickedOnButton(&(oM->b6),&(oM->mouse)) != OK){
+								chooseImage='5';
+								checkState=SHOW_CHECK;
+							}
+							if(hasClickedOnButton(&(oM->b7),&(oM->mouse)) != OK){
+								over=0;
+							}
+
+							break;
+						case SHOW_CHECK:
+							drawBitmapWithoutBackground(oM->check,350,280);
+							time++;
+							if(time/60>1){
+								checkState=NO_CHECK;
+								time=0;
+							}
+							break;
+						}
+
+						drawMouse(&(oM->mouse));
+						update_screen();
+
 					}
-					if(hasClickedOnButton(&(oM->b2),&(oM->mouse)) != OK){
-						chooseImage='1';
-					}
-					if(hasClickedOnButton(&(oM->b3),&(oM->mouse)) != OK){
-						printf("CARREGOU NO EXIT!!!!!!!!!!!!!");
-						over=0;
-					}
-
-					update_screen();
-
-				}
 				}
 
 
@@ -437,7 +500,6 @@ int optionMenu(){
 
 	optionMenuDestructor(oM);
 
-	printf("Sai\n");
 	return 0;
 }
 
