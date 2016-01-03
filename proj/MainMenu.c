@@ -70,6 +70,30 @@ MainMenu* mainMenuInit(){
 	return mM;
 }
 
+int mainMenuTimerInt(MainMenu* mM){
+	drawBitmap(mM->menuImage,0,0);
+	drawButton(&(mM->b1));
+	drawButton(&(mM->b2));
+	drawButton(&(mM->b3));
+	drawMouse(&(mM->mouse));
+
+	if(hasClickedOnButton(&(mM->b1),&(mM->mouse)) != OK){
+		resetMouse(&(mM->mouse));
+
+		playingGame(chooseImage);
+		gameOver();
+	}
+	if(hasClickedOnButton(&(mM->b2),&(mM->mouse)) != OK)
+		return 0;
+	if(hasClickedOnButton(&(mM->b3),&(mM->mouse)) != OK){
+		resetMouse(&(mM->mouse));
+		optionMenu();
+	}
+
+	return 1;
+
+}
+
 MenuGameOver* menuGameOverInit(){
 	MenuGameOver* mM;
 
@@ -163,24 +187,24 @@ int mainMenu(){
 					counter++;
 					interruptions=counter%(60/fps);
 					if(interruptions==0){
-						drawBitmap(mM->menuImage,0,0);
-						drawButton(&(mM->b1));
-						drawButton(&(mM->b2));
-						drawButton(&(mM->b3));
-						drawMouse(&(mM->mouse));
-						if(hasClickedOnButton(&(mM->b1),&(mM->mouse)) != OK){
-							resetMouse(&(mM->mouse));
-
-							playingGame(chooseImage);
-							gameOver();
-						}
-						if(hasClickedOnButton(&(mM->b2),&(mM->mouse)) != OK)
-							over=0;
-						if(hasClickedOnButton(&(mM->b3),&(mM->mouse)) != OK){
-							printf("CARREGUEI NO BOTAO");
-							resetMouse(&(mM->mouse));
-							optionMenu();
-						}
+//						drawBitmap(mM->menuImage,0,0);
+//						drawButton(&(mM->b1));
+//						drawButton(&(mM->b2));
+//						drawButton(&(mM->b3));
+//						drawMouse(&(mM->mouse));
+//						if(hasClickedOnButton(&(mM->b1),&(mM->mouse)) != OK){
+//							resetMouse(&(mM->mouse));
+//
+//							playingGame(chooseImage);
+//							gameOver();
+//						}
+//						if(hasClickedOnButton(&(mM->b2),&(mM->mouse)) != OK)
+//							over=0;
+//						if(hasClickedOnButton(&(mM->b3),&(mM->mouse)) != OK){
+//							resetMouse(&(mM->mouse));
+//							optionMenu();
+//						}
+						over=mainMenuTimerInt(mM);
 
 						update_screen();
 
