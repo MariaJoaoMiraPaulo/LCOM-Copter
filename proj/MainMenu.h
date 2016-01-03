@@ -25,8 +25,17 @@ typedef struct {
 	Button b1;
 	Button b2;
 	Button b3;
+	Button b4;
+	Button b5;
+	Button b6;
+	Button b7;
 	Bitmap* menuImage;
+	Bitmap* check;
 } OptionMenu;
+
+typedef enum{
+	SHOW_CHECK, NO_CHECK
+}CheckState;
 
 /*
  * @brief Functions that will act like a constructor, initializing members of main menu struct
