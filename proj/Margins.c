@@ -21,6 +21,5 @@ void drawMargin() {
 	//updating margins
 	vg_updating_double();
 
-
 }
 
