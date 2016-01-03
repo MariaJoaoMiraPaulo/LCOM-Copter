@@ -50,7 +50,7 @@ int updateGame(Singleplayer *sp,unsigned int time,char c){
 	//		if(sp->obs->x+WIDTH<0)
 	//			setObstacle(sp->obs,sp->margins[(sp->sizeOfArray)-1]);
 	//	}
-	if(time>=5){
+	if(time>=3){
 		drawObstacle(sp->obs);
 		obsPullToTheLeft(sp->obs);
 		if(sp->obs->x+WIDTH<0)
