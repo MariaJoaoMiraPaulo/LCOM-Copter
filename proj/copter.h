@@ -61,5 +61,27 @@ void update_copter(Copter* copter, int upOrDown);
  * @param copter pointer to copter
  */
 void incrementDistance(Copter* copter);
+/**
+ * @brief reads a file and refreshes highscore
+ *
+ * @param copter pointer to copter
+ */
+void loadHighScore();
+
+/**
+ *@brief checks if player reaches high score
+ */
+void refreshHighScore(Copter* copter);
+/**
+ * @brief save best score
+ */
+void saveHighScore();
+
+/**
+ * @brief shows on screen new high score
+ *
+ * @param copter pointer to copter
+ */
+void highScore(Copter* copter);
 
 #endif /* __COPTER_H */

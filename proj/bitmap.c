@@ -212,8 +212,6 @@ void drawNumbers(Bitmap* bmp,int x,int y, char number){
 
 void draw_distance(int distance, Bitmap* bmp){
 
-
-
 	//FREE IMAGES
 	drawNumbers(bmp,466,530,'D');
 	drawNumbers(bmp,483,530,'I');
@@ -237,6 +235,22 @@ void draw_distance(int distance, Bitmap* bmp){
 		i++;
 	}
 
+
+}
+
+void drawBest(int distance, Bitmap* bmp){
+
+	int i=0;
+	int pos;
+	char t;
+	while (distance > 0) {
+		int digit = distance % 10;
+		pos=140-i*20;
+		t= (char) (digit + '0');
+		drawNumbers(bmp,pos,530,t);
+		distance /= 10;
+		i++;
+	}
 
 }
 
