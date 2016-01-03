@@ -37,6 +37,10 @@ typedef enum{
 	SHOW_CHECK, NO_CHECK
 }CheckState;
 
+typedef enum{
+	MAIN_MENU, OPTION_MENU, GAME_OVER_MENU
+}ProgramState;
+
 /*
  * @brief Functions that will act like a constructor, initializing members of main menu struct
  */
@@ -61,7 +65,7 @@ int mainMenuTimerInt(MainMenu* mM);
 /*
  * @brief will be the core of main menu
  */
-int mainMenu();
+//int mainMenu();
 
 /**
  *@brief Functions that will act like a constructor, initializing members of menu game over struct
@@ -74,10 +78,20 @@ MenuGameOver* menuGameOverInit();
  * @param sp struct to be deleted
  */
 void  menuGameOverDestructor(MenuGameOver* mM);
+
 /*
- * @brief gameOver menu
+ * @brief deals with game over menu timer interrupt
+ *
+ * @param mGO struct to get informations
+ *
+ * @return 0 if is to end the cycle
  */
-int gameOver();
+int menuGameOverTimerInt(MenuGameOver* mGO, int* ret);
+
+///*
+// * @brief gameOver menu
+// */
+//int gameOver();
 
 /**
  *@brief Functions that will act like a constructor, initializing members of option menu struct
@@ -92,9 +106,18 @@ OptionMenu* optionMenuInit();
 void  optionMenuDestructor(OptionMenu* oM);
 
 /*
+ * @brief deals with option menu timer interrupt
+ *
+ * @param oM struct to get informations
+ *
+ * @return 0 if is to end the cycle
+ */
+int optionMenuTimerInt(OptionMenu* oM,int time);
+
+/*
  * @brief option menu
  */
-int optionMenu();
+//int optionMenu();
 
 /*
  * @brief reset all mouse config
@@ -102,6 +125,13 @@ int optionMenu();
  * @param mouse mouse to be reseted
  */
 void resetMouse(MouseInfo* mouse);
+
+///*
+// * @brief the heart of the program
+// */
+int runningProgram();
+
+void menusDestructor();
 
 
 
