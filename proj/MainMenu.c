@@ -427,6 +427,13 @@ int optionMenu(){
 					if(mouse_handler()==1)	{
 						atualMousePosition(&(oM->mouse));
 					}
+					switch(checkState)
+					case SHOW_CHECK:
+						if(oM->mouse.lButton=1){
+							checkState=NO_CHECK;
+							oM->mouse.lButton=0;
+						}
+						break;
 				}
 
 				if(msg.NOTIFY_ARG & IRQ_SET_TIMER){
@@ -448,26 +455,32 @@ int optionMenu(){
 							if(hasClickedOnButton(&(oM->b1),&(oM->mouse)) != OK){
 								chooseImage='0';
 								checkState=SHOW_CHECK;
+								oM->mouse.lButton=0;
 							}
 							if(hasClickedOnButton(&(oM->b2),&(oM->mouse)) != OK){
 								chooseImage='1';
 								checkState=SHOW_CHECK;
+								oM->mouse.lButton=0;
 							}
 							if(hasClickedOnButton(&(oM->b3),&(oM->mouse)) != OK){
 								chooseImage='2';
 								checkState=SHOW_CHECK;
+								oM->mouse.lButton=0;
 							}
 							if(hasClickedOnButton(&(oM->b4),&(oM->mouse)) != OK){
 								chooseImage='3';
 								checkState=SHOW_CHECK;
+								oM->mouse.lButton=0;
 							}
 							if(hasClickedOnButton(&(oM->b5),&(oM->mouse)) != OK){
 								chooseImage='4';
 								checkState=SHOW_CHECK;
+								oM->mouse.lButton=0;
 							}
 							if(hasClickedOnButton(&(oM->b6),&(oM->mouse)) != OK){
 								chooseImage='5';
 								checkState=SHOW_CHECK;
+								oM->mouse.lButton=0;
 							}
 							if(hasClickedOnButton(&(oM->b7),&(oM->mouse)) != OK){
 								over=0;
