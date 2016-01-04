@@ -1,0 +1,14 @@
+<map id="rtc_test_date" name="rtc_test_date">
+<area shape="rect" id="node2" href="$bitmap_8c.html#a3506880ffd407c36eb8aaddd2c1606d2" title="Loads a bmp image. " alt="" coords="336,79,423,106"/>
+<area shape="rect" id="node3" href="$group__rtc.html#ga41622742b5ff8dc4b62e28cc42c7c56a" title="readReg" alt="" coords="155,244,226,271"/>
+<area shape="rect" id="node5" href="$bitmap_8c.html#aad424f4c1d9a7ebaea9b8d6f13a75073" title="draws real time on the game " alt="" coords="152,168,229,195"/>
+<area shape="rect" id="node4" href="$group__rtc.html#ga788e56085fe57e083210ad3c8887ecb1" title="wait_valid_rtc" alt="" coords="330,282,429,308"/>
+<area shape="rect" id="node6" href="$bitmap_8c.html#abd16e2bc84ec78bd69ee6bc1b036c904" title="Draws images without background. " alt="" coords="277,180,481,207"/>
+<area shape="rect" id="node12" href="$bitmap_8c.html#a8c31a3671af831ab8fc265100506f1dd" title="Draws images without background. " alt="" coords="329,130,430,156"/>
+<area shape="rect" id="node13" href="$bitmap_8c.html#a08c1d4f4fff81df260d979ea8fc1aa61" title="Destroys the given bitmap, freeing all resources used by it. " alt="" coords="330,231,429,258"/>
+<area shape="rect" id="node7" href="$group__video__gr.html#ga6d68356bb85b1e025c1c4c92495ed54f" title="returns the color on pixel (x,y) " alt="" coords="561,155,611,182"/>
+<area shape="rect" id="node8" href="$group__video__gr.html#ga7c64389502fa6a405d325b52e394df73" title="returns Horizontal Resolution " alt="" coords="691,130,757,156"/>
+<area shape="rect" id="node9" href="$group__video__gr.html#ga767a2cf54076132e77b08aee14639b12" title="returns Vertical Resolution " alt="" coords="691,180,757,207"/>
+<area shape="rect" id="node10" href="$group__video__gr.html#ga1af8ef19789843477eaead7ea555629f" title="returns doublebuffer " alt="" coords="529,80,643,107"/>
+<area shape="rect" id="node11" href="$group__video__gr.html#ga61b127222b75ed2fe135a3a9de81da4d" title="converts color to rgb " alt="" coords="566,206,606,232"/>
+</map>

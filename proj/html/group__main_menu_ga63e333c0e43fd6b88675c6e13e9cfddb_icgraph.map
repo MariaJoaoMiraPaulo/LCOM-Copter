@@ -1,0 +1,6 @@
+<map id="menuGameOverInit" name="menuGameOverInit">
+<area shape="rect" id="node2" href="$group__main_menu.html#ga9e12b24d61bb31e118cf7f32dcef94c9" title="runningProgram" alt="" coords="185,56,299,83"/>
+<area shape="rect" id="node3" href="$group__main.html#gae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="402,5,453,32"/>
+<area shape="rect" id="node4" href="$group__main_menu.html#gac044ff3c7be37f82aa795b6d613dded1" title="mainMenuTimerInt" alt="" coords="363,56,491,83"/>
+<area shape="rect" id="node5" href="$group__main_menu.html#gaddcd8b0a09ce5a3b59ebc2245c7b787c" title="menuGameOverTimerInt" alt="" coords="347,107,508,133"/>
+</map>

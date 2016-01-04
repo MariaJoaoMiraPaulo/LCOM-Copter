@@ -1,0 +1,7 @@
+<map id="readReg" name="readReg">
+<area shape="rect" id="node2" href="$group__rtc.html#ga995cf2bc2d1696fb1a6db0604c446a92" title="rtc_test_date" alt="" coords="124,31,223,57"/>
+<area shape="rect" id="node6" href="$rtc_8c.html#a30bacdbc90f83a28e9b34a2974329da1" title="changeReg" alt="" coords="130,81,217,108"/>
+<area shape="rect" id="node3" href="$group___game_state.html#ga2d700d6a2e2e972e9980a814695eb1e2" title="updates all game, distance, coordinates of copter,atual time,margins,obstacles " alt="" coords="271,5,367,32"/>
+<area shape="rect" id="node5" href="$group___game_state.html#ga0c24948e3c83d161c9ae0f11e3730bc5" title="hitDraws" alt="" coords="283,56,355,83"/>
+<area shape="rect" id="node4" href="$group__singleplayer.html#ga2c57747b05b85bbf110df601109f103c" title="playingGame" alt="" coords="415,31,513,57"/>
+</map>

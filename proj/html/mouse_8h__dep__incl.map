@@ -1,0 +1,9 @@
+<map id="mouse.h" name="mouse.h">
+<area shape="rect" id="node2" href="$bitmap_8c.html" title="bitmap.c" alt="" coords="5,81,77,107"/>
+<area shape="rect" id="node3" href="$_button_8h.html" title="Button.h" alt="" coords="102,81,173,107"/>
+<area shape="rect" id="node5" href="$_main_menu_8h.html" title="MainMenu.h" alt="" coords="131,155,224,182"/>
+<area shape="rect" id="node6" href="$main_8c.html" title="main.c" alt="" coords="231,230,292,257"/>
+<area shape="rect" id="node8" href="$mouse_8c.html" title="mouse.c" alt="" coords="299,81,371,107"/>
+<area shape="rect" id="node4" href="$_button_8c.html" title="Button.c" alt="" coords="35,155,106,182"/>
+<area shape="rect" id="node7" href="$_main_menu_8c.html" title="MainMenu.c" alt="" coords="113,230,207,257"/>
+</map>

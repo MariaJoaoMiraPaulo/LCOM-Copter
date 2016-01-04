@@ -1,0 +1,6 @@
+<map id="vg_static_double" name="vg_static_double">
+<area shape="rect" id="node2" href="$_margins_8h.html#a992a3e8dffb2e8f60677e00450dd0127" title="drawMargin" alt="" coords="172,31,260,57"/>
+<area shape="rect" id="node3" href="$group___game_state.html#ga2d700d6a2e2e972e9980a814695eb1e2" title="updates all game, distance, coordinates of copter,atual time,margins,obstacles " alt="" coords="308,5,404,32"/>
+<area shape="rect" id="node5" href="$group___game_state.html#ga0c24948e3c83d161c9ae0f11e3730bc5" title="hitDraws" alt="" coords="320,56,392,83"/>
+<area shape="rect" id="node4" href="$group__singleplayer.html#ga2c57747b05b85bbf110df601109f103c" title="playingGame" alt="" coords="452,31,551,57"/>
+</map>
