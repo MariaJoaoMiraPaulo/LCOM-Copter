@@ -13,6 +13,11 @@
  */
 void loadImagem();
 
+/*
+ * @brief deletes images used in game state
+ */
+void deleteGameStateImage();
+
 /**
  * @brief checks if copter hits a margins or a obstacle
  *
@@ -26,11 +31,13 @@ int hit(Copter* copter);
  * @param sp pointer to singleplayer
  * @param time
  */
-int updateGame(Singleplayer *sp,unsigned int time, char c);
+int updateGame(Singleplayer *sp,unsigned int time, char chooseImage,int state);
 //int updateGame(Copter* copter, Margin** margins,unsigned short *sizeOfArray,unsigned int time,Obstacle* obs);
 
-
-
+/*
+ *@brief draws everything on the screen when the copter hits something
+ */
+int hitDraws(Singleplayer *sp,char chooseCopter, int time);
 
 
 

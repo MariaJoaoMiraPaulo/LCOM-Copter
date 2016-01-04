@@ -251,7 +251,7 @@ int menuGameOverTimerInt(MenuGameOver* mGO, int *ret){
 
 	//button EXIT
 	if(hasClickedOnButton(&(mGO->b1),&(mGO->mouse)) != OK){
-		programState=MAIN_MENU;
+		//programState=MAIN_MENU;
 		//ret=0;
 		*(ret)=0;
 		return 0;
@@ -753,7 +753,9 @@ int runningProgram(){
 	//	}
 
 	if(programState==MAIN_MENU)
-		return ret;
+		return 1; //return ret;
+	else if(programState==GAME_OVER_MENU)
+		return 0;
 
 	return 0;
 }

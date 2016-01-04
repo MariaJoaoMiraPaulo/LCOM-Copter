@@ -5,6 +5,7 @@
 #include "bitmap.h"
 
 Bitmap* teste;
+Bitmap* hitImage;
 
 int hit(Copter* copter){
 	int i;
@@ -29,49 +30,65 @@ int hit(Copter* copter){
 void loadGameStateImage(){
 
 	teste=loadBitmap("/home/lcom/repos/proj/images/abcp.bmp");
+	hitImage=loadBitmap("/home/lcom/repos/proj/images/hit.bmp");
 }
 
 void deleteGameStateImage(){
 
 	deleteBitmap(teste);
+	deleteBitmap(hitImage);
 }
 
 //int updateGame(Copter* copter, Margin** margins, unsigned short *sizeOfArray, unsigned int time,Obstacle* obs){
-int updateGame(Singleplayer *sp,unsigned int time,char c){
+int updateGame(Singleplayer *sp,unsigned int time,char chooseImage,int state){
+
+	switch(state){
+	case 0:
+		drawMargin(1);
+		draw_copter(sp->copter, chooseImage);
+	//	draw_distance(sp->copter->distance,teste);
+	//	refreshHighScore(sp->copter);
+		rtc_test_date();
+		update_screen();
+		break;
+	case 1:
+
+		if(hit(sp->copter)==HIT){
+			return 1;
+		}
+
+		if(time>=3){
+			drawObstacle(sp->obs);
+			obsPullToTheLeft(sp->obs);
+			if(sp->obs->x+WIDTH<0)
+				setObstacle(sp->obs);
+		}
+
+		drawMargin(0);
+		draw_copter(sp->copter, chooseImage);
+		incrementDistance(sp->copter);
+		draw_distance(sp->copter->distance,teste);
 
 
-	if(hit(sp->copter)==HIT){
-		return 1;
+		if(time%2==0)
+			highScore(sp->copter);
+
+		refreshHighScore(sp->copter);
+		rtc_test_date();
+		update_screen();
+		break;
 	}
+	return 0;
+}
 
-	//	if(time>=5){
-	//		drawObstacle(sp->obs);
-	//		obsPullToTheLeft(sp->obs);
-	//		if(sp->obs->x+WIDTH<0)
-	//			setObstacle(sp->obs,sp->margins[(sp->sizeOfArray)-1]);
-	//	}
-	if(time>=3){
+int hitDraws(Singleplayer *sp,char chooseCopter, int time){
+	drawMargin(1);
+	if(time>=3)
 		drawObstacle(sp->obs);
-		obsPullToTheLeft(sp->obs);
-		if(sp->obs->x+WIDTH<0)
-			setObstacle(sp->obs);
-	}
-
-	drawMargin();
-	draw_copter(sp->copter, c);
-	//	draw_margin(sp->margins,&(sp->sizeOfArray),time);
-	incrementDistance(sp->copter);
+	draw_copter(sp->copter, chooseCopter);
 	draw_distance(sp->copter->distance,teste);
-
-
-	if(time%2==0)
-		highScore(sp->copter);
-
 	refreshHighScore(sp->copter);
 	rtc_test_date();
+	drawBitmapWithoutBackground(hitImage,sp->copter->x-150,sp->copter->y-90);
 	update_screen();
-	//pullToTheLeft(sp->margins,&(sp->sizeOfArray),time);
-
-
-	return 0;
 }

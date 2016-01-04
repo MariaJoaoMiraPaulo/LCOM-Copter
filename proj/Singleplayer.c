@@ -15,10 +15,8 @@ Singleplayer* singleplayerInit(){
 	sp=(Singleplayer*) malloc(sizeof(Singleplayer));
 	sp->copter=newCopter(200,300,60,30);
 
-	//	sp->margins=(Margin **) malloc(20*sizeof(Margin *));
-	//	sp->margins[0]=newMargin(0,0,800,50);
-	//	sp->margins[1]=newMargin(0,550,800,50);
-	//	sp->sizeOfArray=2;
+	sp->spacePress=0;
+	sp->LeftButtonPress=0;
 
 	update_screen();
 	firstImage();
@@ -28,7 +26,7 @@ Singleplayer* singleplayerInit(){
 }
 
 void singleplayerDestructor(Singleplayer* sp){
-	//deleteCopter(sp->copter);
+	deleteCopter(sp->copter);
 
 	//TODO A alterar!!!!!!
 	/*int i;
@@ -37,12 +35,12 @@ void singleplayerDestructor(Singleplayer* sp){
 	}*/
 	//free(sp->margins);
 
-	//deleteObstacle(sp->obs);
+	deleteObstacle(sp->obs);
 
 	free(sp);
 }
 
-int playingGame(char c){
+int playingGame(char chooseCopter){
 
 	Singleplayer* sp;
 	sp=singleplayerInit();
@@ -53,7 +51,8 @@ int playingGame(char c){
 	message msg;
 	int r,scancode=0,over=1;
 	int fps=60,counter=0,interruptions;
-	int spacePress=0, LeftButtonPress=0;
+	//nt spacePress=0, LeftButtonPress=0;
+	SingleplayerState state=WAITING;
 
 	//	configure_environment();
 
@@ -70,10 +69,10 @@ int playingGame(char c){
 				if (msg.NOTIFY_ARG & IRQ_SET_KBD) { /* subscribed interrupt */
 					scancode=keyboard_space_proj();
 					if(scancode==MAKE_SPACE){
-						spacePress=1;
+						sp->spacePress=1;
 					}
 					else {
-						spacePress=0;
+						sp->spacePress=0;
 					}
 					if(scancode==BREAK_ESC){
 						over=0;
@@ -84,10 +83,10 @@ int playingGame(char c){
 					{
 						if (mouse_left_button_press()==1)
 						{
-							LeftButtonPress=1;
+							sp->LeftButtonPress=1;
 
 						}
-						else LeftButtonPress=0;
+						else sp->LeftButtonPress=0;
 
 					}
 				}
@@ -95,24 +94,38 @@ int playingGame(char c){
 				if(msg.NOTIFY_ARG & IRQ_SET_TIMER){
 					counter++;
 					interruptions=counter%(60/fps);
-					//					if((double)counter/60==5)
-					//						sp->obs=newObstacle(sp->margins[sp->sizeOfArray-1]);
-					if((double)counter/60==3)
-						sp->obs=newObstacle();
 					if(interruptions==0){
-						if( LeftButtonPress==0 && spacePress==0 )
-							update_copter(sp->copter,1);  //==0sobe !=0desce
-						else
-							update_copter(sp->copter,0);
+						switch(state){
+						case WAITING:
+					   		updateGame(sp,counter/60,chooseCopter,0);
+							if(  sp->spacePress==1 ){
+								state=NO_HIT;
+								counter=0;
+							}
+							break;
+						case NO_HIT:
+							if((double)counter/60==3)
+								sp->obs=newObstacle();
 
-						if(updateGame(sp,counter/60,c)==HIT){
-							over=0;
+							if( sp->LeftButtonPress==0 && sp->spacePress==0 )
+								update_copter(sp->copter,1);  //==0sobe !=0desce
+							else
+								update_copter(sp->copter,0);
+
+							if(updateGame(sp,counter/60,chooseCopter,1)==1){//HIT){
+									state=HIT;
+									counter=0;
+							}
+
+							break;
+						case HIT:
+							if(counter/60>2)
+								over=0;
+							else
+								hitDraws(sp, chooseCopter,counter/60);
+							break;
 						}
-						//						if(updateGame(sp->copter,sp->margins, &(sp->sizeOfArray),counter/60, sp->obs)==HIT){
-						//							over=0;
-						//						}
 					}
-
 				}
 				break;
 
@@ -123,8 +136,6 @@ int playingGame(char c){
 			/* no standard messages expected: do nothing */
 		}
 	}
-
-	//TODO why.................
 
 	singleplayerDestructor(sp);
 

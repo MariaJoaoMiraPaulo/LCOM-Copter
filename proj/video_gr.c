@@ -150,14 +150,13 @@ void vg_updating_double(){
 
 	for(i=80; i < 520  ; i++){
 		for(j=0; j < h_res - NUMBER_OF_PIXELS_PUSHED ; j++){
-			//printf("ENTREI\n");
 
-						byte1=video_mem[(j + NUMBER_OF_PIXELS_PUSHED + i * h_res)* bits_per_pixel/8];
-						byte2=video_mem[(j + NUMBER_OF_PIXELS_PUSHED + i * h_res)* bits_per_pixel/8+1];
-						color1= (byte1 | (byte2 << 8));
+			byte1=video_mem[(j + NUMBER_OF_PIXELS_PUSHED + i * h_res)* bits_per_pixel/8];
+			byte2=video_mem[(j + NUMBER_OF_PIXELS_PUSHED + i * h_res)* bits_per_pixel/8+1];
+			color1= (byte1 | (byte2 << 8));
 
-			if(color1 == 65510){//MARGINS_COLOR	){
-				//	printf("%d   %d\n",MARGINS_COLOR , color1 );
+			if(color1 == COLOR_OF_VIDEO_MEM){
+
 				double_buffer[(j + i * h_res)* bits_per_pixel/8]=video_mem[(j + NUMBER_OF_PIXELS_PUSHED + i * h_res)* bits_per_pixel/8];
 				double_buffer[(j + i * h_res)* bits_per_pixel/8+1]=video_mem[(j + NUMBER_OF_PIXELS_PUSHED + i * h_res)* bits_per_pixel/8+1];
 			}
@@ -213,6 +212,26 @@ void vg_updating_double(){
 		}
 	}
 
+}
+
+void vg_static_double(){
+
+	int i,j;
+	unsigned short byte1,byte2,color1;
+
+	for(i=80; i < 520  ; i++){
+		for(j=0; j < h_res ; j++){
+
+			byte1=video_mem[(j + i * h_res)* bits_per_pixel/8];
+			byte2=video_mem[(j + i * h_res)* bits_per_pixel/8+1];
+			color1= (byte1 | (byte2 << 8));
+
+			if(color1 == COLOR_OF_VIDEO_MEM){
+				double_buffer[(j + i * h_res)* bits_per_pixel/8]=video_mem[(j + i * h_res)* bits_per_pixel/8];
+				double_buffer[(j + i * h_res)* bits_per_pixel/8+1]=video_mem[(j + i * h_res)* bits_per_pixel/8+1];
+			}
+		}
+	}
 }
 
 int checkingDoubleBuffer(){

@@ -63,7 +63,12 @@ int vg_print_pixel(unsigned short x, unsigned short y, unsigned long color);
 /*
  * @brief pushes green to the left using video mem
  */
-void vg_updating_double();
+void vg_static_double();
+
+/*
+ * @brief updates double buffer when the copter hit a margin/obstacle
+ */
+void vg_explosion_double();
 
 /*
  * @brief checks whats is y height on column 799
@@ -88,7 +93,7 @@ int randomNumber(int x1,int x2);
  *@param radius radius of the circle
  *@param color color of the circle
  */
- void DrawCircle(int x0, int y0, int radius,unsigned long color);
+void DrawCircle(int x0, int y0, int radius,unsigned long color);
 /**
  * @brief Paints the screen on black
  *
