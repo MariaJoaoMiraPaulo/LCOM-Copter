@@ -14,13 +14,17 @@ char chooseImage='0';
 MainMenu* mainMenu;
 OptionMenu* optionMenu;
 MenuGameOver* gameOverMenu;
+CreditsMenu* creditsMenu;
+
 CheckState checkState;
 ProgramState programState=MAIN_MENU;
+
 Bitmap* mouse;
 Bitmap* menu;
 Bitmap* gameOverImage;
 Bitmap* optionImage;
 Bitmap* checkImage;
+Bitmap* creditsImage;
 
 void loadImageMainMenu(){
 
@@ -29,6 +33,7 @@ void loadImageMainMenu(){
 	gameOverImage=loadBitmap("/home/lcom/repos/proj/images/gameOver.bmp");
 	optionImage=loadBitmap("/home/lcom/repos/proj/images/option.bmp");
 	checkImage=loadBitmap("/home/lcom/repos/proj/images/check.bmp");
+	creditsImage=loadBitmap("/home/lcom/repos/proj/images/credits.bmp");
 
 }
 
@@ -39,6 +44,7 @@ void deleteImageMainMenu(){
 	deleteBitmap(gameOverImage);
 	deleteBitmap(optionImage);
 	deleteBitmap(checkImage);
+	deleteBitmap(creditsImage);
 }
 
 MainMenu* mainMenuInit(){
@@ -69,8 +75,14 @@ MainMenu* mainMenuInit(){
 	//button options
 	mM->b3.x=303;
 	mM->b3.y=457;
-	mM->b3.height=70;
+	mM->b3.height=80;
 	mM->b3.width=160;
+
+	//button credits
+	mM->b4.x=90;
+	mM->b4.y=435;
+	mM->b4.height=80;
+	mM->b4.width=183;
 
 	//image
 	mM->menuImage=menu;
@@ -84,9 +96,10 @@ void mainMenuDestructor(MainMenu* mM){
 
 int mainMenuTimerInt(MainMenu* mM){
 	drawBitmap(mM->menuImage,0,0);
-//	drawButton(&(mM->b1));
-//	drawButton(&(mM->b2));
-//	drawButton(&(mM->b3));
+	//	drawButton(&(mM->b1));
+	//	drawButton(&(mM->b2));
+	//	drawButton(&(mM->b3));
+	//drawButton(&(mM->b4));
 	drawMouse(&(mM->mouse));
 	int retorno;
 
@@ -106,6 +119,12 @@ int mainMenuTimerInt(MainMenu* mM){
 		programState=OPTION_MENU;
 		checkState=NO_CHECK;
 		runningProgram();
+	}
+	if(hasClickedOnButton(&(mM->b4),&(mM->mouse)) != OK){
+		resetMouse(&(mM->mouse));
+		programState=CREDITS_MENU;
+		runningProgram();
+
 	}
 
 	return 1;
@@ -244,9 +263,9 @@ void  menuGameOverDestructor(MenuGameOver* mM){
 int menuGameOverTimerInt(MenuGameOver* mGO, int *ret){
 
 	drawBitmap(mGO->menuImage,0,0);
-//	drawButton(&(mGO->b1));
-//	drawButton(&(mGO->b2));
-//	drawButton(&(mGO->b3));
+	//	drawButton(&(mGO->b1));
+	//	drawButton(&(mGO->b2));
+	//	drawButton(&(mGO->b3));
 	drawMouse(&(mGO->mouse));
 
 	//button EXIT
@@ -435,13 +454,13 @@ int optionMenuTimerInt(OptionMenu* oM,int time){
 
 	switch(checkState){
 	case NO_CHECK:
-//		drawButton(&(oM->b1));
-//		drawButton(&(oM->b2));
-//		drawButton(&(oM->b3));
-//		drawButton(&(oM->b4));
-//		drawButton(&(oM->b5));
-//		drawButton(&(oM->b6));
-//		drawButton(&(oM->b7));
+		//		drawButton(&(oM->b1));
+		//		drawButton(&(oM->b2));
+		//		drawButton(&(oM->b3));
+		//		drawButton(&(oM->b4));
+		//		drawButton(&(oM->b5));
+		//		drawButton(&(oM->b6));
+		//		drawButton(&(oM->b7));
 
 		if(hasClickedOnButton(&(oM->b1),&(oM->mouse)) != OK){
 			chooseImage='0';
@@ -630,6 +649,50 @@ int optionMenuTimerInt(OptionMenu* oM,int time){
 //	return 0;
 //}
 
+CreditsMenu* creditsMenuInit(){
+	CreditsMenu* cM;
+
+	cM=(CreditsMenu*)malloc(sizeof(CreditsMenu ));
+
+	//mouse
+	cM->mouse.x=0;
+	cM->mouse.y=0;
+	cM->mouse.lButton=0;
+	cM->mouse.rButton=0;
+	cM->mouse.mButton=0;
+
+	cM->mouse.mouseImage=mouse;
+
+	//button main menu
+	cM->b1.x=606;
+	cM->b1.y=438;
+	cM->b1.height=148;
+	cM->b1.width=156;
+
+
+	cM->menuImage=creditsImage;
+
+	return cM;
+}
+
+void creditsMenuDestructor(CreditsMenu* cM){
+	free(cM);
+}
+
+int creditsMenuTimerInt(CreditsMenu* cM){
+	drawBitmap(cM->menuImage,0,0);
+	//drawButton(&(cM->b1));
+	drawMouse(&(cM->mouse));
+
+	//button EXIT
+	if(hasClickedOnButton(&(cM->b1),&(cM->mouse)) != OK){
+		programState=MAIN_MENU;
+		return 0;
+	}
+
+	return 1;
+}
+
 void resetMouse(MouseInfo* mouse){
 	mouse->x=0;
 	mouse->y=0;
@@ -651,13 +714,16 @@ int runningProgram(){
 		break;
 	case GAME_OVER_MENU:
 		gameOverMenu=menuGameOverInit();
+		break;
+	case CREDITS_MENU:
+		creditsMenu=creditsMenuInit();
 	}
 
 	////////////////////////////////////
 
 	int ipc_status;
 	message msg;
-	int r,scancode=0,over=1,spacePress;
+	int r,scancode=0,over=1;
 	int fps=60,counter=0,interruptions;
 
 	//configure_environment();
@@ -696,6 +762,9 @@ int runningProgram(){
 						case GAME_OVER_MENU:
 							atualMousePosition(&(gameOverMenu->mouse));
 							break;
+						case CREDITS_MENU:
+							atualMousePosition(&(creditsMenu->mouse));
+							break;
 						}
 						break;
 					}
@@ -726,6 +795,9 @@ int runningProgram(){
 							break;
 						case GAME_OVER_MENU:
 							over=menuGameOverTimerInt(gameOverMenu, &ret);
+							break;
+						case CREDITS_MENU:
+							over=creditsMenuTimerInt(creditsMenu);
 							break;
 						}
 
