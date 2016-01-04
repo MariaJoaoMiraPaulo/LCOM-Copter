@@ -1,0 +1,7 @@
+<map id="unsubscribe" name="unsubscribe">
+<area shape="rect" id="node2" href="$group__keyboard.html#gac95aea27a5e91b363b876fed881f368f" title="keyboard_unsubscribe_int" alt="" coords="145,5,319,32"/>
+<area shape="rect" id="node3" href="$group__video__gr.html#ga42f593e6656f1a978315aff02b1bcebf" title="Returns to default Minix 3 text mode (0x03: 25 x 80, 16 colors) " alt="" coords="201,56,263,83"/>
+<area shape="rect" id="node4" href="$group__timer.html#gab9eea51549744bca5c5c923b388bb4ee" title="Unsubscribes Timer 0 interrupts. " alt="" coords="157,107,307,133"/>
+<area shape="rect" id="node5" href="$group__mouse.html#ga76f3e47a0edce8bdf794127a45fa52e2" title="Execute while out buffer is full. " alt="" coords="171,157,293,184"/>
+<area shape="rect" id="node6" href="$group__mouse.html#ga685ad2706aca36d9869a30a19b9f446a" title="To unsubscribe mouse/keyboard controller. " alt="" coords="153,208,311,235"/>
+</map>

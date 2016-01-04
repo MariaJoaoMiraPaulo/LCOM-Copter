@@ -1,0 +1,6 @@
+<map id="loadAllImages" name="loadAllImages">
+<area shape="rect" id="node2" href="$_game_state_8c.html#ad7bc711b850acd3f3121599a5581c0fe" title="loadGameStateImage" alt="" coords="156,5,303,32"/>
+<area shape="rect" id="node4" href="$_main_menu_8c.html#a7edb293ec30d1b15ebb66d8366c4ff6d" title="loadImageMainMenu" alt="" coords="159,56,300,83"/>
+<area shape="rect" id="node5" href="$group__copter.html#gab91473b6657172dd81dd759265094e62" title="Function that loads Copter&#39;s image. " alt="" coords="170,107,289,133"/>
+<area shape="rect" id="node3" href="$bitmap_8c.html#a3506880ffd407c36eb8aaddd2c1606d2" title="Loads a bmp image. " alt="" coords="351,56,437,83"/>
+</map>

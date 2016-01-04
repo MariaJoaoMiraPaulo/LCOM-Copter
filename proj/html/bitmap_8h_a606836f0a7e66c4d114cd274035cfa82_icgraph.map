@@ -1,0 +1,6 @@
+<map id="drawBest" name="drawBest">
+<area shape="rect" id="node2" href="$group__copter.html#gaa08814cdbff56e4b66bbb3be267ae073" title="checks if player reaches high score " alt="" coords="129,31,251,57"/>
+<area shape="rect" id="node3" href="$group___game_state.html#ga2d700d6a2e2e972e9980a814695eb1e2" title="updates all game, distance, coordinates of copter,atual time,margins,obstacles " alt="" coords="299,5,395,32"/>
+<area shape="rect" id="node5" href="$group___game_state.html#ga0c24948e3c83d161c9ae0f11e3730bc5" title="hitDraws" alt="" coords="311,56,383,83"/>
+<area shape="rect" id="node4" href="$group__singleplayer.html#ga2c57747b05b85bbf110df601109f103c" title="playingGame" alt="" coords="443,31,541,57"/>
+</map>

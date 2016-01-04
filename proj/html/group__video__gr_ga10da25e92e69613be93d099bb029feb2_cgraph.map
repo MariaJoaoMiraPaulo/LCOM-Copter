@@ -1,0 +1,5 @@
+<map id="update_screen" name="update_screen">
+<area shape="rect" id="node2" href="$group__video__gr.html#ga970a6bb741e5fe2e37a1dbbe97870961" title="Paints the screen on black. " alt="" coords="160,31,296,57"/>
+<area shape="rect" id="node3" href="$video__gr_8c.html#a07fedbca5889dd9704174ee5480ee671" title="vg_print_pixel" alt="" coords="344,5,444,32"/>
+<area shape="rect" id="node4" href="$group__video__gr.html#ga61b127222b75ed2fe135a3a9de81da4d" title="converts color to rgb " alt="" coords="374,56,414,83"/>
+</map>
