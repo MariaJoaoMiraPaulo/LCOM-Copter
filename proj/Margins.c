@@ -10,16 +10,22 @@ void firstImage(){
 	vg_draw_rectangle(0,520,hres,80, MARGINS_COLOR);
 }
 
-void drawMargin() {
+void drawMargin(int state) {
 
-		unsigned hres = getHres();
+	unsigned hres = getHres();
 
-		//two constant margins
+	//two constant margins
 	vg_draw_rectangle(0,0,hres,80, MARGINS_COLOR );
 	vg_draw_rectangle(0,520,hres,80, MARGINS_COLOR);
 
 	//updating margins
-	vg_updating_double();
-
+	switch(state){
+	case 0:
+		vg_updating_double();
+		break;
+	case 1:
+		vg_static_double();
+		break;
+	}
 }
 

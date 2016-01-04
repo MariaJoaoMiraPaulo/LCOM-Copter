@@ -83,7 +83,7 @@ void incrementDistance(Copter* copter){
 	copter->distance++;
 }
 
-void delete_copter(Copter* copter){
+void deleteCopter(Copter* copter){
 	free(copter);
 }
 

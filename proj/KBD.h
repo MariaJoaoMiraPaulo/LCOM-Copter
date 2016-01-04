@@ -94,4 +94,6 @@
 
 #define NUMBER_OF_PIXELS_PUSHED 5
 
+#define COLOR_OF_VIDEO_MEM 65510
+
 #endif /* _LCOM_KBD_H */

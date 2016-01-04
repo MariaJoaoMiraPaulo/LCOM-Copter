@@ -12,6 +12,7 @@ typedef struct {
 	Bitmap* image_copter;
 
 }Copter;
+
 /**
  *@brief Function that loads Copter's image
  */
@@ -44,7 +45,7 @@ void draw_copter(Copter* copter, char c);
  *
  * @param copter pointer to copter
  */
-void delete_copter(Copter* copter);
+void deleteCopter(Copter* copter);
 
 /**
  * @brief updates coordinates of copter

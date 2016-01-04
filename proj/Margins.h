@@ -4,7 +4,7 @@
 
 void firstImage();
 
-void drawMargin();
+void drawMargin(int  state);
 
 
 
