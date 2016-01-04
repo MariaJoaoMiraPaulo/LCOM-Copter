@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <math.h>
 #include "sprite.h"
-#include "pixmap.h"
 #include "KBD.h"
 
 #include "vbe.h"

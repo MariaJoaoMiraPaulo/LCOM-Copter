@@ -1,6 +1,13 @@
 #ifndef __RTC_CONSTANTES_H
 #define __RTC_CONSTANTES_H
 
+/** @defgroup rtcc RTCC
+ * @{
+ *
+ * Constants to be used on rtc
+ *
+ */
+
 #define BIT(n) (0x01<<(n))
 
 #define RTC_ADDR_REG 0x70  //to write
@@ -33,6 +40,6 @@
 
 #define RTC_REG_B_24_12 BIT(1)
 
-
+/** @} end of RTCC */
 
 #endif /* __RTC_H */

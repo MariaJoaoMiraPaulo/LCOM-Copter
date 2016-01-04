@@ -28,13 +28,6 @@ Singleplayer* singleplayerInit(){
 void singleplayerDestructor(Singleplayer* sp){
 	deleteCopter(sp->copter);
 
-	//TODO A alterar!!!!!!
-	/*int i;
-	for(i=0;i<20;i++){
-		free(sp->margins[i]);
-	}*/
-	//free(sp->margins);
-
 	deleteObstacle(sp->obs);
 
 	free(sp);
@@ -112,7 +105,7 @@ int playingGame(char chooseCopter){
 							else
 								update_copter(sp->copter,0);
 
-							if(updateGame(sp,counter/60,chooseCopter,1)==1){//HIT){
+							if(updateGame(sp,counter/60,chooseCopter,1)==HIT){
 									state=HIT;
 									counter=0;
 							}

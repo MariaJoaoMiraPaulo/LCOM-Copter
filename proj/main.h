@@ -1,37 +1,22 @@
 #ifndef __MAIN_H
 #define __MAIN_H
 
-#include "main.h"
 
+/** @defgroup main main
+ * @{
+ *
+ * Main of the program
+ *
+ */
 
-
-
+/*
+ * @brief main of the program
+ */
 int main();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/** @} end of race */
 
 
 

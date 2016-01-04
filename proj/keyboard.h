@@ -1,10 +1,11 @@
 #ifndef _LCOM_KEYBOARD_H_
 #define _LCOM_KEYBOARD_H_
 
-/**keyboard
+/** @defgroup keyboard keyboard
+ * @{
  *
+ * Module that create and control everything that is related to keyboard
  *
- * Functions for use the kbd
  */
 
 int keyboard_subscribe_int();
@@ -23,10 +24,16 @@ int keyboard_change_led(unsigned long cmd);  //sends command to output buffer
 
 void keyboard_print_ledInfo(int ledToPrint);  //prints info about leds, if they are turn on or off
 
+/*
+ * @brief used to get scancodes
+ */
 int keyboard_space_proj();
 
 int keyboard_ass_handler();
 
 //int start_at_zero();
+
+
+/** @} end of keyboard */
 
 #endif /* _LCOM_KEYBOARD_H */

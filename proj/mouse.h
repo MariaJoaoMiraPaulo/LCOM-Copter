@@ -7,17 +7,24 @@
 #include "KBD.h"
 #include "bitmap.h"
 
+/** @defgroup mouse Mouse
+ * @{
+ *
+ * Module that create and control everything that is related to mouse
+ *
+ */
+
+/** @name MouseInfo structure */
+/** @{
+ *
+ * MouseInfo structure
+ */
 typedef struct{
 	short x,y;
 	char lButton,rButton,mButton;
 	Bitmap* mouseImage;
 } MouseInfo;
-
-/** @defgroup test4 test4
- * @{
- *
- * Functions for testing the kbd code
- */
+/** @} end of MouseInfo */
 
 /**
  * @brief To subscribe mouse/keyboard controller
@@ -100,5 +107,7 @@ void atualMousePosition(MouseInfo* mouse);
  * @param mouse pointer to MouseInfo
  */
 void drawMouse(MouseInfo* mouse);
+
+/** @} end of mouse */
 
 #endif /* _LCOM_MOUSE_H */
