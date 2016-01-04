@@ -6,10 +6,23 @@
 
 #include "mouse.h"
 
+/** @defgroup button Button
+ * @{
+ *
+ * Module that create and control everything that is related to buttons
+ *
+ */
+
+/** @name Button structure */
+/** @{
+ *
+ * Button structure
+ */
 typedef	struct{
 	unsigned short x,y;
 	unsigned short height, width;
 } Button;
+/** @} end of Button */
 
 /**
  * @brief draws a button on the screen
@@ -29,6 +42,6 @@ void drawButton(Button *b);
 int hasClickedOnButton(Button *b, MouseInfo *mouse);
 
 
-
+/** @} end of Button */
 
 #endif /* _LCOM_BUTTON_H */

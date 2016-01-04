@@ -1,10 +1,12 @@
 #ifndef _LCOM_KBD_H_
 #define _LCOM_KBD_H_
 
-/*
+
+/** @defgroup kbd KBD
  * @{
  *
- * Constants for programming the Keyboard. Needs to be completed.
+ * ALmost all of the constants to be used on the programm
+ *
  */
 
 #define BIT(n) (0x01<<(n))
@@ -95,5 +97,8 @@
 #define NUMBER_OF_PIXELS_PUSHED 5
 
 #define COLOR_OF_VIDEO_MEM 65510
+
+
+/** @} end of KBD */
 
 #endif /* _LCOM_KBD_H */

@@ -1,6 +1,12 @@
 #ifndef __MENU_H
 #define __MENU_H
 
+/** @defgroup menu Menu
+ * @{
+ *
+ * Module that create and control everything that is related to subscribes and unsubscribes
+ *
+ */
 
 unsigned long IRQ_SET_KBD;
 int IRQ_SET_TIMER;
@@ -25,13 +31,7 @@ void loadAllImages();
  * @brief delets all images of the game
  */
 void DeleteAllImages();
-
-
-
-
-
-
-
+/** @} end of Menu */
 
 #endif /* __MENU_H */
 

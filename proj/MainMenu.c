@@ -260,7 +260,7 @@ void  menuGameOverDestructor(MenuGameOver* mM){
 	free(mM);
 }
 
-int menuGameOverTimerInt(MenuGameOver* mGO, int *ret){
+int menuGameOverTimerInt(MenuGameOver* mGO){
 
 	drawBitmap(mGO->menuImage,0,0);
 	//	drawButton(&(mGO->b1));
@@ -272,7 +272,7 @@ int menuGameOverTimerInt(MenuGameOver* mGO, int *ret){
 	if(hasClickedOnButton(&(mGO->b1),&(mGO->mouse)) != OK){
 		//programState=MAIN_MENU;
 		//ret=0;
-		*(ret)=0;
+		//*(ret)=0;
 		return 0;
 	}
 
@@ -288,7 +288,7 @@ int menuGameOverTimerInt(MenuGameOver* mGO, int *ret){
 	if(hasClickedOnButton(&(mGO->b3),&(mGO->mouse)) != OK){
 		programState=MAIN_MENU;
 		//ret=1;
-		*(ret)=1;
+		//*(ret)=1;
 		return 0;
 	}
 
@@ -703,7 +703,6 @@ void resetMouse(MouseInfo* mouse){
 
 int runningProgram(){
 	int time=0;
-	int ret=1;
 
 	switch(programState){
 	case MAIN_MENU:
@@ -740,12 +739,7 @@ int runningProgram(){
 			case HARDWARE: /* hardware interrupt notification */
 				if (msg.NOTIFY_ARG & IRQ_SET_KBD) { /* subscribed interrupt */
 					scancode=keyboard_space_proj();
-					//					if(scancode==MAKE_SPACE){
-					//						spacePress=1;
-					//					}
-					//					else {
-					//						spacePress=0;
-					//					}
+
 					if(scancode==BREAK_ESC){
 						over=0;
 					}
@@ -794,7 +788,7 @@ int runningProgram(){
 							over=optionMenuTimerInt(optionMenu,time);
 							break;
 						case GAME_OVER_MENU:
-							over=menuGameOverTimerInt(gameOverMenu, &ret);
+							over=menuGameOverTimerInt(gameOverMenu);
 							break;
 						case CREDITS_MENU:
 							over=creditsMenuTimerInt(creditsMenu);
@@ -825,7 +819,7 @@ int runningProgram(){
 	//	}
 
 	if(programState==MAIN_MENU)
-		return 1; //return ret;
+		return 1;
 	else if(programState==GAME_OVER_MENU)
 		return 0;
 

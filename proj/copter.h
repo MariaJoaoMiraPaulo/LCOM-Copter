@@ -4,7 +4,18 @@
 //#define NULL 0
 #include "bitmap.h"
 
+/** @defgroup copter Copter
+ * @{
+ *
+ * Module that create and control everything that is related to copters
+ *
+ */
 
+/** @name Copter structure */
+/** @{
+ *
+ * Copter structure
+ */
 typedef struct {
 
 	unsigned short x, y, width, height;
@@ -12,6 +23,7 @@ typedef struct {
 	Bitmap* image_copter;
 
 }Copter;
+/** @} end of Copter */
 
 /**
  *@brief Function that loads Copter's image
@@ -30,6 +42,8 @@ void deleteCopterImage();
  * @param y coordinate y of copter
  * @param width copter 's width
  * @param height copter's height
+ *
+ * @return a copter pointer
  */
 Copter* newCopter(unsigned short x, unsigned short y, unsigned short width, unsigned short height);
 
@@ -37,8 +51,9 @@ Copter* newCopter(unsigned short x, unsigned short y, unsigned short width, unsi
  * @brief draws copter's image
  *
  * @param copter pointer to copter
+ * @param chooseImage to choose the "copter"
  */
-void draw_copter(Copter* copter, char c);
+void draw_copter(Copter* copter, char chooseImage);
 
 /**
  * @brief delets copter's object
@@ -84,5 +99,7 @@ void saveHighScore();
  * @param copter pointer to copter
  */
 void highScore(Copter* copter);
+
+/** @} end of copter */
 
 #endif /* __COPTER_H */
