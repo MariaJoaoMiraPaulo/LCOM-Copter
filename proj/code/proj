@@ -1,0 +1,33 @@
+service proj
+{
+        system
+                UMAP
+                INT86
+                PRIVCTL
+                READBIOS
+                DEVIO
+                IRQCTL
+                IOPENABLE
+                ;
+        ipc
+                SYSTEM
+                rs
+                vm
+                pm
+                vfs
+                ;
+        io
+                40:4
+                60
+                64
+                70:2      # RTC
+                ;               
+        irq
+                0         # TIMER 0 IRQ
+                1         # KBD IRQ 
+                12        # AUX/MOUSE IRQ
+                8         # RTC
+                ;       
+        uid     0               
+                ;	
+};
