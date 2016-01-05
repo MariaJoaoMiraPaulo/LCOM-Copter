@@ -1,6 +1,0 @@
-<map id="checkingDoubleBuffer" name="checkingDoubleBuffer">
-<area shape="rect" id="node2" href="$group__video__gr.html#ga6d68356bb85b1e025c1c4c92495ed54f" title="returns the color on pixel (x,y) " alt="" coords="200,31,251,57"/>
-<area shape="rect" id="node5" href="$group__video__gr.html#ga61b127222b75ed2fe135a3a9de81da4d" title="converts color to rgb " alt="" coords="205,81,245,108"/>
-<area shape="rect" id="node3" href="$group__video__gr.html#ga7c64389502fa6a405d325b52e394df73" title="returns Horizontal Resolution " alt="" coords="299,5,365,32"/>
-<area shape="rect" id="node4" href="$group__video__gr.html#ga767a2cf54076132e77b08aee14639b12" title="returns Vertical Resolution " alt="" coords="299,56,365,83"/>
-</map>

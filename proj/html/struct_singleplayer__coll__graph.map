@@ -1,6 +1,0 @@
-<map id="Singleplayer" name="Singleplayer">
-<area shape="rect" id="node2" href="$struct_copter.html" title="Copter" alt="" coords="37,184,97,211"/>
-<area shape="rect" id="node3" href="$struct_bitmap.html" title="Represents a Bitmap. " alt="" coords="36,95,99,121"/>
-<area shape="rect" id="node4" href="$struct_bitmap_info_header.html" title="BitmapInfoHeader" alt="" coords="5,5,129,32"/>
-<area shape="rect" id="node5" href="$struct_obstacle.html" title="Obstacle" alt="" coords="122,184,197,211"/>
-</map>

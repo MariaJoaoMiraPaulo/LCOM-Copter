@@ -1,6 +1,0 @@
-<map id="newCopter" name="newCopter">
-<area shape="rect" id="node2" href="$group__singleplayer.html#ga067d66badef902205576da7dfa7e5330" title="singleplayerInit" alt="" coords="136,31,244,57"/>
-<area shape="rect" id="node3" href="$group__singleplayer.html#ga2c57747b05b85bbf110df601109f103c" title="playingGame" alt="" coords="292,31,391,57"/>
-<area shape="rect" id="node4" href="$group__main_menu.html#gac044ff3c7be37f82aa795b6d613dded1" title="mainMenuTimerInt" alt="" coords="455,5,583,32"/>
-<area shape="rect" id="node5" href="$group__main_menu.html#gaddcd8b0a09ce5a3b59ebc2245c7b787c" title="menuGameOverTimerInt" alt="" coords="439,56,600,83"/>
-</map>

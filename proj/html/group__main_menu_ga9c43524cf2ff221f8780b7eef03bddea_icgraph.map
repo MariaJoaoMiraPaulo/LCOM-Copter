@@ -1,6 +1,0 @@
-<map id="creditsMenuInit" name="creditsMenuInit">
-<area shape="rect" id="node2" href="$group__main_menu.html#ga9e12b24d61bb31e118cf7f32dcef94c9" title="runningProgram" alt="" coords="164,56,277,83"/>
-<area shape="rect" id="node3" href="$group__main.html#gae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="381,5,431,32"/>
-<area shape="rect" id="node4" href="$group__main_menu.html#gac044ff3c7be37f82aa795b6d613dded1" title="mainMenuTimerInt" alt="" coords="342,56,470,83"/>
-<area shape="rect" id="node5" href="$group__main_menu.html#gaddcd8b0a09ce5a3b59ebc2245c7b787c" title="menuGameOverTimerInt" alt="" coords="325,107,487,133"/>
-</map>

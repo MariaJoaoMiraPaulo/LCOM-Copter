@@ -1,8 +1,0 @@
-<map id="vg_updating_double" name="vg_updating_double">
-<area shape="rect" id="node2" href="$group__video__gr.html#ga0e3b12129b3d397d65fff7980767bec8" title="randomNumber" alt="" coords="188,5,299,32"/>
-<area shape="rect" id="node3" href="$video__gr_8c.html#a07fedbca5889dd9704174ee5480ee671" title="vg_print_pixel" alt="" coords="193,56,293,83"/>
-<area shape="rect" id="node4" href="$group__video__gr.html#ga6d68356bb85b1e025c1c4c92495ed54f" title="returns the color on pixel (x,y) " alt="" coords="218,131,269,157"/>
-<area shape="rect" id="node7" href="$group__video__gr.html#ga61b127222b75ed2fe135a3a9de81da4d" title="converts color to rgb " alt="" coords="223,181,263,208"/>
-<area shape="rect" id="node5" href="$group__video__gr.html#ga7c64389502fa6a405d325b52e394df73" title="returns Horizontal Resolution " alt="" coords="347,105,413,132"/>
-<area shape="rect" id="node6" href="$group__video__gr.html#ga767a2cf54076132e77b08aee14639b12" title="returns Vertical Resolution " alt="" coords="347,156,413,183"/>
-</map>
