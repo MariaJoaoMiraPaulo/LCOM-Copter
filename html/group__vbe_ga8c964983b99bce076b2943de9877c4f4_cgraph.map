@@ -1,0 +1,5 @@
+<map id="vbe_get_mode_info_block" name="vbe_get_mode_info_block">
+<area shape="rect" id="node2" href="$group__lmlib.html#gae45d971ce2ffcf4dc2677eba033a92cd" title="Allocates a memory block in low memory area with the specified size. " alt="" coords="226,5,297,32"/>
+<area shape="rect" id="node3" href="$group__vbe.html#ga483d699536e8b73a9b36a3e6f1639b1b" title="print_info" alt="" coords="224,56,299,83"/>
+<area shape="rect" id="node4" href="$group__lmlib.html#ga73e89d9c297b7390021fb545513579c6" title="Frees a memory block in the low memory area, previously allocated using lm_alloc() ..." alt="" coords="229,107,293,133"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="optionMenuTimerInt" name="optionMenuTimerInt">
+<area shape="rect" id="node2" href="$bitmap_8c.html#aa1b278852ce8b353e4dec047caebca31" title="Draws an unscaled, unrotated bitmap at the given position. " alt="" coords="434,53,525,80"/>
+<area shape="rect" id="node6" href="$group__button.html#ga61298be6d695ec9dda679d348881215b" title="hasClickedOnButton" alt="" coords="188,236,329,263"/>
+<area shape="rect" id="node7" href="$bitmap_8c.html#abd16e2bc84ec78bd69ee6bc1b036c904" title="Draws images without background. " alt="" coords="377,185,581,212"/>
+<area shape="rect" id="node10" href="$group__mouse.html#ga4e82b6b890d8b551314552e5fbc8805f" title="draws mouse on the screen " alt="" coords="215,185,303,212"/>
+<area shape="rect" id="node3" href="$group__video__gr.html#ga7c64389502fa6a405d325b52e394df73" title="returns Horizontal Resolution " alt="" coords="791,129,857,156"/>
+<area shape="rect" id="node4" href="$group__video__gr.html#ga767a2cf54076132e77b08aee14639b12" title="returns Vertical Resolution " alt="" coords="791,204,857,231"/>
+<area shape="rect" id="node5" href="$group__video__gr.html#ga1af8ef19789843477eaead7ea555629f" title="returns doublebuffer " alt="" coords="629,79,743,105"/>
+<area shape="rect" id="node8" href="$group__video__gr.html#ga6d68356bb85b1e025c1c4c92495ed54f" title="returns the color on pixel (x,y) " alt="" coords="661,204,711,231"/>
+<area shape="rect" id="node9" href="$group__video__gr.html#ga61b127222b75ed2fe135a3a9de81da4d" title="converts color to rgb " alt="" coords="666,255,706,281"/>
+</map>

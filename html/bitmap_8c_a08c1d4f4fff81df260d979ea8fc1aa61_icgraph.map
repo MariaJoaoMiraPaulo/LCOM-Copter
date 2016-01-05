@@ -1,0 +1,11 @@
+<map id="deleteBitmap" name="deleteBitmap">
+<area shape="rect" id="node2" href="$bitmap_8h.html#aad424f4c1d9a7ebaea9b8d6f13a75073" title="draws real time on the game " alt="" coords="193,31,270,57"/>
+<area shape="rect" id="node6" href="$group__copter.html#ga69042dde3d655fbfdb43346a8876d89a" title="Function that delets Copter&#39;s image. " alt="" coords="166,81,297,108"/>
+<area shape="rect" id="node9" href="$group___game_state.html#ga8af9ddf1d8361195b3aa5c10c6389c36" title="deleteGameStateImage" alt="" coords="152,132,311,159"/>
+<area shape="rect" id="node10" href="$_main_menu_8c.html#af633699306f37151470f84f520ab1463" title="deleteImageMainMenu" alt="" coords="155,183,307,209"/>
+<area shape="rect" id="node3" href="$group__rtc.html#ga995cf2bc2d1696fb1a6db0604c446a92" title="rtc_test_date" alt="" coords="367,31,466,57"/>
+<area shape="rect" id="node4" href="$group___game_state.html#ga2d700d6a2e2e972e9980a814695eb1e2" title="updates all game, distance, coordinates of copter,atual time,margins,obstacles " alt="" coords="523,5,619,32"/>
+<area shape="rect" id="node5" href="$group___game_state.html#ga0c24948e3c83d161c9ae0f11e3730bc5" title="hitDraws" alt="" coords="535,56,607,83"/>
+<area shape="rect" id="node7" href="$group__menu.html#ga4656076b65eee56acb020ad585f61ec8" title="delets all images of the game " alt="" coords="359,132,475,159"/>
+<area shape="rect" id="node8" href="$group__main.html#gae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="545,132,596,159"/>
+</map>

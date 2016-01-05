@@ -1,0 +1,6 @@
+<map id="DeleteAllImages" name="DeleteAllImages">
+<area shape="rect" id="node2" href="$group___game_state.html#ga8af9ddf1d8361195b3aa5c10c6389c36" title="deleteGameStateImage" alt="" coords="169,5,328,32"/>
+<area shape="rect" id="node4" href="$_main_menu_8c.html#af633699306f37151470f84f520ab1463" title="deleteImageMainMenu" alt="" coords="173,56,325,83"/>
+<area shape="rect" id="node5" href="$group__copter.html#ga69042dde3d655fbfdb43346a8876d89a" title="Function that delets Copter&#39;s image. " alt="" coords="183,107,314,133"/>
+<area shape="rect" id="node3" href="$bitmap_8c.html#a08c1d4f4fff81df260d979ea8fc1aa61" title="Destroys the given bitmap, freeing all resources used by it. " alt="" coords="376,56,475,83"/>
+</map>

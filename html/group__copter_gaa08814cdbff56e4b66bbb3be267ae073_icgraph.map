@@ -1,0 +1,7 @@
+<map id="refreshHighScore" name="refreshHighScore">
+<area shape="rect" id="node2" href="$group___game_state.html#ga2d700d6a2e2e972e9980a814695eb1e2" title="updates all game, distance, coordinates of copter,atual time,margins,obstacles " alt="" coords="175,5,271,32"/>
+<area shape="rect" id="node6" href="$group___game_state.html#ga0c24948e3c83d161c9ae0f11e3730bc5" title="hitDraws" alt="" coords="187,56,259,83"/>
+<area shape="rect" id="node3" href="$group__singleplayer.html#ga2c57747b05b85bbf110df601109f103c" title="playingGame" alt="" coords="319,31,417,57"/>
+<area shape="rect" id="node4" href="$group__main_menu.html#gac044ff3c7be37f82aa795b6d613dded1" title="mainMenuTimerInt" alt="" coords="482,5,610,32"/>
+<area shape="rect" id="node5" href="$group__main_menu.html#gaddcd8b0a09ce5a3b59ebc2245c7b787c" title="menuGameOverTimerInt" alt="" coords="465,56,627,83"/>
+</map>

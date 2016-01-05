@@ -1,0 +1,11 @@
+<map id="loadBitmap" name="loadBitmap">
+<area shape="rect" id="node2" href="$bitmap_8h.html#aad424f4c1d9a7ebaea9b8d6f13a75073" title="draws real time on the game " alt="" coords="175,5,252,32"/>
+<area shape="rect" id="node3" href="$group__rtc.html#ga995cf2bc2d1696fb1a6db0604c446a92" title="rtc_test_date" alt="" coords="337,44,435,71"/>
+<area shape="rect" id="node6" href="$group__copter.html#gab91473b6657172dd81dd759265094e62" title="Function that loads Copter&#39;s image. " alt="" coords="154,107,273,133"/>
+<area shape="rect" id="node9" href="$_game_state_8c.html#ad7bc711b850acd3f3121599a5581c0fe" title="loadGameStateImage" alt="" coords="140,157,287,184"/>
+<area shape="rect" id="node10" href="$_main_menu_8c.html#a7edb293ec30d1b15ebb66d8366c4ff6d" title="loadImageMainMenu" alt="" coords="143,208,284,235"/>
+<area shape="rect" id="node4" href="$group___game_state.html#ga2d700d6a2e2e972e9980a814695eb1e2" title="updates all game, distance, coordinates of copter,atual time,margins,obstacles " alt="" coords="485,31,581,57"/>
+<area shape="rect" id="node5" href="$group___game_state.html#ga0c24948e3c83d161c9ae0f11e3730bc5" title="hitDraws" alt="" coords="497,81,569,108"/>
+<area shape="rect" id="node7" href="$group__menu.html#ga7cb24a9c28c1c84bed178a4de3642540" title="load all images of the game " alt="" coords="335,157,437,184"/>
+<area shape="rect" id="node8" href="$group__main.html#gae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="508,157,559,184"/>
+</map>

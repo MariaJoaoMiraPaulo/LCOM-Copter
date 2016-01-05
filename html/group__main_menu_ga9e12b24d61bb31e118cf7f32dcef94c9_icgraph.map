@@ -1,0 +1,5 @@
+<map id="runningProgram" name="runningProgram">
+<area shape="rect" id="node2" href="$group__main.html#gae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="222,5,273,32"/>
+<area shape="rect" id="node3" href="$group__main_menu.html#gac044ff3c7be37f82aa795b6d613dded1" title="mainMenuTimerInt" alt="" coords="183,56,311,83"/>
+<area shape="rect" id="node4" href="$group__main_menu.html#gaddcd8b0a09ce5a3b59ebc2245c7b787c" title="menuGameOverTimerInt" alt="" coords="167,107,328,133"/>
+</map>
