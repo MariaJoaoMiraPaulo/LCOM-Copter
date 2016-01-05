@@ -1,0 +1,6 @@
+<map id="optionMenuTimerInt" name="optionMenuTimerInt">
+<area shape="rect" id="node2" href="$group__main_menu.html#ga9e12b24d61bb31e118cf7f32dcef94c9" title="runningProgram" alt="" coords="188,56,301,83"/>
+<area shape="rect" id="node3" href="$group__main.html#gae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="405,5,455,32"/>
+<area shape="rect" id="node4" href="$group__main_menu.html#gac044ff3c7be37f82aa795b6d613dded1" title="mainMenuTimerInt" alt="" coords="366,56,494,83"/>
+<area shape="rect" id="node5" href="$group__main_menu.html#gaddcd8b0a09ce5a3b59ebc2245c7b787c" title="menuGameOverTimerInt" alt="" coords="349,107,511,133"/>
+</map>

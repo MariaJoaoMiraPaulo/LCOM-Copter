@@ -1,0 +1,11 @@
+<map id="randomNumber" name="randomNumber">
+<area shape="rect" id="node2" href="$group__obstacles.html#ga1d2ffb2ca603a458cdbc871cb4806b24" title="newObstacle" alt="" coords="347,5,444,32"/>
+<area shape="rect" id="node6" href="$group__obstacles.html#ga544d9487417e14c8655ccea3068a9e89" title="setObstacle" alt="" coords="185,56,277,83"/>
+<area shape="rect" id="node8" href="$video__gr_8c.html#afc39dc89c1091747b5e1f25b0bd1169a" title="vg_updating_double" alt="" coords="164,107,299,133"/>
+<area shape="rect" id="node3" href="$group__singleplayer.html#ga2c57747b05b85bbf110df601109f103c" title="playingGame" alt="" coords="636,56,735,83"/>
+<area shape="rect" id="node4" href="$group__main_menu.html#gac044ff3c7be37f82aa795b6d613dded1" title="mainMenuTimerInt" alt="" coords="799,31,927,57"/>
+<area shape="rect" id="node5" href="$group__main_menu.html#gaddcd8b0a09ce5a3b59ebc2245c7b787c" title="menuGameOverTimerInt" alt="" coords="783,81,944,108"/>
+<area shape="rect" id="node7" href="$group___game_state.html#ga2d700d6a2e2e972e9980a814695eb1e2" title="updates all game, distance, coordinates of copter,atual time,margins,obstacles " alt="" coords="492,56,588,83"/>
+<area shape="rect" id="node9" href="$_margins_8h.html#a992a3e8dffb2e8f60677e00450dd0127" title="drawMargin" alt="" coords="351,107,439,133"/>
+<area shape="rect" id="node10" href="$group___game_state.html#ga0c24948e3c83d161c9ae0f11e3730bc5" title="hitDraws" alt="" coords="504,107,576,133"/>
+</map>

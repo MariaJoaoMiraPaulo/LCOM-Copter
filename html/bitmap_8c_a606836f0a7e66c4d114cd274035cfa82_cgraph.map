@@ -1,0 +1,8 @@
+<map id="drawBest" name="drawBest">
+<area shape="rect" id="node2" href="$bitmap_8c.html#a8c31a3671af831ab8fc265100506f1dd" title="Draws images without background. " alt="" coords="129,103,231,130"/>
+<area shape="rect" id="node3" href="$group__video__gr.html#ga6d68356bb85b1e025c1c4c92495ed54f" title="returns the color on pixel (x,y) " alt="" coords="310,52,361,79"/>
+<area shape="rect" id="node4" href="$group__video__gr.html#ga7c64389502fa6a405d325b52e394df73" title="returns Horizontal Resolution " alt="" coords="440,27,507,54"/>
+<area shape="rect" id="node5" href="$group__video__gr.html#ga767a2cf54076132e77b08aee14639b12" title="returns Vertical Resolution " alt="" coords="440,90,507,116"/>
+<area shape="rect" id="node6" href="$group__video__gr.html#ga1af8ef19789843477eaead7ea555629f" title="returns doublebuffer " alt="" coords="279,154,392,180"/>
+<area shape="rect" id="node7" href="$group__video__gr.html#ga61b127222b75ed2fe135a3a9de81da4d" title="converts color to rgb " alt="" coords="315,204,355,231"/>
+</map>

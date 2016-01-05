@@ -1,0 +1,10 @@
+<map id="copter.h" name="copter.h">
+<area shape="rect" id="node2" href="$bitmap_8c.html" title="bitmap.c" alt="" coords="5,229,77,256"/>
+<area shape="rect" id="node3" href="$_game_state_8h.html" title="GameState.h" alt="" coords="101,155,200,181"/>
+<area shape="rect" id="node6" href="$_singleplayer_8h.html" title="Singleplayer.h" alt="" coords="188,80,292,107"/>
+<area shape="rect" id="node7" href="$main_8c.html" title="main.c" alt="" coords="392,155,453,181"/>
+<area shape="rect" id="node9" href="$copter_8c.html" title="copter.c" alt="" coords="367,80,436,107"/>
+<area shape="rect" id="node4" href="$_game_state_8c.html" title="GameState.c" alt="" coords="101,229,200,256"/>
+<area shape="rect" id="node5" href="$_singleplayer_8c.html" title="Singleplayer.c" alt="" coords="224,229,328,256"/>
+<area shape="rect" id="node8" href="$_main_menu_8c.html" title="MainMenu.c" alt="" coords="275,155,368,181"/>
+</map>

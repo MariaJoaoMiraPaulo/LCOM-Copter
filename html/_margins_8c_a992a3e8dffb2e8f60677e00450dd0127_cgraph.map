@@ -1,0 +1,11 @@
+<map id="drawMargin" name="drawMargin">
+<area shape="rect" id="node2" href="$group__video__gr.html#ga7c64389502fa6a405d325b52e394df73" title="returns Horizontal Resolution " alt="" coords="483,9,549,36"/>
+<area shape="rect" id="node3" href="$group__video__gr.html#gabe86ab71dc1cce2c75747d24b40c267f" title="Draw a rectangle on the screen. " alt="" coords="145,148,273,175"/>
+<area shape="rect" id="node6" href="$video__gr_8c.html#afc39dc89c1091747b5e1f25b0bd1169a" title="vg_updating_double" alt="" coords="141,97,276,124"/>
+<area shape="rect" id="node10" href="$group__video__gr.html#gaff72218647554150a39299747147958d" title="vg_static_double" alt="" coords="149,199,268,225"/>
+<area shape="rect" id="node4" href="$video__gr_8c.html#a07fedbca5889dd9704174ee5480ee671" title="vg_print_pixel" alt="" coords="329,199,429,225"/>
+<area shape="rect" id="node5" href="$group__video__gr.html#ga61b127222b75ed2fe135a3a9de81da4d" title="converts color to rgb " alt="" coords="359,148,399,175"/>
+<area shape="rect" id="node7" href="$group__video__gr.html#ga0e3b12129b3d397d65fff7980767bec8" title="randomNumber" alt="" coords="324,23,435,49"/>
+<area shape="rect" id="node8" href="$group__video__gr.html#ga6d68356bb85b1e025c1c4c92495ed54f" title="returns the color on pixel (x,y) " alt="" coords="354,97,405,124"/>
+<area shape="rect" id="node9" href="$group__video__gr.html#ga767a2cf54076132e77b08aee14639b12" title="returns Vertical Resolution " alt="" coords="483,97,549,124"/>
+</map>

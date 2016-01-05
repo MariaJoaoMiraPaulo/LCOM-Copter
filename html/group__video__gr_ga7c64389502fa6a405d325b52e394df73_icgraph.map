@@ -1,0 +1,32 @@
+<map id="getHres" name="getHres">
+<area shape="rect" id="node2" href="$bitmap_8h.html#a2371ef0833ccaeb0f1c7b325109f3017" title="Draws an unscaled, unrotated bitmap at the given position. " alt="" coords="973,94,1064,121"/>
+<area shape="rect" id="node8" href="$bitmap_8h.html#abd16e2bc84ec78bd69ee6bc1b036c904" title="Draws images without background. " alt="" coords="247,361,451,388"/>
+<area shape="rect" id="node17" href="$bitmap_8h.html#a8c31a3671af831ab8fc265100506f1dd" title="Draws images without background. " alt="" coords="298,488,399,514"/>
+<area shape="rect" id="node20" href="$bitmap_8h.html#aa2bc6e5a6a5ea82575f66aaa086408e3" title="drawCopters" alt="" coords="301,690,396,717"/>
+<area shape="rect" id="node22" href="$_margins_8h.html#ad04f9f0e204f53e5ef85fae679498932" title="firstImage" alt="" coords="120,57,199,84"/>
+<area shape="rect" id="node24" href="$_margins_8h.html#a992a3e8dffb2e8f60677e00450dd0127" title="drawMargin" alt="" coords="503,589,591,616"/>
+<area shape="rect" id="node25" href="$group__obstacles.html#ga1d2ffb2ca603a458cdbc871cb4806b24" title="newObstacle" alt="" coords="499,804,596,830"/>
+<area shape="rect" id="node26" href="$group__obstacles.html#ga544d9487417e14c8655ccea3068a9e89" title="setObstacle" alt="" coords="501,753,593,780"/>
+<area shape="rect" id="node27" href="$group__obstacles.html#ga68f25ca025f92370564ede6247049865" title="drawObstacle" alt="" coords="654,246,755,273"/>
+<area shape="rect" id="node28" href="$group__video__gr.html#ga6d68356bb85b1e025c1c4c92495ed54f" title="returns the color on pixel (x,y) " alt="" coords="134,613,185,640"/>
+<area shape="rect" id="node3" href="$group__main_menu.html#gac044ff3c7be37f82aa795b6d613dded1" title="mainMenuTimerInt" alt="" coords="1121,246,1249,273"/>
+<area shape="rect" id="node5" href="$group__main_menu.html#gaddcd8b0a09ce5a3b59ebc2245c7b787c" title="menuGameOverTimerInt" alt="" coords="1464,246,1625,273"/>
+<area shape="rect" id="node6" href="$group__main_menu.html#ga58a883b42de8f78436a2a74ae17defa8" title="optionMenuTimerInt" alt="" coords="1118,145,1253,172"/>
+<area shape="rect" id="node7" href="$group__main_menu.html#ga7e96a1deeb7feb1a2a7d8445835129a0" title="creditsMenuTimerInt" alt="" coords="1116,196,1255,222"/>
+<area shape="rect" id="node4" href="$group__main_menu.html#ga9e12b24d61bb31e118cf7f32dcef94c9" title="runningProgram" alt="" coords="1303,246,1416,273"/>
+<area shape="rect" id="node9" href="$bitmap_8h.html#aad424f4c1d9a7ebaea9b8d6f13a75073" title="draws real time on the game " alt="" coords="509,386,586,413"/>
+<area shape="rect" id="node13" href="$group___game_state.html#ga0c24948e3c83d161c9ae0f11e3730bc5" title="hitDraws" alt="" coords="831,373,903,400"/>
+<area shape="rect" id="node14" href="$group__copter.html#gaa08814cdbff56e4b66bbb3be267ae073" title="checks if player reaches high score " alt="" coords="644,398,765,425"/>
+<area shape="rect" id="node15" href="$group__copter.html#ga3cd64baada48eb32409b69ed6724ef88" title="shows on screen new high score " alt="" coords="507,437,587,464"/>
+<area shape="rect" id="node16" href="$group__mouse.html#ga4e82b6b890d8b551314552e5fbc8805f" title="draws mouse on the screen " alt="" coords="975,196,1063,222"/>
+<area shape="rect" id="node10" href="$group__rtc.html#ga995cf2bc2d1696fb1a6db0604c446a92" title="rtc_test_date" alt="" coords="655,348,754,374"/>
+<area shape="rect" id="node11" href="$group___game_state.html#ga2d700d6a2e2e972e9980a814695eb1e2" title="updates all game, distance, coordinates of copter,atual time,margins,obstacles " alt="" coords="819,474,915,501"/>
+<area shape="rect" id="node12" href="$group__singleplayer.html#ga2c57747b05b85bbf110df601109f103c" title="playingGame" alt="" coords="969,366,1068,393"/>
+<area shape="rect" id="node18" href="$bitmap_8h.html#a3653b2a08e50956ee5b9c9bf8f55eced" title="writes distance of copter " alt="" coords="652,500,757,526"/>
+<area shape="rect" id="node19" href="$bitmap_8h.html#a606836f0a7e66c4d114cd274035cfa82" title="draws best score " alt="" coords="509,488,585,514"/>
+<area shape="rect" id="node21" href="$group__copter.html#ga621e8d0e4d2d44f09739765a51f04383" title="draws copter&#39;s image " alt="" coords="659,702,751,729"/>
+<area shape="rect" id="node23" href="$group__singleplayer.html#ga067d66badef902205576da7dfa7e5330" title="singleplayerInit" alt="" coords="813,76,921,102"/>
+<area shape="rect" id="node29" href="$group___game_state.html#gac5cad3a62fec267a7510eb21ea2e20b1" title="checks if copter hits a margins or a obstacle " alt="" coords="685,652,724,678"/>
+<area shape="rect" id="node30" href="$video__gr_8c.html#afc39dc89c1091747b5e1f25b0bd1169a" title="vg_updating_double" alt="" coords="281,589,416,616"/>
+<area shape="rect" id="node31" href="$group__video__gr.html#ga8f27dbbcf91998d22ea4a8b2215641f9" title="checkingDoubleBuffer" alt="" coords="275,741,422,768"/>
+</map>

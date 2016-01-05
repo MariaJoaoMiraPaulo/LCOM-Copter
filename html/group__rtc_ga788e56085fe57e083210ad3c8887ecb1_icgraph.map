@@ -1,0 +1,8 @@
+<map id="wait_valid_rtc" name="wait_valid_rtc">
+<area shape="rect" id="node2" href="$group__rtc.html#ga12258c325a02ef5a2534eba208ac55f0" title="rtc_test_conf" alt="" coords="152,5,249,32"/>
+<area shape="rect" id="node3" href="$group__rtc.html#ga41622742b5ff8dc4b62e28cc42c7c56a" title="readReg" alt="" coords="165,56,236,83"/>
+<area shape="rect" id="node4" href="$group__rtc.html#ga995cf2bc2d1696fb1a6db0604c446a92" title="rtc_test_date" alt="" coords="297,31,396,57"/>
+<area shape="rect" id="node7" href="$rtc_8c.html#a30bacdbc90f83a28e9b34a2974329da1" title="changeReg" alt="" coords="303,81,390,108"/>
+<area shape="rect" id="node5" href="$group___game_state.html#ga2d700d6a2e2e972e9980a814695eb1e2" title="updates all game, distance, coordinates of copter,atual time,margins,obstacles " alt="" coords="444,5,540,32"/>
+<area shape="rect" id="node6" href="$group___game_state.html#ga0c24948e3c83d161c9ae0f11e3730bc5" title="hitDraws" alt="" coords="456,56,528,83"/>
+</map>
