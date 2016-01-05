@@ -1,7 +1,0 @@
-<map id="keyboard_space_proj" name="keyboard_space_proj">
-<area shape="rect" id="node2" href="$group__main_menu.html#ga9e12b24d61bb31e118cf7f32dcef94c9" title="runningProgram" alt="" coords="199,56,312,83"/>
-<area shape="rect" id="node6" href="$group__singleplayer.html#ga2c57747b05b85bbf110df601109f103c" title="playingGame" alt="" coords="206,107,305,133"/>
-<area shape="rect" id="node3" href="$group__main.html#gae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="415,5,466,32"/>
-<area shape="rect" id="node4" href="$group__main_menu.html#gac044ff3c7be37f82aa795b6d613dded1" title="mainMenuTimerInt" alt="" coords="377,107,505,133"/>
-<area shape="rect" id="node5" href="$group__main_menu.html#gaddcd8b0a09ce5a3b59ebc2245c7b787c" title="menuGameOverTimerInt" alt="" coords="360,56,521,83"/>
-</map>

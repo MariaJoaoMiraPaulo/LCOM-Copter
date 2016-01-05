@@ -1,8 +1,0 @@
-<map id="Singleplayer.h" name="Singleplayer.h">
-<area shape="rect" id="node2" href="$_game_state_8h.html" title="GameState.h" alt="" coords="111,80,209,107"/>
-<area shape="rect" id="node5" href="$_singleplayer_8c.html" title="Singleplayer.c" alt="" coords="224,155,328,181"/>
-<area shape="rect" id="node6" href="$main_8c.html" title="main.c" alt="" coords="303,80,364,107"/>
-<area shape="rect" id="node7" href="$_main_menu_8c.html" title="MainMenu.c" alt="" coords="388,80,481,107"/>
-<area shape="rect" id="node3" href="$bitmap_8c.html" title="bitmap.c" alt="" coords="5,155,77,181"/>
-<area shape="rect" id="node4" href="$_game_state_8c.html" title="GameState.c" alt="" coords="101,155,200,181"/>
-</map>

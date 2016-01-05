@@ -1,5 +1,0 @@
-<map id="subscribe" name="subscribe">
-<area shape="rect" id="node2" href="$group__keyboard.html#ga4ac76b0a9a73670254d5fd4c520e458f" title="keyboard_subscribe_int" alt="" coords="132,5,291,32"/>
-<area shape="rect" id="node3" href="$group__timer.html#ga4c5d9f47323eda494cfd826f6d62eec9" title="Subscribes and enables Timer 0 interrupts. " alt="" coords="144,56,279,83"/>
-<area shape="rect" id="node4" href="$group__mouse.html#ga99506573209b197b84ee22a228b89fbd" title="To subscribe mouse/keyboard controller. " alt="" coords="139,107,284,133"/>
-</map>

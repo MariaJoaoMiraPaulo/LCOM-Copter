@@ -1,6 +1,0 @@
-<map id="setObstacle" name="setObstacle">
-<area shape="rect" id="node2" href="$group___game_state.html#ga2d700d6a2e2e972e9980a814695eb1e2" title="updates all game, distance, coordinates of copter,atual time,margins,obstacles " alt="" coords="145,31,241,57"/>
-<area shape="rect" id="node3" href="$group__singleplayer.html#ga2c57747b05b85bbf110df601109f103c" title="playingGame" alt="" coords="289,31,388,57"/>
-<area shape="rect" id="node4" href="$group__main_menu.html#gac044ff3c7be37f82aa795b6d613dded1" title="mainMenuTimerInt" alt="" coords="453,5,581,32"/>
-<area shape="rect" id="node5" href="$group__main_menu.html#gaddcd8b0a09ce5a3b59ebc2245c7b787c" title="menuGameOverTimerInt" alt="" coords="436,56,597,83"/>
-</map>
