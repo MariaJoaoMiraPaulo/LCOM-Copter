@@ -2,5 +2,5 @@
 
 #Screenshots
 
-![image](https://github.com/MariaJoaoMiraPaulo/LCOM-Copter/blob/master/proj/images/Menu.bmp {width=40px height=400px})
+<img src="https://github.com/MariaJoaoMiraPaulo/LCOM-Copter/blob/master/proj/images/Menu.bmp" width="48">
 #####Fig. 1: Main menu
